@@ -2,12 +2,22 @@
 import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 
-import { TextField, Fab } from '@material-ui/core'
-import { NavigationIcon } from '@material-ui/icons/Navigation'
+import TextInput from '../TextInput';
+import TemplateInput from '../TemplateInput';
 
-import MyDropdown from './MyDropdown';
-import { useStyles } from '@material-ui/pickers/views/Calendar/SlideTransition';
+const templates = [
+  { templateName: 'World of Warcraft', imgUrl: 'https://raid-helper.com/wp-content/uploads/2021/04/Unbenannt.png' },
+  { templateName: 'Yes & No', imgUrl: 'https://raid-helper.com/wp-content/uploads/2021/04/poll.png' },
+  { templateName: 'Tabletop Games', imgUrl: 'https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png' },
+  { templateName: 'Tabletop Games', imgUrl: 'https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png' },
+  { templateName: 'Tabletop Games', imgUrl: 'https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png' },
+  { templateName: 'Tabletop Games', imgUrl: 'https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png' },
+  { templateName: 'Tabletop Games', imgUrl: 'https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png' }
+];
+
 
 const navigation = ['Dashboard', 'Team', 'Projects', 'Calendar', 'Reports']
 const profile = ['Your Profile', 'Settings', 'Sign out']
@@ -22,7 +32,7 @@ export default function EventCreateForm() {
 
   return (
     <div>
-      <Disclosure as="nav" className="bg-gray-800">
+      <Disclosure as="nav" className="bg-header">
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,16 +51,12 @@ export default function EventCreateForm() {
                         itemIdx === 0 ? (
                           <Fragment key={item}>
                             {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                            <a href="#" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
+                            <a href="#" className="bg-gray-900 text-primary px-3 py-2 rounded-md text-sm font-medium">
                               {item}
                             </a>
                           </Fragment>
                         ) : (
-                          <a
-                            key={item}
-                            href="#"
-                            className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                          >
+                          <a key={item} href="#" className="text-primary hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                             {item}
                           </a>
                         )
@@ -185,73 +191,34 @@ export default function EventCreateForm() {
         )}
       </Disclosure>
 
-      <header className="bg-white shadow">
+      <header className="bg-title shadow">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900">Create New Event</h1>
+          <h1 className="text-3xl font-bold text-primary">Create New Event</h1>
         </div>
       </header>
-      <main>
+      <main className='bg-content'>
         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <div class='container divide-y-2 divide-dashed md:divide-solid'>
-            <div class='mb-8'>
-              <h3 className="text-2xl font-bold text-gray-900">Select Template</h3>
-              <div class='transition duration-500 transform hover:-translate-y-2 hover:shadow-2xl rounded-xl mt-6 bg-gray-700 inline-block'>
-                <div class='w-96 h-96 rounded-t-xl'>
-                  <img class='w-full h-full rounded-t-xl' src='https://raid-helper.com/wp-content/uploads/2021/04/Unbenannt.png' />
-                </div>
-                <h1 style={{ textAlign: 'center', padding: 6, color: 'white' }}><b>World of Warcraft - Template 1</b></h1>
-              </div>
+          <div className='container divide-y-2 divide-dashed md:divide-solid divide-primary'>
+            <div className='mb-8'>
+              <TemplateInput template={templates} description='You can select a template here' />
             </div>
-            <div class='mb-8'>
-              <h3 className="text-2xl font-bold text-gray-900 mt-6">Select Title</h3>
-              <div class='mt-6'>
-                <form className={useStyles().root} noValidate autoComplete="off">
-                  <TextField id="outlined-basic" label="Title" variant="outlined" />
-                </form>
-              </div>
+            <div className='mb-8'>
+              <TextInput title='Title' type='text' description='Please enter the event title' />
             </div>
-            <div class='mb-8'>
-              <h3 className="text-2xl font-bold text-gray-900 mt-6">Select Description</h3>
-              <div class='mt-6'>
-                <form className={useStyles().root} noValidate autoComplete="off">
-                  <TextField rows={4} id="outlined-basic" multiline fullWidth label="Description" variant="outlined" />
-                </form>
-              </div>
+            <div className='mb-8'>
+              <TextInput title='Description' type='text' description='Please enter the description for event' />
             </div>
-            <div class='mb-8'>
-              <h3 className="text-2xl font-bold text-gray-900 mt-6">Select Channel</h3>
-              <div class='mt-6'>
-                <form className={useStyles().root} noValidate autoComplete="off">
-                  <TextField id="outlined-basic" label="Channel" variant="outlined" />
-                </form>
-              </div>
+            <div className='mb-8'>
+              <TextInput title='Channel' type='text' description='Please enter the channel that you want to get event' />
             </div>
-            <div class='mb-8'>
-              <h3 className="text-2xl font-bold text-gray-900 mt-6">Select Date</h3>
-              <div class='mt-6'>
-                <form className={useStyles().container} noValidate>
-                  <TextField
-                    id="datetime-local"
-                    label="Date"
-                    type="datetime-local"
-                    defaultValue="2017-05-24T10:30"
-                    className={useStyles().TextField}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                  />
-                </form>
-              </div>
+            <div className='mb-8'>
+              <TextInput title='Date' type='datetime-local' description='Please enter the date that event gonna occur' />
               <div style={{ position: 'fixed', right: 48, bottom: 48 }}>
-                <Fab variant="extended"
-                  size='big'
-                  color='primary'
-                >
-                  Create Event
-               </Fab>
+                <button className="text-lightBlue-500 bg-primary text-primary hover:bg-primary-light hover:text-white shadow-xl active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3  rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                  <i className="fas fa-heart"></i> Complete Event
+                </button>
               </div>
             </div>
-
           </div>
         </div>
       </main>
