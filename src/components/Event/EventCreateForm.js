@@ -7,8 +7,6 @@ import { verify, readToken } from "../../crypto";
 import { useParams, useHistory } from "react-router-dom";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 
 import TextInput from "../TextInput";
 import TemplateInput from "../TemplateInput";
