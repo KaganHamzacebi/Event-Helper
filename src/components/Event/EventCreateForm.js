@@ -2,7 +2,7 @@
 
 import { Fragment, useState, useEffect } from "react";
 import axios from "axios";
-import {  verify, readToken } from "../../crypto";
+import { verify, readToken } from "../../crypto";
 
 import { useParams, useHistory } from "react-router-dom";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
@@ -85,7 +85,7 @@ export default function EventCreateForm() {
       .catch(function (error) {
         console.log(error);
       })
-      
+
   };
 
   return (
@@ -313,15 +313,16 @@ export default function EventCreateForm() {
                 description="Please enter the date that event gonna occur"
               />
             </div>
-            <div style={{ position: "fixed", right: 48, bottom: 48 }}>
-              <button
-                onClick={createEvent}
-                className="text-lightBlue-500 bg-primary text-primary hover:bg-primary-light hover:text-white shadow-xl active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3  rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-              >
-                <i className="fas fa-heart"></i> Complete Event
+            <button
+              onClick={createEvent}
+              className="bg-white text-black hover:text-white shadow-xl active:bg-lightBlue-600
+              transition duration-1000 ease-out hover:bg-green-400 hover:text-primary
+              font-bold uppercase text-sm px-6 py-3 rounded-full outline-none focus:outline-none
+              fixed right-12 bottom-12"
+              type="button"
+            >
+              Create Event
               </button>
-            </div>
           </div>
         </div>
       </main>

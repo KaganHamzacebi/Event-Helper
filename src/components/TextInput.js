@@ -16,7 +16,7 @@ export default function TextInput({
 
   const errors = {
     "Template": "",
-    "Title": "Title can't be empty",
+    "Title": "Title cannot be empty",
     "Description": "",
     "Channel": "Channel can't be empty",
     "Date": "Date can't be empty"
@@ -86,13 +86,12 @@ export default function TextInput({
               className="px-3 py-3 bg-title text-primary relative rounded text-lg border border-gray-900 outline-none focus:outline-none focus:shadow-outline w-1/5"
             />
           </div>
-          {isValid ? 
-          "" : 
-          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-red-600 bg-red-300 uppercase last:mr-0 mr-1">
-            <FontAwesomeIcon icon={faExclamationTriangle} size="1x"></FontAwesomeIcon>    
-             {" " + errors[title]}
+          <span className={`text-xs font-bold inline-block py-1 px-2 rounded text-red-600 opacity-0 bg-red-300 last:mr-0 mr-1 
+            ${isValid ? "transition-opacity duration-800 ease-out opacity-0" : "transition-opacity duration-1000 ease-in opacity-100"}`}>
+            <FontAwesomeIcon icon={faExclamationTriangle} size="1x"></FontAwesomeIcon>
+            {" " + errors[title]}
           </span>
-          }
+
         </div>
       ) : (
         <div className="mt-4">
@@ -107,15 +106,11 @@ export default function TextInput({
             />
 
           </div>
-          {isValid ? 
-          "" : 
-          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-red-600 bg-red-300 uppercase last:mr-0 mr-1">
-            <FontAwesomeIcon icon={faExclamationTriangle} size="1x"></FontAwesomeIcon>    
-             {" " + errors[title]}
+          <span className={`text-xs font-bold inline-block py-1 px-2 rounded text-red-600 opacity-0 bg-red-300 last:mr-0 mr-1 
+            ${isValid ? "transition-opacity duration-800 ease-out opacity-0" : "transition-opacity duration-1000 ease-in opacity-100"}`}>
+            <FontAwesomeIcon icon={faExclamationTriangle} size="1x"></FontAwesomeIcon>
+            {" " + errors[title]}
           </span>
-          }
-          
-          
         </div>
       )}
     </div>
