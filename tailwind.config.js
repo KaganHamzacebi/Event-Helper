@@ -17,6 +17,7 @@ module.exports = {
      textColor: {
        'primary': '#FFFFFF',
        'primary-light': '#8D8F91',
+       'danger': '#e3342f'
      },
      placeholderColor: {
       'primary': '#36393f',
