@@ -280,6 +280,8 @@ export default function EventCreateForm() {
               <TemplateInput
                 templates={templates}
                 description="You can select a template here"
+                selectedChange={setSelectedTemplate}
+                selected={selectedTemplate}
               />
             </div>
             <div className="mb-8">
