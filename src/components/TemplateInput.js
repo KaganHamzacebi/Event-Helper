@@ -7,7 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons";
 
-export default function TemplateInput(props) {
+export default function TemplateInput({
+    templates,
+    description
+}) {
 
     const arrow = ({ text, className }) => {
         return (
@@ -23,14 +26,14 @@ export default function TemplateInput(props) {
 
     const [selected, setSelected] = useState(0);
 
-    const myItems = props.template.map((tmp, index) => {
+    const myItems = templates.map((tmp, index) => {
         return <Template key={index} templateName={tmp.templateName} imgUrl={tmp.imgUrl} />
     })
 
     return (
         <div className='mb-8'>
             <h3 className="text-2xl font-bold text-primary mt-6">Templates</h3>
-            <span className='text-sm text-primary-light'>{props.description}</span>
+            <span className='text-sm text-primary-light'>{description}</span>
             < ScrollMenu
                 alignCenter={false}
                 alignOnResize={false}
@@ -38,7 +41,7 @@ export default function TemplateInput(props) {
                 arrowLeft={arrowLeft}
                 arrowRight={arrowRight}
                 selected={selected}
-                onSelect={(item) => setSelected(item.key) }
+                onSelect={(item) => setSelected(item.id) }
             />
         </div>
     );

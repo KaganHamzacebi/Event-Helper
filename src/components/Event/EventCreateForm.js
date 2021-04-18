@@ -15,30 +15,37 @@ import TemplateInput from "../TemplateInput";
 
 const templates = [
   {
+    id: 0,
     templateName: "World of Warcraft",
     imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/Unbenannt.png",
   },
   {
+    id: 1,
     templateName: "Yes & No",
     imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/poll.png",
   },
   {
+    id: 2,
     templateName: "Tabletop Games",
     imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png",
   },
   {
+    id: 3,
     templateName: "Tabletop Games",
     imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png",
   },
   {
+    id: 4,
     templateName: "Tabletop Games",
     imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png",
   },
   {
+    id: 5,
     templateName: "Tabletop Games",
     imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png",
   },
   {
+    id: 6,
     templateName: "Tabletop Games",
     imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png",
   },
@@ -273,7 +280,7 @@ export default function EventCreateForm() {
           <div className="container divide-y-2 divide-dashed md:divide-solid divide-primary">
             <div className="mb-8">
               <TemplateInput
-                template={templates}
+                templates={templates}
                 description="You can select a template here"
               />
             </div>
