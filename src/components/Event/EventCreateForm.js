@@ -1,34 +1,92 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 
-import TextInput from '../TextInput';
-import TemplateInput from '../TemplateInput';
+import { Fragment, useState, useEffect } from "react";
+import axios from "axios";
+import {  verify, readToken } from "../../crypto";
+
+import { useParams, useHistory } from "react-router-dom";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
+
+import TextInput from "../TextInput";
+import TemplateInput from "../TemplateInput";
 
 const templates = [
-  { templateName: 'World of Warcraft', imgUrl: 'https://raid-helper.com/wp-content/uploads/2021/04/Unbenannt.png' },
-  { templateName: 'Yes & No', imgUrl: 'https://raid-helper.com/wp-content/uploads/2021/04/poll.png' },
-  { templateName: 'Tabletop Games', imgUrl: 'https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png' },
-  { templateName: 'Tabletop Games', imgUrl: 'https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png' },
-  { templateName: 'Tabletop Games', imgUrl: 'https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png' },
-  { templateName: 'Tabletop Games', imgUrl: 'https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png' },
-  { templateName: 'Tabletop Games', imgUrl: 'https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png' }
+  {
+    templateName: "World of Warcraft",
+    imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/Unbenannt.png",
+  },
+  {
+    templateName: "Yes & No",
+    imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/poll.png",
+  },
+  {
+    templateName: "Tabletop Games",
+    imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png",
+  },
+  {
+    templateName: "Tabletop Games",
+    imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png",
+  },
+  {
+    templateName: "Tabletop Games",
+    imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png",
+  },
+  {
+    templateName: "Tabletop Games",
+    imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png",
+  },
+  {
+    templateName: "Tabletop Games",
+    imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png",
+  },
 ];
 
-
-const navigation = ['Dashboard', 'Team', 'Projects', 'Calendar', 'Reports']
-const profile = ['Your Profile', 'Settings', 'Sign out']
+const navigation = ["Dashboard", "Team", "Projects", "Calendar", "Reports"];
+const profile = ["Your Profile", "Settings", "Sign out"];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function EventCreateForm() {
+  const history = useHistory();
+  const [selectedTemplate, setSelectedTemplate] = useState(-1);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [channel, setChannel] = useState("");
+  const [date, setDate] = useState(0);
+  const { token } = useParams();
 
-  const [isTemplateActive, setIsTemplateActive] = useState(false);
+  useEffect(() => {
+    if (!verify(token)) {
+      history.push("/invalid_token");
+    }
+  }, []);
+
+  const createEvent = () => {
+    // TODO: girilen verileri kontrol et
+    const payload = {
+      template: selectedTemplate,
+      token: token,
+      title: title,
+      description: description,
+      channel: channel,
+      date: date
+    }
+
+    axios
+      .post("https://httpbin.org/post", payload)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      
+  };
 
   return (
     <div>
@@ -51,12 +109,19 @@ export default function EventCreateForm() {
                         itemIdx === 0 ? (
                           <Fragment key={item}>
                             {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                            <a href="#" className="bg-gray-900 text-primary px-3 py-2 rounded-md text-sm font-medium">
+                            <a
+                              href="#"
+                              className="bg-gray-900 text-primary px-3 py-2 rounded-md text-sm font-medium"
+                            >
                               {item}
                             </a>
                           </Fragment>
                         ) : (
-                          <a key={item} href="#" className="text-primary hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                          <a
+                            key={item}
+                            href="#"
+                            className="text-primary hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                          >
                             {item}
                           </a>
                         )
@@ -105,8 +170,8 @@ export default function EventCreateForm() {
                                     <a
                                       href="#"
                                       className={classNames(
-                                        active ? 'bg-gray-100' : '',
-                                        'block px-4 py-2 text-sm text-gray-700'
+                                        active ? "bg-gray-100" : "",
+                                        "block px-4 py-2 text-sm text-gray-700"
                                       )}
                                     >
                                       {item}
@@ -141,7 +206,10 @@ export default function EventCreateForm() {
                   itemIdx === 0 ? (
                     <Fragment key={item}>
                       {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                      <a href="#" className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">
+                      <a
+                        href="#"
+                        className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+                      >
                         {item}
                       </a>
                     </Fragment>
@@ -166,8 +234,12 @@ export default function EventCreateForm() {
                     />
                   </div>
                   <div className="ml-3">
-                    <div className="text-base font-medium leading-none text-white">Tom Cook</div>
-                    <div className="text-sm font-medium leading-none text-gray-400">tom@example.com</div>
+                    <div className="text-base font-medium leading-none text-white">
+                      Tom Cook
+                    </div>
+                    <div className="text-sm font-medium leading-none text-gray-400">
+                      tom@example.com
+                    </div>
                   </div>
                   <button className="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                     <span className="sr-only">View notifications</span>
@@ -196,32 +268,63 @@ export default function EventCreateForm() {
           <h1 className="text-3xl font-bold text-primary">Create New Event</h1>
         </div>
       </header>
-      <main className='bg-content'>
+      <main className="bg-content">
         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <div className='container divide-y-2 divide-dashed md:divide-solid divide-primary'>
-            <div className='mb-8'>
-              <TemplateInput template={templates} description='You can select a template here' />
+          <div className="container divide-y-2 divide-dashed md:divide-solid divide-primary">
+            <div className="mb-8">
+              <TemplateInput
+                template={templates}
+                description="You can select a template here"
+              />
             </div>
-            <div className='mb-8'>
-              <TextInput title='Title' type='text' description='Please enter the event title' />
+            <div className="mb-8">
+              <TextInput
+                title="Title"
+                value={title}
+                valueChange={setTitle}
+                type="text"
+                description="Please enter the event title"
+              />
             </div>
-            <div className='mb-8'>
-              <TextInput title='Description' type='text' description='Please enter the description for event' />
+            <div className="mb-8">
+              <TextInput
+                title="Description"
+                value={description}
+                valueChange={setDescription}
+                type="text"
+                description="Please enter the description for event"
+              />
             </div>
-            <div className='mb-8'>
-              <TextInput title='Channel' type='text' description='Please enter the channel that you want to get event' />
+            <div className="mb-8">
+              <TextInput
+                title="Channel"
+                value={channel}
+                valueChange={setChannel}
+                type="text"
+                description="Please enter the channel that you want to get event"
+              />
             </div>
-            <div className='mb-8'>
-              <TextInput title='Date' type='datetime-local' description='Please enter the date that event gonna occur' />
-              <div style={{ position: 'fixed', right: 48, bottom: 48 }}>
-                <button className="text-lightBlue-500 bg-primary text-primary hover:bg-primary-light hover:text-white shadow-xl active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3  rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-                  <i className="fas fa-heart"></i> Complete Event
-                </button>
-              </div>
+            <div className="mb-8">
+              <TextInput
+                title="Date"
+                value={date}
+                valueChange={setDate}
+                type="date"
+                description="Please enter the date that event gonna occur"
+              />
+            </div>
+            <div style={{ position: "fixed", right: 48, bottom: 48 }}>
+              <button
+                onClick={createEvent}
+                className="text-lightBlue-500 bg-primary text-primary hover:bg-primary-light hover:text-white shadow-xl active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3  rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                type="button"
+              >
+                <i className="fas fa-heart"></i> Complete Event
+              </button>
             </div>
           </div>
         </div>
       </main>
     </div>
-  )
+  );
 }
