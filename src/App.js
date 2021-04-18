@@ -1,7 +1,9 @@
 import './App.css';
-import EventCreateForm from './components/Event/EventCreateForm'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import InvalidToken from './components/InvalidToken';
+
+import EventCreateForm from './pages/EventCreate/EventCreateForm'
+import InvalidToken from './pages/ErrorPage/InvalidToken';
+
 
 function App() {
   return (
