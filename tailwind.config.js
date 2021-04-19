@@ -11,7 +11,8 @@ module.exports = {
      'content': '#36393f',
      'primary': '#6366F1',
      'primary-light': '#7F82F2',
-     'white': '#FFFFFF'
+     'white': '#FFFFFF',
+     'danger': '#e3342f'
     }),
     textColor: theme => theme('colors'),
      textColor: {

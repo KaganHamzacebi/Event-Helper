@@ -6,23 +6,18 @@ export default function AdvancedOptionInput({
     description,
 }) {
 
-    const [enabledColorSwitch, setEnabledColorSwitch] = useState(false);
-    const [enabledColorSwitch2, setEnabledColorSwitch2] = useState(false);
-    const [enabledColorSwitch3, setEnabledColorSwitch3] = useState(false);
-    const [enabledPremiumSwitch, setEnabledPremiumSwitch] = useState(false);
-
     const advancedOptions = [
         {
-            name: 'color', description: 'Changes discord embed message color', type: 'switch', premium: false, disabled: false, enabled: enabledColorSwitch, setEnabled: setEnabledColorSwitch
+            name: 'color', description: 'Changes discord embed message color', type: 'switch', premium: false, disabled: false
         },
         {
-            name: 'color', description: 'Changes discord embed message color', type: 'switch', premium: false, disabled: false, enabled: enabledColorSwitch2, setEnabled: setEnabledColorSwitch2
+            name: 'color', description: 'Changes discord embed message color', type: 'switch', premium: false, disabled: false
         },
         {
-            name: 'color', description: 'Changes discord embed message color', type: 'switch', premium: false, disabled: false, enabled: enabledColorSwitch3, setEnabled: setEnabledColorSwitch3
+            name: 'color', description: 'Changes discord embed message color', type: 'switch', premium: false, disabled: false
         },
         {
-            name: 'premiumFeature', description: 'buy premium right now!!', type: 'switch', premium: true, disabled: false, enabled: enabledPremiumSwitch, setEnabled: setEnabledPremiumSwitch
+            name: 'premiumFeature', description: 'buy premium right now!!', type: 'switch', premium: true, disabled: false
         }
     ];
 
@@ -39,7 +34,7 @@ export default function AdvancedOptionInput({
                                 <span className="text-sm text-primary-light">{advancedOption.description}</span>
                             </div>
                             <div className='self-center mr-4'>
-                                <Switch enabled={advancedOption.enabled} setEnabled={advancedOption.setEnabled} />
+                                <Switch name={advancedOption.name} />
                             </div>
                         </div>
 

@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { verify, readToken } from "../../crypto";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+
 import { useParams, useHistory } from "react-router-dom";
 
 import Header from "../../components/Header";
@@ -12,6 +15,7 @@ import DateInput from "../../components/DateInput";
 import TextAreaInput from "../../components/TextAreaInput";
 import TemplateInput from "../../components/TemplateInput";
 import AdvancedOptionInput from "../../components/AdvancedOptionInput";
+import { validate } from "../../inputValidations";
 
 const templates = [
   {
@@ -53,12 +57,8 @@ const templates = [
 
 export default function EventCreateForm() {
   const history = useHistory();
-  const [selectedTemplate, setSelectedTemplate] = useState(-1);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [channel, setChannel] = useState("");
-  const [date, setDate] = useState(0);
   const { token } = useParams();
+  const [isFormValid, setIsFormValid] = useState(true);
 
   useEffect(() => {
     if (!verify(token)) {
@@ -66,100 +66,128 @@ export default function EventCreateForm() {
     }
   }, []);
 
-  const createEvent = () => {
-    // TODO: girilen verileri kontrol et
+  useEffect(() => {
+      if (!isFormValid) {
+        setTimeout(()=> setIsFormValid(true), 4000)
+      }
+  }, [isFormValid])
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const payload = {
-      template: selectedTemplate,
-      token: token,
-      title: title,
-      description: description,
-      channel: channel,
-      date: date
+
     }
 
+    for (let i = 0; i < e.target.length; i++) {
+      const element = e.target[i];
+      element.focus();
+      element.blur();
+
+      const _isValid = validate(element.name, element.value, setIsFormValid)
+      if (!_isValid) return;
+      payload[element.name] = element.value;
+    }
+
+    delete payload.submit;
+
+    console.log(payload);
     axios
-      .post("https://httpbin.org/post", payload)
+      .post("https://httpbin.org/status/401", payload)
       .then(function (response) {
         console.log(response);
+        history.push("/event_create_successful")
       })
       .catch(function (error) {
-        console.log(error);
+        // TODO: server_error ekle
+        history.push("/server_error")
       })
 
-  };
+
+  }
+
 
   return (
     <div>
       <Header />
+      <div className={`fixed inset-x-0 mx-auto container px-10 md:px-26 lg:px-96 z-10 transition duration-500 ${isFormValid ? "opacity-0" : "opacity-100"}`}>
+        <div className="m-auto shadow-2xl">
+          <div className="bg-red-300 rounded-lg border-gray-900 border p-3 shadow-2xl">
+            <div className="flex flex-row">
+              <div className="px-2 my-auto">
+                <FontAwesomeIcon icon={faExclamationTriangle} size="2x"></FontAwesomeIcon>
+              </div>
+              <div className="ml-2">
+                <span className="font-semibold md:text-lg">Event could not be created!</span>
+                <span className="block text-gray-500 md:text-lg">Please fill the required fields</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <header className="bg-title shadow">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-primary">Create New Event</h1>
         </div>
       </header>
       <main className="bg-content">
-        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <div className="container divide-y-2 divide-dashed md:divide-solid divide-primary">
-            <div>
-              <TemplateInput
-                templates={templates}
-                selected={selectedTemplate}
-                selectedChange={setSelectedTemplate}
-                description="You can select a template here"
-              />
+        <form onSubmit={handleSubmit}>
+          <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <div className="container divide-y-2 divide-dashed md:divide-solid divide-primary">
+              <div>
+                <TemplateInput
+                  templates={templates}
+                  description="You can select a template here"
+                />
+              </div>
+              <div>
+                <TextInput
+                  title="Title"
+                  type="text"
+                  description="Please enter the event title"
+                />
+              </div>
+              <div>
+                <TextAreaInput
+                  title="Description"
+                  rows={2}
+                  type="text"
+                  description="Please enter the description for event (Optional)"
+                />
+              </div>
+              <div>
+                <TextInput
+                  title="Channel"
+                  type="text"
+                  description="Please enter the channel that you want to get event"
+                />
+              </div>
+              <div>
+                <DateInput
+                  title="Date"
+                  description="Please enter the date that event gonna occur"
+                />
+              </div>
+              <div>
+
+                <AdvancedOptionInput
+                  title="Advanced Options"
+                  description="advanced ayarlari buraya koycez"
+                />
+              </div>
+              <button
+                name="submit"
+                className="bg-white text-black hover:text-white shadow-xl active:bg-lightBlue-600
+                transition duration-1000 ease-out hover:bg-green-400 hover:text-primary
+                font-bold uppercase text-sm px-6 py-3 rounded-full outline-none focus:outline-none
+                fixed right-12 bottom-12"
+                type="submit"
+              >
+                Create Event
+                </button>
             </div>
-            <div>
-              <TextInput
-                title="Title"
-                value={title}
-                valueChange={setTitle}
-                type="text"
-                description="Please enter the event title"
-              />
-            </div>
-            <div>
-              <TextAreaInput
-                title="Description"
-                value={description}
-                valueChange={setDescription}
-                rows={2}
-                type="text"
-                description="Please enter the description for event"
-              />
-            </div>
-            <div>
-              <TextInput
-                title="Channel"
-                value={channel}
-                valueChange={setChannel}
-                type="text"
-                description="Please enter the channel that you want to get event"
-              />
-            </div>
-            <div>
-              <DateInput
-                title="Date"
-                valueChange={setDate}
-                description="Please enter the date that event gonna occur"
-              />
-            </div>
-            <div>
-              <AdvancedOptionInput
-                title="Advanced Options"
-                description="advanced ayarlari buraya koycez"
-              />
-            </div>
-            <button
-              onClick={createEvent}
-              className="bg-white text-black hover:text-white shadow-xl active:bg-lightBlue-600
-              transition duration-1000 ease-out hover:bg-green-400 hover:text-primary
-              font-bold uppercase text-sm px-6 py-3 rounded-full outline-none focus:outline-none
-              fixed right-12 bottom-12"
-              type="button"
-            >
-              Create Event
-              </button>
           </div>
-        </div>
+        </form>
       </main>
     </div>
   );
