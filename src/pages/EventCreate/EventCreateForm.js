@@ -8,7 +8,10 @@ import { useParams, useHistory } from "react-router-dom";
 
 import Header from "../../components/Header";
 import TextInput from "../../components/TextInput";
+import DateInput from "../../components/DateInput";
+import TextAreaInput from "../../components/TextAreaInput";
 import TemplateInput from "../../components/TemplateInput";
+import AdvancedOptionInput from "../../components/AdvancedOptionInput";
 
 const templates = [
   {
@@ -96,7 +99,7 @@ export default function EventCreateForm() {
       <main className="bg-content">
         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
           <div className="container divide-y-2 divide-dashed md:divide-solid divide-primary">
-            <div className="mb-8">
+            <div>
               <TemplateInput
                 templates={templates}
                 selected={selectedTemplate}
@@ -104,7 +107,7 @@ export default function EventCreateForm() {
                 description="You can select a template here"
               />
             </div>
-            <div className="mb-8">
+            <div>
               <TextInput
                 title="Title"
                 value={title}
@@ -113,16 +116,17 @@ export default function EventCreateForm() {
                 description="Please enter the event title"
               />
             </div>
-            <div className="mb-8">
-              <TextInput
+            <div>
+              <TextAreaInput
                 title="Description"
                 value={description}
                 valueChange={setDescription}
+                rows={2}
                 type="text"
                 description="Please enter the description for event"
               />
             </div>
-            <div className="mb-8">
+            <div>
               <TextInput
                 title="Channel"
                 value={channel}
@@ -131,13 +135,17 @@ export default function EventCreateForm() {
                 description="Please enter the channel that you want to get event"
               />
             </div>
-            <div className="mb-8">
-              <TextInput
+            <div>
+              <DateInput
                 title="Date"
-                value={date}
                 valueChange={setDate}
-                type="date"
                 description="Please enter the date that event gonna occur"
+              />
+            </div>
+            <div>
+              <AdvancedOptionInput
+                title="Advanced Options"
+                description="advanced ayarlari buraya koycez"
               />
             </div>
             <button
