@@ -1,3 +1,13 @@
+body, #root, #root > div {
+  height: 100vh;
+  width: 100vw;
+}
+
+#root > div {
+  display: flex;
+  flex-direction: column;
+}
+
 .menu-item {
   padding: 0 40px;
   margin: 5px 10px;
