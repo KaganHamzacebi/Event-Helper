@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
-import {validate, getErrorMessage} from "../inputValidations";
+import { validate, getErrorMessage } from "../inputValidations";
 
 export default function TextInput({
   type,
   title,
-  description,
-
+  description
 }) {
 
   const [value, setValue] = useState("");
@@ -20,8 +19,6 @@ export default function TextInput({
 
   const [isValid, setIsValid] = useState(true);
 
-
-
   return (
     <div className="mb-6">
       <h3 className="text-2xl font-bold text-primary mt-6">{title}</h3>
@@ -31,7 +28,7 @@ export default function TextInput({
         <div className="mb-3 pt-0">
           <input
             name={title}
-            onBlur={() => {validate(title, value, setIsValid)}}
+            onBlur={() => { validate(title, value, setIsValid) }}
             type={type}
             value={value}
             onChange={(e) => setValue(e.target.value)}

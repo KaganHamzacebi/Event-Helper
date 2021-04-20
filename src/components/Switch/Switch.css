@@ -1,0 +1,7 @@
+input:checked ~ .dot {
+  transform: translateX(100%);
+}
+
+input[id='switch-text']::-webkit-input-placeholder {
+  font-size: 14px;
+}

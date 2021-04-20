@@ -6,13 +6,13 @@ import { useState } from 'react';
 
 export default function TemplateInput({
     templates,
-    description,
+    description
 }) {
     const [selected, setSelected] = useState(0);
 
     return (
         <div className='mb-8'>
-            <input type="hidden" name="template" id="tempate" value={selected}/>
+            <input type="hidden" name="template" id="tempate" value={selected} />
             <h3 className="text-2xl font-bold text-primary mt-6">Templates</h3>
             <span className='text-sm text-primary-light'>{description}</span>
             <PerfectScrollbar
@@ -21,7 +21,7 @@ export default function TemplateInput({
             >
                 {
                     templates.map((tmp, index) => {
-                        return <Template key={index} id={index} templateName={tmp.templateName} imgUrl={tmp.imgUrl} selected={selected==index ? true : false} select={setSelected} />
+                        return <Template key={index} id={index} templateName={tmp.templateName} imgUrl={tmp.imgUrl} selected={selected == index ? true : false} select={setSelected} />
                     })
                 }
             </PerfectScrollbar>
