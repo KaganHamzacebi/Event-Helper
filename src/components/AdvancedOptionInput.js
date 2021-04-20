@@ -1,23 +1,41 @@
 import { useState } from "react";
-import Switch from "./Switch";
+import Switch from "./Switch/Switch";
 
 export default function AdvancedOptionInput({
     title,
-    description,
+    description
 }) {
 
     const advancedOptions = [
         {
-            name: 'color', description: 'Changes discord embed message color', type: 'switch', premium: false, disabled: false
+            name: 'color',
+            description: 'Changes discord embed message color',
+            type: 'switch',
+            premium: false,
+            disabled: false
         },
         {
-            name: 'color', description: 'Changes discord embed message color', type: 'switch', premium: false, disabled: false
+            name: 'color',
+            description: 'Changes discord embed message color',
+            type: 'switch',
+            premium: false,
+            disabled: false
         },
         {
-            name: 'color', description: 'Changes discord embed message color', type: 'switch', premium: false, disabled: false
+            name: 'color',
+            description: 'Changes discord embed message color',
+            type: 'dropdown',
+            content: ['Blue', 'Green', 'Purple', 'Black'],
+            premium: false, 
+            disabled: false
         },
         {
-            name: 'premiumFeature', description: 'buy premium right now!!', type: 'switch', premium: true, disabled: false
+            name: 'premiumFeature',
+            description: 'buy premium right now!!',
+            type: 'text',
+            placeholder: 'enter here',
+            premium: true,
+            disabled: false
         }
     ];
 
@@ -34,7 +52,11 @@ export default function AdvancedOptionInput({
                                 <span className="text-sm text-primary-light">{advancedOption.description}</span>
                             </div>
                             <div className='self-center mr-4'>
-                                <Switch name={advancedOption.name} />
+                                <Switch name={advancedOption.name}
+                                        type={advancedOption.type}
+                                        placeholder={advancedOption.placeholder}
+                                        content={advancedOption.content}
+                                />
                             </div>
                         </div>
 

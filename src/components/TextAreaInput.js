@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
-import {validate, getErrorMessage} from "../inputValidations";
+import { validate, getErrorMessage } from "../inputValidations";
 
 export default function TextAreaInput({
   type,
   title,
   description,
-  rows,
-
+  rows
 }) {
 
   const [value, setValue] = useState("");
@@ -23,7 +22,7 @@ export default function TextAreaInput({
         <div className="mb-3 pt-0">
           <textarea
             name={title}
-            onBlur={() => {validate(title, value, setIsValid)}}
+            onBlur={() => { validate(title, value, setIsValid) }}
             type={type}
             value={value}
             rows={rows.toString()}

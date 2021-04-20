@@ -11,7 +11,7 @@ import { useParams, useHistory } from "react-router-dom";
 
 import Header from "../../components/Header";
 import TextInput from "../../components/TextInput";
-import DateInput from "../../components/DateInput";
+import DateInput from "../../components/DateInput/DateInput";
 import TextAreaInput from "../../components/TextAreaInput";
 import TemplateInput from "../../components/TemplateInput";
 import AdvancedOptionInput from "../../components/AdvancedOptionInput";
@@ -67,9 +67,9 @@ export default function EventCreateForm() {
   }, []);
 
   useEffect(() => {
-      if (!isFormValid) {
-        setTimeout(()=> setIsFormValid(true), 4000)
-      }
+    if (!isFormValid) {
+      setTimeout(() => setIsFormValid(true), 4000)
+    }
   }, [isFormValid])
 
   const handleSubmit = (e) => {
