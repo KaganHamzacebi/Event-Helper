@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import { ExclamationIcon } from '@heroicons/react/solid'
 import { validate, getErrorMessage } from "../inputValidations";
 
 export default function TextAreaInput({
@@ -34,7 +33,7 @@ export default function TextAreaInput({
         </div>
         <span className={`text-xs font-bold inline-block py-1 px-2 rounded text-red-600 opacity-0 bg-red-300 last:mr-0 mr-1 
             ${isValid ? "transition-opacity duration-800 ease-out opacity-0" : "transition-opacity duration-1000 ease-in opacity-100"}`}>
-          <FontAwesomeIcon icon={faExclamationTriangle} size="1x"></FontAwesomeIcon>
+          <ExclamationIcon className="w-4 inline-block" />
           {" " + getErrorMessage(title)}
         </span>
       </div>

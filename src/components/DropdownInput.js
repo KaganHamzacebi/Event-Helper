@@ -43,11 +43,12 @@ export default function DropdownInput({
                                     content.map((item, index) => {
                                         return <Menu.Item key={index}>
                                             {({ active }) => (
+                                                // eslint-disable-next-line
                                                 <a
                                                     value={value}
                                                     onChange={() => setValue(item)}
                                                     className={classNames(
-                                                        active ? 'bg-gray-700 text-gray-900' : 'text-gray-700',
+                                                        active ? 'bg-gray-700 text-gray-900' : 'text-white',
                                                         'block px-4 py-2 text-sm'
                                                     )}
                                                 >

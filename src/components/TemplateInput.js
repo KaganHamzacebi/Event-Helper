@@ -21,7 +21,7 @@ export default function TemplateInput({
             >
                 {
                     templates.map((tmp, index) => {
-                        return <Template key={index} id={index} templateName={tmp.templateName} imgUrl={tmp.imgUrl} selected={selected == index ? true : false} select={setSelected} />
+                        return <Template key={index} id={index} templateName={tmp.templateName} imgUrl={tmp.imgUrl} selected={selected === index ? true : false} select={setSelected} />
                     })
                 }
             </PerfectScrollbar>
