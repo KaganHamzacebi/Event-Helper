@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Switch from "./Switch/Switch";
 
 export default function AdvancedOptionInput({

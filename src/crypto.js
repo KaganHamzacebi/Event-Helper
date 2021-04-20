@@ -1,6 +1,6 @@
 import rs from "jsrsasign";
 
-export function verify(payload) {
+export function verifyToken(payload) {
   const pbKey = `-----BEGIN PUBLIC KEY-----
     MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAESQdbEeuw9evo/VnKWye/tIullK23
     9tv5hCCfggtMeZQO4UIgLjXb5W8Vz3/HbZLfOlP+l5uQySlq2Cmsr6K7AQ==
@@ -14,16 +14,8 @@ export function verify(payload) {
   return isValid;
 }
 
-export function readToken(payload) {
-  const pbKey = `-----BEGIN PUBLIC KEY-----
-    MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAESQdbEeuw9evo/VnKWye/tIullK23
-    9tv5hCCfggtMeZQO4UIgLjXb5W8Vz3/HbZLfOlP+l5uQySlq2Cmsr6K7AQ==
-    -----END PUBLIC KEY-----  
-    `;
-
-  var headerObj = rs.KJUR.jws.JWS.readSafeJSONString(
-    rs.b64utoutf8(payload.split(".")[0])
-  );
+export function decodeToken(payload) {
+  //Header istiyosan 1'i 0 yap
   var payloadObj = rs.KJUR.jws.JWS.readSafeJSONString(
     rs.b64utoutf8(payload.split(".")[1])
   );

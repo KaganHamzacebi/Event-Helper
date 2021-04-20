@@ -1,11 +1,8 @@
-/* This example requires Tailwind CSS v2.0+ */
-
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { verify, readToken } from "../../crypto";
+import { verifyToken } from "../../crypto";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import { ExclamationIcon } from '@heroicons/react/solid'
 
 import { useParams, useHistory } from "react-router-dom";
 
@@ -60,10 +57,12 @@ export default function EventCreateForm() {
   const { token } = useParams();
   const [isFormValid, setIsFormValid] = useState(true);
 
+ 
   useEffect(() => {
-    if (!verify(token)) {
+    if (!verifyToken(token)) {
       history.push("/invalid_token");
     }
+  // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -114,7 +113,7 @@ export default function EventCreateForm() {
           <div className="bg-red-300 rounded-lg border-gray-900 border p-3 shadow-2xl">
             <div className="flex flex-row">
               <div className="px-2 my-auto">
-                <FontAwesomeIcon icon={faExclamationTriangle} size="2x"></FontAwesomeIcon>
+                {<ExclamationIcon className='w-10' />}
               </div>
               <div className="ml-2">
                 <span className="font-semibold md:text-lg">Event could not be created!</span>

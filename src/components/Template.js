@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { CheckCircleIcon } from '@heroicons/react/solid'
 
 export default function Template({ imgUrl, templateName, selected, select, id }) {
     return (
@@ -10,8 +9,8 @@ export default function Template({ imgUrl, templateName, selected, select, id })
             onClick={() => { select(id) }}
         >
             <div className='w-96 h-96 rounded-t-xl border-2 border-gray-700'>
-                <img className='w-full h-full rounded-t-xl' src={imgUrl} draggable={false} />
-                <FontAwesomeIcon color='#8ff27f' className={`absolute top-3 right-3 ${selected ? "opacity-100" : "opacity-0"} transition-opacity duration-200 ease-in`} icon={faCheckCircle} size="3x"></FontAwesomeIcon>
+                <img className='w-full h-full rounded-t-xl' src={imgUrl} draggable={false} alt='template-img' />
+                <CheckCircleIcon color='#8ff27f' className={`absolute top-3 right-3 w-14 ${selected ? "opacity-100" : "opacity-0"} transition-opacity duration-200 ease-in`} />
             </div>
             <h1 style={{ textAlign: 'center', padding: 6, color: 'white' }}><b>{templateName}</b></h1>
         </div>

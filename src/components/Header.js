@@ -33,7 +33,7 @@ export default function Header(props) {
                                                 <Fragment key={item}>
                                                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                                                     <a
-                                                        href="#"
+                                                        href="/"
                                                         className="bg-gray-900 text-primary px-3 py-2 rounded-md text-sm font-medium"
                                                     >
                                                         {item}
@@ -42,7 +42,7 @@ export default function Header(props) {
                                             ) : (
                                                 <a
                                                     key={item}
-                                                    href="#"
+                                                    href="/"
                                                     className="text-primary hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                                                 >
                                                     {item}
@@ -91,7 +91,7 @@ export default function Header(props) {
                                                             <Menu.Item key={item}>
                                                                 {({ active }) => (
                                                                     <a
-                                                                        href="#"
+                                                                        href="/"
                                                                         className={classNames(
                                                                             active ? "bg-gray-100" : "",
                                                                             "block px-4 py-2 text-sm text-gray-700"
@@ -130,7 +130,7 @@ export default function Header(props) {
                                     <Fragment key={item}>
                                         {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                                         <a
-                                            href="#"
+                                            href="/"
                                             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
                                         >
                                             {item}
@@ -139,7 +139,7 @@ export default function Header(props) {
                                 ) : (
                                     <a
                                         key={item}
-                                        href="#"
+                                        href="/"
                                         className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                                     >
                                         {item}
@@ -173,7 +173,7 @@ export default function Header(props) {
                                 {profile.map((item) => (
                                     <a
                                         key={item}
-                                        href="#"
+                                        href="/"
                                         className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
                                     >
                                         {item}
