@@ -39,7 +39,8 @@ module.exports = {
     extend: {
       // ...
       backgroundColor: ['active'],
-      textColor: ['active']
+      textColor: ['active'],
+      animation: ['hover', 'focus'],
     }
   },
   plugins: [],
