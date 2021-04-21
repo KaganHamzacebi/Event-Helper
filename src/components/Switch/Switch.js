@@ -1,5 +1,5 @@
 import './Switch.css'
-import DropdownInput from '../DropdownInput';
+import SelectInput from '../SelectInput/SelectInput';
 import { useState } from "react"
 
 export default function Switch({
@@ -33,12 +33,13 @@ export default function Switch({
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 className="px-3 py-1 bg-title text-primary relative rounded text-lg border border-gray-900 outline-none 
-            shadow-lg focus:ring-2 focus:ring-blue-600 w-3/5" />
+            shadow-lg focus:ring-2 focus:ring-blue-600 w-4/5" />
             </div>
             :
-            <div className="flex items-center justify-end">
-              <DropdownInput name={name} content={content} />
+            <div>
+              <SelectInput content={content} placeholder="Select" />
             </div>
+
       }
 
     </div>

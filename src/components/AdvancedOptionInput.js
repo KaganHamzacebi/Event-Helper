@@ -24,15 +24,22 @@ export default function AdvancedOptionInput({
             name: 'color',
             description: 'Changes discord embed message color',
             type: 'dropdown',
-            content: ['Blue', 'Green', 'Purple', 'Black'],
-            premium: false, 
+            content:
+                [
+                    { label: 'Blue', value: 'blue' },
+                    { label: 'Black', value: 'black' },
+                    { label: 'Red', value: 'red' },
+                    { label: 'White', value: 'white' },
+                    { label: 'Green', value: 'green' },
+                ],
+            premium: false,
             disabled: false
         },
         {
             name: 'premiumFeature',
             description: 'buy premium right now!!',
             type: 'text',
-            placeholder: 'enter here',
+            placeholder: 'Type here',
             premium: true,
             disabled: false
         }
@@ -52,9 +59,9 @@ export default function AdvancedOptionInput({
                             </div>
                             <div className='self-center mr-4'>
                                 <Switch name={advancedOption.name}
-                                        type={advancedOption.type}
-                                        placeholder={advancedOption.placeholder}
-                                        content={advancedOption.content}
+                                    type={advancedOption.type}
+                                    placeholder={advancedOption.placeholder}
+                                    content={advancedOption.content}
                                 />
                             </div>
                         </div>

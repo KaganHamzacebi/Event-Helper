@@ -16,7 +16,7 @@ export default function TemplateInput({
             <h3 className="text-2xl font-bold text-primary mt-6">Templates</h3>
             <span className='text-sm text-primary-light'>{description}</span>
             <PerfectScrollbar
-                className='flex flex-nowrap overflow-hidden p-2'
+                className='flex flex-nowrap p-2'
                 options={{ useBothWheelAxes: true, wheelSpeed: 0.5 }}
             >
                 {
