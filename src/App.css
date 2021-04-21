@@ -4,6 +4,10 @@ body, #root, #root > div {
   overflow-x: hidden;
   background-color: #36393f;
 }
+#root > div {
+  display: flex;
+  flex-direction: column;
+}
 
 .menu-item {
   padding: 0 40px;
