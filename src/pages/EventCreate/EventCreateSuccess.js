@@ -9,12 +9,12 @@ export default function InvalidToken(props) {
         setTimeout(()=>{setIsAnimationPlayed(true)}, 200)
     }, [])
     return (
-        <>
+        <div className="h-full w-full flex flex-col overflow-hidden">
             <Header />
 
             <div className='w-full h-full flex items-center justify-center'>    
                 <div className="flex flex-col justify-center flex-wrap container mx-5 md:mx-40 xl:mx-96 text-center bg-title p-12 mb-28 rounded-xl shadow-lg">
-                    <CheckCircleIcon className={`mx-auto my-auto transform transition-transform duration-1000 scale-0 ${isAnimationPlayed ? "scale-100":"scale-0"}`}  color="green" size="6x" />
+                    <CheckCircleIcon className={`mx-auto w-44  lg:w-80 xl:w-96 my-auto transform transition-transform duration-1000 scale-0 ${isAnimationPlayed ? "scale-100":"scale-0"}`}  color="green" />
                     <div className="m-5 ">
                         <div className="text-3xl xl:text-5xl text-primary font-bold mb-1">Event Created!</div>
                         <div className="text-3xl xl:text-5xl text-primary font-light">You can close this window now</div>
@@ -23,7 +23,7 @@ export default function InvalidToken(props) {
                 </div>
 
             </div>
-        </>
+        </div>
 
     );
 }

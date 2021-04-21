@@ -107,7 +107,7 @@ export default function EventCreateForm() {
 
 
   return (
-    <div>
+    <div className="w-full">
       <Header />
       <div className={`fixed inset-x-0 mx-auto container px-10 md:px-26 lg:px-96 z-10 transition duration-500 ${isFormValid ? "opacity-0" : "opacity-100"}`}>
         <div className="m-auto shadow-2xl">
@@ -132,9 +132,9 @@ export default function EventCreateForm() {
       </header>
       <main className="bg-content">
         <form onSubmit={handleSubmit}>
-          <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-            <div className="container divide-y-2 divide-dashed md:divide-solid divide-primary">
-              <div>
+          <div className="container mx-auto py-6 px-6">
+            <div className="container divide-y-2 divide-solid divide-primary">
+              <div className="overflow-hidden">
                 <TemplateInput
                   templates={templates}
                   description="You can select a template here"
@@ -173,16 +173,20 @@ export default function EventCreateForm() {
                   <AdvancedOptionInput />
                 </Collapse>
               </div>
-              <button
-                name="submit"
-                className="bg-white text-black shadow-xl active:bg-lightBlue-600
+              <div className="flex flex-row justify-end w-full">
+                <button
+                  name="submit"
+                  className="bg-white text-black shadow-xl active:bg-lightBlue-600
+                  w-full md:w-64 lg:w-80 h-14 
                 transition duration-1000 ease-out hover:bg-green-400 hover:text-primary
-                font-bold uppercase text-sm px-6 py-3 rounded-full outline-none focus:outline-none
-                fixed right-12 bottom-12"
-                type="submit"
-              >
-                Create Event
+                font-bold uppercase text-lg px-6 py-3 mt-8 mb-10 rounded-lg outline-none focus:outline-none
+                 "
+                  type="submit"
+                >
+                  Create Event
                 </button>
+              </div>
+
             </div>
           </div>
         </form>

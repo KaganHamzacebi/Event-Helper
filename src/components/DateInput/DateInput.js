@@ -31,14 +31,14 @@ export default function DateInput({
             <h3 className="text-2xl font-bold text-primary mt-6">{title}</h3>
             <span className="text-sm text-primary-light">{description}</span>
             <div className="mt-4">
-                <div className="mb-4 pt-0">
+                <div className="mb-4 pt-0 flex flex-row flex-nowrap w-full md:w-2/3 lg:w-2/5">
                     <input
                         name="date"
                         type="date"
                         placeholder="Enter date"
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
-                        className={`px-3 py-3 bg-title text-primary relative rounded text-lg border border-gray-900 outline-none focus:outline-none focus:shadow-outline mr-4 w-1/5
+                        className={`px-3 py-3 bg-title text-primary relative rounded text-lg border border-gray-900 outline-none focus:outline-none focus:shadow-outline mr-4 flex-grow
                         ${(isDateValid) ? "border-gray-900 focus:ring-2 focus:ring-blue-600" : "ring-2 ring-red-600"}`}
                     />
                     <input
@@ -47,7 +47,7 @@ export default function DateInput({
                         placeholder="Enter time"
                         value={time}
                         onChange={(e) => setTime(e.target.value)}
-                        className={`px-3 py-3 bg-title text-primary relative rounded text-lg border border-gray-900 outline-none focus:outline-none focus:shadow-outline w-1/5
+                        className={`px-3 py-3 bg-title text-primary relative rounded text-lg border border-gray-900 outline-none focus:outline-none focus:shadow-outline flex-grow
                         ${(isTimeValid) ? "focus:ring-2 focus:ring-blue-600" : "ring-2 ring-red-600"}`}
                     />
                 </div>

@@ -26,7 +26,7 @@ export default function TextInput({
             value={value}
             onChange={(e) => setValue(e.target.value)}
             placeholder={"Enter " + title.toLowerCase()}
-            className={`px-3 py-3 bg-title text-primary relative rounded text-lg border border-gray-900 outline-none focus:outline-none focus:shadow-outline w-2/5
+            className={`px-3 py-3 bg-title text-primary relative rounded text-lg border border-gray-900 outline-none focus:outline-none focus:shadow-outline w-full md:w-2/3 lg:w-2/5
               ${isValid ? "focus:ring-2 focus:ring-blue-600" : "ring-2 ring-red-600"}`}
           />
 
