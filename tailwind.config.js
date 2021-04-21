@@ -24,14 +24,23 @@ module.exports = {
       },
       divideColor: {
         'primary': '#2f3136'
-      }
+      },
+      transitionProperty: {
+        'height': 'height',
+        'max-height': 'max-height',
+        'spacing': 'margin, padding',
+       },
+       maxHeight: {
+        'bigboi': '9999rem'
+       }
     }   
   },
   variants: {
     extend: {
       // ...
       backgroundColor: ['active'],
-      textColor: ['active']
+      textColor: ['active'],
+      animation: ['hover', 'focus'],
     }
   },
   plugins: [],
