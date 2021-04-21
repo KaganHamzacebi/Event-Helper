@@ -6,6 +6,7 @@ import { ExclamationIcon } from '@heroicons/react/solid'
 
 import { useParams, useHistory } from "react-router-dom";
 
+import Collapse from "../../components/Collapse"
 import Header from "../../components/Header";
 import TextInput from "../../components/TextInput";
 import DateInput from "../../components/DateInput/DateInput";
@@ -57,12 +58,12 @@ export default function EventCreateForm() {
   const { token } = useParams();
   const [isFormValid, setIsFormValid] = useState(true);
 
- 
+
   useEffect(() => {
     if (!verifyToken(token)) {
       history.push("/invalid_token");
     }
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -168,15 +169,13 @@ export default function EventCreateForm() {
                 />
               </div>
               <div>
-
-                <AdvancedOptionInput
-                  title="Advanced Options"
-                  description="advanced ayarlari buraya koycez"
-                />
+                <Collapse name="Advanced Options" description="Advanced options can be setted with using collapse menu">
+                  <AdvancedOptionInput />
+                </Collapse>
               </div>
               <button
                 name="submit"
-                className="bg-white text-black hover:text-white shadow-xl active:bg-lightBlue-600
+                className="bg-white text-black shadow-xl active:bg-lightBlue-600
                 transition duration-1000 ease-out hover:bg-green-400 hover:text-primary
                 font-bold uppercase text-sm px-6 py-3 rounded-full outline-none focus:outline-none
                 fixed right-12 bottom-12"
