@@ -46,7 +46,7 @@ export default function AdvancedOptionInput({
     ];
 
     return (
-        <div className='mb-8'>
+        <div>
             <h3 className="text-2xl font-bold text-primary mt-4">{title}</h3>
             <span className='text-sm text-primary-light'>{description}</span>
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>

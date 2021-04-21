@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { SearchIcon } from '@heroicons/react/solid'
-import { ChevronDownIcon } from '@heroicons/react/solid'
+import { ChevronUpIcon } from '@heroicons/react/solid'
 import { XIcon } from '@heroicons/react/solid'
 
 import './SelectInput.css'
@@ -17,16 +17,17 @@ export default function SelectInput({
     const [searchValue, setSearchValue] = useState('');
     const [filteredData, setFilteredData] = useState(content);
     let timeout;
+
     useEffect(() => {
         console.log(focusSelect + " " + focusSearch)
         //setIsDropdownOpen(focusSelect || focusSearch);
         if (!(focusSelect || focusSearch)) {
-            timeout = setTimeout(()=>setIsDropdownOpen(false), 100)
-        }else{
+            timeout = setTimeout(() => setIsDropdownOpen(false), 100)
+        } else {
             setIsDropdownOpen(true)
         }
-        return ()=>clearTimeout(timeout)
-        
+        return () => clearTimeout(timeout)
+
     }, [focusSelect, focusSearch])
 
     useEffect(() => {
@@ -47,11 +48,11 @@ export default function SelectInput({
                     onBlur={() => setFocusSelect(false)}
                     readOnly
                 />
-                <ChevronDownIcon
-                    className='w-6 text-white absolute pointer-events-none top-1/2 transform -translate-y-1/2 right-2 opacity-30'
+                <ChevronUpIcon
+                    className={`w-6 text-primary-light absolute pointer-events-none top-1/2 -translate-y-1/2 right-2 transition-transform transform duration-400 ${focusSelect || focusSearch ? "rotate-180" : "rotate-0"}`}
                 />
                 <XIcon
-                    className={`w-4 text-white absolute top-1/2 transform -translate-y-1/2 right-8 opacity-30 transition-all duration-100 hover:text-red-600 hover:opacity-100 ${value ? 'visible' : 'invisible'}`}
+                    className={`w-4 text-primary-light right-8 absolute top-1/2 transform -translate-y-1/2 transition-all duration-500 opacity-0 hover:text-red-600 ${value ? 'opacity-100' : 'opacity-0'}`}
                     onClick={() => { setValue(null) }}
                 />
             </div>
@@ -59,6 +60,7 @@ export default function SelectInput({
                 ${(focusSelect || focusSearch) ? 'opacity-100' : 'opacity-0'} ${isDropdownOpen ? '' : 'hidden'}`}>
                 <div className='p-2 relative'>
                     <input
+                        multiple={true}
                         type='text'
                         onFocus={() => setFocusSearch(true)}
                         onBlur={() => setFocusSearch(false)}
@@ -68,8 +70,7 @@ export default function SelectInput({
                         placeholder='Search'
                     />
                     <SearchIcon
-                        className='w-4 text-white absolute transform top-1/2 -translate-y-1/2 right-4 opacity-30'
-                    //Search iconuna tıklanınca aramaya focus olması lazım
+                        className='w-4 text-primary-light absolute pointer-events-none transform top-1/2 -translate-y-1/2 right-4'
                     />
                 </div>
                 <div className='max-h-32 overflow-auto'>

@@ -8,7 +8,7 @@ export default function Collapse({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex flex-col w-full border-gray-500 rounded mt-8">
+    <div className="flex flex-col w-full border-gray-500 rounded">
       <div className="flex flex-row flex-nowrap bg-title border border-gray-900 rounded">
         <div className="flex flex-col flex-grow py-3 pl-3">
           <div className="text-primary font-bold text-xl">{name}</div>

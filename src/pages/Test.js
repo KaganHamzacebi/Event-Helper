@@ -1,30 +1,28 @@
 import { useState, useEffect } from "react";
-import Collapse from "../components/Collapse";
+import TagPickerInput from "../components/TagPickerInput/TagPickerInput";
+import Tag from "../components/TagPickerInput/Tag";
 import Switch from "../components/Switch/Switch";
 
+import CheckboxInput from "../components/CheckboxInput";
+
 export default function Test({
- 
-  }) {
 
-    return (
-      <div className="w-full h-full">
-        <div className="bg-blue-600 container mx-auto">
-            <Collapse name="Collapse name" description="Collapse description bir iki otuzaltı kırkyedi yetmisyedi bin beş yüz elli beş">
-                <div className="w-40 h-20 m-5 bg-blue-300"></div>
-                <div className="w-40 h-20 m-5 bg-blue-300"></div>
-                <div className="w-40 h-20 m-5 bg-blue-300"></div>
-                <div className="w-40 h-20 m-5 bg-blue-300"></div>
-                <div className="w-60 h-6 m-5 bg-blue-300"></div>
-                <div className="w-60 h-6 m-5 bg-blue-300"></div>
-                <div className="w-60 h-6 m-5 bg-blue-300"></div>
+}) {
 
+  const advancedOptions = [
+    { label: 'Blue', value: 'blue' },
+    { label: 'Black', value: 'black' },
+    { label: 'Red', value: 'red' },
+    { label: 'White', value: 'white' },
+    { label: 'Green', value: 'green' },
+  ];
 
-                aasdasd
-                asdasd
-            </Collapse>
-        </div>
-       
+  return (
+    <div className="w-full h-full">
+      <div className="bg-blue-600 container mx-auto">
+        <TagPickerInput content={advancedOptions} placeholder='Select' />
       </div>
-    );
-  }
-  
+
+    </div>
+  );
+}

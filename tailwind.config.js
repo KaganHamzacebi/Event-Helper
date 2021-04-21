@@ -18,6 +18,7 @@ module.exports = {
         'primary': '#FFFFFF',
         'primary-light': '#8D8F91',
         'danger': '#e3342f',
+        'title': '#2f3136',
       },
       placeholderColor: {
         'primary': '#ffffff',
@@ -38,7 +39,8 @@ module.exports = {
   variants: {
     extend: {
       // ...
-      backgroundColor: ['active'],
+      backgroundColor: ['active', 'checked'],
+      borderColor: ['checked'],
       textColor: ['active'],
       animation: ['hover', 'focus'],
     }

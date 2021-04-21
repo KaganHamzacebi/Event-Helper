@@ -13,8 +13,8 @@ export default function TextAreaInput({
   const [isValid, setIsValid] = useState(true);
 
   return (
-    <div className="mb-6">
-      <h3 className="text-2xl font-bold text-primary mt-6">{title}</h3>
+    <div>
+      <h3 className="text-2xl font-bold text-primary">{title}</h3>
       <span className="text-sm text-primary-light">{description}</span>
 
       <div className="mt-4">

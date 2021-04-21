@@ -27,8 +27,8 @@ export default function DateInput({
 
 
     return (
-        <div className="mb-6">
-            <h3 className="text-2xl font-bold text-primary mt-6">{title}</h3>
+        <div>
+            <h3 className="text-2xl font-bold text-primary">{title}</h3>
             <span className="text-sm text-primary-light">{description}</span>
             <div className="mt-4">
                 <div className="mb-4 pt-0 flex flex-row flex-nowrap w-full md:w-2/3 lg:w-2/5">

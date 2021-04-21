@@ -1,8 +1,12 @@
 import Template from './Template';
-import PerfectScrollbar from 'react-perfect-scrollbar'
-import 'react-perfect-scrollbar/dist/css/styles.css';
+
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.min.css';
 
 import { useState } from 'react';
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 export default function TemplateInput({
     templates,
@@ -11,20 +15,24 @@ export default function TemplateInput({
     const [selected, setSelected] = useState(0);
 
     return (
-        <div className='mb-8'>
+        <div>
             <input type="hidden" name="template" id="tempate" value={selected} />
             <h3 className="text-2xl font-bold text-primary mt-6">Templates</h3>
             <span className='text-sm text-primary-light'>{description}</span>
-            <PerfectScrollbar
-                className='flex flex-nowrap p-2'
-                options={{ useBothWheelAxes: true, wheelSpeed: 0.5 }}
+            <Swiper
+                spaceBetween={20}
+                slidesPerView={3}
+                navigation
+                pagination={{ clickable: true }}
             >
                 {
                     templates.map((tmp, index) => {
-                        return <Template key={index} id={index} templateName={tmp.templateName} imgUrl={tmp.imgUrl} selected={selected === index ? true : false} select={setSelected} />
+                        return <SwiperSlide>
+                                    <Template key={index} id={index} templateName={tmp.templateName} imgUrl={tmp.imgUrl} selected={selected === index ? true : false} select={setSelected} />
+                                </SwiperSlide>
                     })
                 }
-            </PerfectScrollbar>
+            </Swiper>
         </div>
     );
 }

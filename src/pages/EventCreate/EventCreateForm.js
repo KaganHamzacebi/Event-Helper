@@ -92,7 +92,7 @@ export default function EventCreateForm() {
 
     console.log(payload);
     axios
-      .post("https://httpbin.org/status/401", payload)
+      .post("https://localhost:3001/create_event", payload)
       .then(function (response) {
         console.log(response);
         history.push("/event_create_successful")
@@ -104,6 +104,23 @@ export default function EventCreateForm() {
 
 
   }
+
+  useEffect(() => {
+    const headers = { "Access-Control-Allow-Origin": "*" }
+
+    axios
+      .get("http://localhost:3001/get_guild_channels/" + token, { headers: headers })
+      .then(function (response) {
+        console.log(response);
+
+      })
+      .catch(function (error) {
+        console.log(error);
+
+      })
+  },
+
+    [])
 
 
   return (
@@ -133,20 +150,20 @@ export default function EventCreateForm() {
         <form onSubmit={handleSubmit}>
           <div className="container mx-auto py-6 px-6 2xl:px-40">
             <div className="container divide-y-2 divide-solid divide-primary">
-              <div className="overflow-hidden">
+              <div className="py-4">
                 <TemplateInput
                   templates={templates}
                   description="You can select a template here"
                 />
               </div>
-              <div>
+              <div className='py-4'>
                 <TextInput
                   title="Title"
                   type="text"
                   description="Please enter the event title"
                 />
               </div>
-              <div>
+              <div className='py-4'>
                 <TextAreaInput
                   title="Description"
                   rows={2}
@@ -154,20 +171,25 @@ export default function EventCreateForm() {
                   description="Please enter the description for event (Optional)"
                 />
               </div>
-              <div>
+              <div className='py-4'>
                 <TextInput
                   title="Channel"
                   type="text"
                   description="Please enter the channel that you want to get event"
                 />
               </div>
-              <div>
+              <div className='py-4'>
                 <DateInput
                   title="Date"
                   description="Please enter the date that event gonna occur"
                 />
               </div>
-              <div>
+              <div className='py-8'>
+                <Collapse name="Announcement Options" description="Announcement  options can be setted with using collapse menu">
+                  <AdvancedOptionInput />
+                </Collapse>
+              </div>
+              <div className='py-8'>
                 <Collapse name="Advanced Options" description="Advanced options can be setted with using collapse menu">
                   <AdvancedOptionInput />
                 </Collapse>
