@@ -49,7 +49,6 @@ export default function SelectInput({
                 <div className='p-2 relative'>
                     <input
                         type='text'
-                        id='select-search'
                         onFocus={() => setFocusSearch(true)}
                         onBlur={() => setFocusSearch(false)}
                         value={searchValue}
