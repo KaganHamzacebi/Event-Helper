@@ -109,7 +109,7 @@ export default function EventCreateForm() {
   return (
     <div className="w-full">
       <Header />
-      <div className={`fixed inset-x-0 mx-auto container px-10 md:px-26 lg:px-96 z-10 transition duration-500 ${isFormValid ? "opacity-0" : "opacity-100"}`}>
+      <div className={`fixed pointer-events-none inset-x-0 mx-auto container px-10 md:px-26 lg:px-96 z-10 transition duration-500 ${isFormValid ? "opacity-0" : "opacity-100"}`}>
         <div className="m-auto shadow-2xl">
           <div className="bg-red-300 rounded-lg border-gray-900 border p-3 shadow-2xl">
             <div className="flex flex-row">

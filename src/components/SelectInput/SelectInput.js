@@ -16,6 +16,18 @@ export default function SelectInput({
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
     const [filteredData, setFilteredData] = useState(content);
+    let timeout;
+    useEffect(() => {
+        console.log(focusSelect + " " + focusSearch)
+        //setIsDropdownOpen(focusSelect || focusSearch);
+        if (!(focusSelect || focusSearch)) {
+            timeout = setTimeout(()=>setIsDropdownOpen(false), 100)
+        }else{
+            setIsDropdownOpen(true)
+        }
+        return ()=>clearTimeout(timeout)
+        
+    }, [focusSelect, focusSearch])
 
     useEffect(() => {
         let data = content.filter(item => item.label.toLowerCase().includes(searchValue));
@@ -36,8 +48,7 @@ export default function SelectInput({
                     readOnly
                 />
                 <ChevronDownIcon
-                    className='w-6 text-white absolute top-1/2 transform -translate-y-1/2 right-2 opacity-30'
-                    onClick={() => setFocusSelect(true)}
+                    className='w-6 text-white absolute pointer-events-none top-1/2 transform -translate-y-1/2 right-2 opacity-30'
                 />
                 <XIcon
                     className={`w-4 text-white absolute top-1/2 transform -translate-y-1/2 right-8 opacity-30 transition-all duration-100 hover:text-red-600 hover:opacity-100 ${value ? 'visible' : 'invisible'}`}
@@ -45,7 +56,7 @@ export default function SelectInput({
                 />
             </div>
             <div className={`absolute bg-content w-32 border rounded mt-1 border-none shadow-2xl transition-opacity duration-500 transform 
-                ${(focusSelect || focusSearch) ? 'opacity-100' : 'opacity-0'}`}>
+                ${(focusSelect || focusSearch) ? 'opacity-100' : 'opacity-0'} ${isDropdownOpen ? '' : 'hidden'}`}>
                 <div className='p-2 relative'>
                     <input
                         type='text'
