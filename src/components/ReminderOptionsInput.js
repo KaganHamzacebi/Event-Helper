@@ -38,7 +38,7 @@ export default function ReminderOptionsInput({
                 title='Remainder Times'
                 description='Select the time when you want to get announced'
                 name='reminder_times'
-                content={roleContent}
+                content={channelContent}
                 width='96'
                 height={14}
                 placeholder='Select'

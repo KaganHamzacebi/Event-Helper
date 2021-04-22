@@ -24,7 +24,6 @@ export default function TagPickerInput({
 
     function reducer(state, action) {
         let newState = { ...state };
-
         switch (action.type) {
             case "TOGGLE":
                 const newValue = { label: state[action.id].label, color: state[action.id].color, selected: state[action.id].selected ? false : true }
@@ -37,10 +36,11 @@ export default function TagPickerInput({
                 })
                 return newState;
                 break;
+            case "NEW_CONTENT":
+                return action.content;
             default:
                 break;
         }
-
     }
 
     const [focusSelect, setFocusSelect] = useState(false);
@@ -53,6 +53,11 @@ export default function TagPickerInput({
     const searchDivRef = useRef(null)
     
     let timeout;
+
+    useEffect(() => {
+        dispatch({type:"NEW_CONTENT", content: content})
+        
+    }, [content])
 
     useEffect(() => {
         //setIsDropdownOpen(focusSelect || focusSearch);
