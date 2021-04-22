@@ -21,8 +21,8 @@ export default function Collapse({
         </svg>
       </div>
 
-      <div className="overflow-hidden">
-        <div className={`overflow-hidden transition-all duration-1000 transform  ${isOpen ? "max-h-screen scale-y-100 translate-y-0" : "max-h-0 scale-y-0 -translate-y-full"} `}>
+      <div className='overflow-hidden' >
+        <div className={`transition-all duration-1000 transform  ${isOpen ? "max-h-screen scale-y-100 translate-y-0" : "max-h-0 scale-y-0 -translate-y-full"} `}>
           {children}
         </div>
       </div>

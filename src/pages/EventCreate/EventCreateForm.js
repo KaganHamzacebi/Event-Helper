@@ -13,6 +13,8 @@ import DateInput from "../../components/DateInput/DateInput";
 import TextAreaInput from "../../components/TextAreaInput";
 import TemplateInput from "../../components/TemplateInput";
 import AdvancedOptionInput from "../../components/AdvancedOptionInput";
+import AnnouncementOptionsInput from "../../components/AnnouncementOptionsInput";
+
 import { validate } from "../../inputValidations";
 
 const templates = [
@@ -186,7 +188,7 @@ export default function EventCreateForm() {
               </div>
               <div className='py-8'>
                 <Collapse name="Announcement Options" description="Announcement  options can be setted with using collapse menu">
-                  <AdvancedOptionInput />
+                  <AnnouncementOptionsInput />
                 </Collapse>
               </div>
               <div className='py-8'>

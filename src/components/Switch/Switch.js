@@ -37,7 +37,7 @@ export default function Switch({
             </div>
             :
             <div>
-              <SelectInput content={content} placeholder="Select" />
+              <SelectInput name={name} content={content} placeholder="Select" width={32} />
             </div>
 
       }
