@@ -6,6 +6,7 @@ export default function TextAreaInput({
   name,
   type,
   title,
+  width,
   description,
   rows
 }) {
@@ -28,7 +29,7 @@ export default function TextAreaInput({
             rows={rows.toString()}
             onChange={(e) => setValue(e.target.value)}
             placeholder={"Enter " + title.toLowerCase()}
-            className={`px-3 py-3 bg-title text-primary relative rounded text-lg border border-gray-900 outline-none focus:outline-none focus:shadow-outline w-full md:w-2/3 lg:w-2/5
+            className={`w-full md:w-2/3 lg:w-${width ? width : '2/5'} px-3 py-3 bg-title text-primary relative rounded text-lg border border-gray-900 outline-none focus:outline-none focus:shadow-outline
               ${isValid ? "focus:ring-2 focus:ring-blue-600" : "ring-2 ring-red-600"}`}
           />
         </div>

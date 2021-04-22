@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Collapse({
   name,
   description,
   children
 }) {
+
+  const collapseRef = useRef(null)
   const [isOpen, setIsOpen] = useState(false);
+
+  const [overflow, setOverflow] = useState(true);
+  let timeout;
+
+  useEffect(() => {
+    timeout = setTimeout(() => {
+      setOverflow(isOpen ? false : true);
+      return () => { clearTimeout(timeout) }
+    }, 100)
+  }
+    , [isOpen])
 
   return (
     <div className="flex flex-col w-full border-gray-500 rounded">
@@ -15,14 +28,14 @@ export default function Collapse({
           <div className="text-primary-light font-light">{description}</div>
         </div>
 
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="white" onClick={() => setIsOpen(!isOpen)}
-          className={`w-14 mx-3 transition-transform transform duration-1000 ${isOpen ? "rotate-180" : "rotate-0"}`}>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" onClick={() => setIsOpen(!isOpen)}
+          className={`w-14 mx-3 transition-transform transform duration-500 ${isOpen ? "rotate-180" : "rotate-0"}`}>
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M5 15l7-7 7 7" />
         </svg>
       </div>
 
-      <div className='overflow-hidden' >
-        <div className={`transition-all duration-1000 transform  ${isOpen ? "max-h-screen scale-y-100 translate-y-0" : "max-h-0 scale-y-0 -translate-y-full"} `}>
+      <div className={overflow ? 'overflow-hidden' : undefined } >
+        <div style={isOpen ? { maxHeight: collapseRef.current.scrollHeight } : { maxHeight: 0 }} ref={collapseRef} className={`transition-all duration-500 transform`}>
           {children}
         </div>
       </div>

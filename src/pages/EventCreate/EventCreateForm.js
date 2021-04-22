@@ -13,7 +13,7 @@ import DateInput from "../../components/DateInput/DateInput";
 import TextAreaInput from "../../components/TextAreaInput";
 import TemplateInput from "../../components/TemplateInput";
 import AdvancedOptionInput from "../../components/AdvancedOptionInput";
-import AnnouncementOptionsInput from "../../components/AnnouncementOptionsInput";
+import ReminderOptionsInput from "../../components/ReminderOptionsInput";
 
 import { validate } from "../../inputValidations";
 
@@ -60,6 +60,7 @@ export default function EventCreateForm() {
   const { token } = useParams();
   const [isFormValid, setIsFormValid] = useState(true);
   const [channels, setChannels] = useState([]);
+  const [roles, setRoles] = useState([]);
 
 
   useEffect(() => {
@@ -110,22 +111,25 @@ export default function EventCreateForm() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/get_guild_channels/" + token)
+      .get("http://localhost:3001/get_guild_data/" + token)
       .then(function (response) {
 
-        const tmp = [];
-        response.data.map((channel) => {
-          tmp.push({ label: channel.name, value: channel.id })
+        const tmpChannels = response.data.channels.map((channel) => {
+          return { label: channel.name, value: channel.value }
         })
-        setChannels(tmp);
+
+        const tmpRoles = response.data.roles.map((role, index) => {
+          return { label: role.name, color: role.color, value: role.id, selected: false }
+        })
+
+        setChannels(tmpChannels);
+        setRoles(tmpRoles)
       })
       .catch(function (error) {
         console.log(error);
 
       })
-  },
-
-    [])
+  }, [])
 
 
   return (
@@ -194,8 +198,8 @@ export default function EventCreateForm() {
                 />
               </div>
               <div className='py-8'>
-                <Collapse name="Announcement Options" description="Announcement  options can be setted with using collapse menu">
-                  <AnnouncementOptionsInput channelContent={channels} />
+                <Collapse name="Reminder Options" description="Announcement  options can be setted with using collapse menu">
+                  <ReminderOptionsInput channelContent={channels} roleContent={roles} />
                 </Collapse>
               </div>
               <div className='py-8'>

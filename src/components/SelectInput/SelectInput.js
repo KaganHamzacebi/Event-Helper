@@ -53,7 +53,7 @@ export default function SelectInput({
                 <input
                     type='text'
                     name={name}
-                    placeholder='Select'
+                    placeholder={placeholder}
                     className={`w-full border ${height && 'h-' + height} border-gray-900 rounded pl-3.5 pr-8 outline-none ${value ? 'text-primary ' : 'text-gray-500'} bg-title text-lg placeholder-white placeholder-opacity-30  transition duration-800 focus:ring-2 focus:ring-blue-600`}
                     value={value ? value : ""}
                     onChange={null}
