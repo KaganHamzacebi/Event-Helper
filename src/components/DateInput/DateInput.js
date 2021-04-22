@@ -4,6 +4,7 @@ import { ExclamationIcon } from '@heroicons/react/solid'
 import { validate } from "../../inputValidations";
 
 export default function DateInput({
+    name,
     title,
     description
 }) {
@@ -33,7 +34,7 @@ export default function DateInput({
             <div className="mt-4">
                 <div className="mb-4 pt-0 flex flex-row flex-nowrap w-full md:w-2/3 lg:w-2/5">
                     <input
-                        name="date"
+                        name={name + '_date'}
                         type="date"
                         placeholder="Enter date"
                         value={date}
@@ -42,7 +43,7 @@ export default function DateInput({
                         ${(isDateValid) ? "border-gray-900 focus:ring-2 focus:ring-blue-600" : "ring-2 ring-red-600"}`}
                     />
                     <input
-                        name="time"
+                        name={name + '_time'}
                         type="time"
                         placeholder="Enter time"
                         value={time}

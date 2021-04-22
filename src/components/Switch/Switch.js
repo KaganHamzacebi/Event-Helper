@@ -18,7 +18,7 @@ export default function Switch({
         type === 'switch' ?
           <label className="flex items-center cursor-pointer">
             <div className="relative">
-              <input type="checkbox" id="toggle" name={name} onChange={(e) => setEnabled(e.target.checked)} checked={enabled} className="sr-only" />
+              <input type="checkbox" id="toggle" name={name} value={enabled} onChange={(e) => setEnabled(e.target.checked)} checked={enabled} className="sr-only" />
               <div className={`block w-14 h-8 rounded-full shadow-xl ${enabled ? 'bg-green-500' : 'bg-gray-600'} `}></div>
               <div className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
             </div>

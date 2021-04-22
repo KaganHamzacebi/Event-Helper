@@ -6,12 +6,12 @@ import { XIcon } from '@heroicons/react/solid'
 import './SelectInput.css'
 
 export default function SelectInput({
+    name,
     title,
     description,
     width,
     height,
     placeholder,
-    marginTop,
     content
 }) {
 
@@ -24,7 +24,6 @@ export default function SelectInput({
     let timeout;
 
     useEffect(() => {
-        console.log(focusSelect + " " + focusSearch)
         //setIsDropdownOpen(focusSelect || focusSearch);
         if (!(focusSelect || focusSearch)) {
             timeout = setTimeout(() => setIsDropdownOpen(false), 100)
@@ -39,7 +38,7 @@ export default function SelectInput({
         let data = content.filter(item => item.label.toLowerCase().includes(searchValue));
         setFilteredData(data);
         // eslint-disable-next-line
-    }, [searchValue])
+    }, [searchValue, content])
 
     return (
         <div>
@@ -53,8 +52,10 @@ export default function SelectInput({
             <div className={`relative ${width ? 'w-' + width : 'width-32'} `} >
                 <input
                     type='text'
+                    name={name}
+                    placeholder='Select'
                     className={`w-full border ${height && 'h-' + height} border-gray-900 rounded pl-3.5 pr-8 outline-none ${value ? 'text-primary ' : 'text-gray-500'} bg-title text-lg placeholder-white placeholder-opacity-30  transition duration-800 focus:ring-2 focus:ring-blue-600`}
-                    value={value ? value : placeholder}
+                    value={value ? value : ""}
                     onChange={null}
                     onFocus={() => setFocusSelect(true)}
                     onBlur={() => setFocusSelect(false)}

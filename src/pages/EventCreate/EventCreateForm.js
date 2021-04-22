@@ -59,6 +59,7 @@ export default function EventCreateForm() {
   const history = useHistory();
   const { token } = useParams();
   const [isFormValid, setIsFormValid] = useState(true);
+  const [channels, setChannels] = useState([]);
 
 
   useEffect(() => {
@@ -108,13 +109,15 @@ export default function EventCreateForm() {
   }
 
   useEffect(() => {
-    const headers = { "Access-Control-Allow-Origin": "*" }
-
     axios
-      .get("http://localhost:3001/get_guild_channels/" + token, { headers: headers })
+      .get("http://localhost:3001/get_guild_channels/" + token)
       .then(function (response) {
-        console.log(response);
 
+        const tmp = [];
+        response.data.map((channel) => {
+          tmp.push({ label: channel.name, value: channel.id })
+        })
+        setChannels(tmp);
       })
       .catch(function (error) {
         console.log(error);
@@ -162,6 +165,7 @@ export default function EventCreateForm() {
                 <TextInput
                   title="Title"
                   type="text"
+                  name='general_title'
                   description="Please enter the event title"
                 />
               </div>
@@ -170,6 +174,7 @@ export default function EventCreateForm() {
                   title="Description"
                   rows={2}
                   type="text"
+                  name='general_description'
                   description="Please enter the description for event (Optional)"
                 />
               </div>
@@ -177,18 +182,20 @@ export default function EventCreateForm() {
                 <TextInput
                   title="Channel"
                   type="text"
+                  name='general_channel'
                   description="Please enter the channel that you want to get event"
                 />
               </div>
               <div className='py-4'>
                 <DateInput
                   title="Date"
+                  name='general'
                   description="Please enter the date that event gonna occur"
                 />
               </div>
               <div className='py-8'>
                 <Collapse name="Announcement Options" description="Announcement  options can be setted with using collapse menu">
-                  <AnnouncementOptionsInput />
+                  <AnnouncementOptionsInput channelContent={channels} />
                 </Collapse>
               </div>
               <div className='py-8'>

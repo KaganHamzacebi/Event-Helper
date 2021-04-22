@@ -3,6 +3,7 @@ import { ExclamationIcon } from '@heroicons/react/solid'
 import { validate, getErrorMessage } from "../inputValidations";
 
 export default function TextAreaInput({
+  name,
   type,
   title,
   description,
@@ -20,7 +21,7 @@ export default function TextAreaInput({
       <div className="mt-4">
         <div className="mb-3 pt-0">
           <textarea
-            name={title}
+            name={name}
             onBlur={() => { validate(title, value, setIsValid) }}
             type={type}
             value={value}

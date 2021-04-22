@@ -4,6 +4,7 @@ import { XIcon } from '@heroicons/react/solid'
 import { validate, getErrorMessage } from "../inputValidations";
 
 export default function TextInput({
+  name,
   type,
   title,
   description
@@ -22,7 +23,7 @@ export default function TextInput({
         <div className="mb-3 pt-0">
           <div className='w-full h-14 md:w-2/3 lg:w-2/5 relative'>
             <input
-              name={title}
+              name={name}
               onBlur={() => { validate(title, value, setIsValid) }}
               type={type}
               value={value}

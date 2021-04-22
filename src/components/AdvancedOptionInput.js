@@ -7,21 +7,21 @@ export default function AdvancedOptionInput({
 
     const advancedOptions = [
         {
-            name: 'color',
+            name: 'adv_option_1',
             description: 'Changes discord embed message color',
             type: 'switch',
             premium: false,
             disabled: false
         },
         {
-            name: 'color',
+            name: 'adv_option_2',
             description: 'Changes discord embed message color',
             type: 'switch',
             premium: false,
             disabled: false
         },
         {
-            name: 'color',
+            name: 'adv_option_3',
             description: 'Changes discord embed message color',
             type: 'dropdown',
             content:
@@ -36,7 +36,7 @@ export default function AdvancedOptionInput({
             disabled: false
         },
         {
-            name: 'premiumFeature',
+            name: 'adv_option_4',
             description: 'buy premium right now!!',
             type: 'text',
             placeholder: 'Type here',
