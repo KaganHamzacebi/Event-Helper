@@ -1,5 +1,7 @@
 import { useState, useEffect, useReducer, useRef } from 'react';
 import { SearchIcon } from '@heroicons/react/solid'
+import { ChevronUpIcon } from '@heroicons/react/solid'
+import { XIcon } from '@heroicons/react/solid'
 import Tag from './Tag'
 import './TagPickerInput.css'
 import CheckboxInput from '../CheckboxInput';
@@ -51,12 +53,12 @@ export default function TagPickerInput({
     const [state, dispatch] = useReducer(reducer, content);
     const divRef = useRef(null)
     const searchDivRef = useRef(null)
-    
+
     let timeout;
 
     useEffect(() => {
-        dispatch({type:"NEW_CONTENT", content: content})
-        
+        dispatch({ type: "NEW_CONTENT", content: content })
+
     }, [content])
 
     useEffect(() => {
@@ -102,19 +104,18 @@ export default function TagPickerInput({
                             })
                     }
                 </div>
-                {/* ChevronUp Image */}
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                    className={`h-7 text-primary-light absolute pointer-events-none right-2 top-4 transition-transform transform duration-400`}
-                >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                </svg>
-                {/* X Image */}
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                    className={`h-6 text-primary-light right-10 top-4 absolute transition-all transform duration-500 hover:text-red-600 `}
+                {/* Placeholder */}
+                {!(Object.keys(state).filter((id) => { return state[id].selected }).length > 0) &&
+                    <span className='left-4 text-primary-light text-bold text-lg text-opacity-70 top-1/4 font-sans absolute pointer-events-none' >{placeholder}</span>
+                }
+                <ChevronUpIcon
+                    className={`w-6 text-primary-light absolute pointer-events-none top-1/2 -translate-y-1/2 right-2 transition-transform transform duration-400 ${focusSelect || focusSearch ? "rotate-180" : "rotate-0"}`}
+                />
+                <XIcon
+                    className={`w-4 text-primary-light right-8 absolute top-1/2 transform -translate-y-1/2 transition-all duration-500 opacity-0 hover:text-red-600 
+                    ${Object.keys(state).filter((id) => { return state[id].selected }).length > 0 && 'opacity-100'}`}
                     onClick={() => dispatch({ type: "CLEAR" })}
-                >
-                    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
+                />
             </div>
             <div
                 className={`absolute bg-content ${width ? 'w-' + width : 'width-32'} border rounded mt-1 z-10 border-none shadow-lg border-gray-700 transition-opacity duration-500 transform ${(focusSelect || focusSearch || focusSearchDiv) ? 'opacity-100' : 'opacity-0'} ${isDropdownOpen ? '' : 'hidden'}`}>

@@ -190,12 +190,21 @@ export default function EventCreateForm() {
                   description="Please enter the channel that you want to get event"
                 />
               </div>
-              <div className='py-4'>
-                <DateInput
-                  title="Date"
-                  name='general'
-                  description="Please enter the date that event gonna occur"
-                />
+              <div class='grid grid-flow-col grid-col-2'>
+                <div className='py-4'>
+                  <DateInput
+                    title="Event Date"
+                    name='general_event'
+                    description="Please enter the date that event gonna occur"
+                  />
+                </div>
+                <div className='py-4'>
+                  <DateInput
+                    title="Post Date"
+                    name='general_post'
+                    description="Please enter the date that event gonna occur"
+                  />
+                </div>
               </div>
               <div className='py-8'>
                 <Collapse name="Reminder Options" description="Announcement  options can be setted with using collapse menu">

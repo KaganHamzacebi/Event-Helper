@@ -32,7 +32,7 @@ export default function DateInput({
             <h3 className="text-2xl font-bold text-primary">{title}</h3>
             <span className="text-sm text-primary-light">{description}</span>
             <div className="mt-4">
-                <div className="mb-4 pt-0 flex flex-row flex-nowrap w-full md:w-2/3 lg:w-2/5">
+                <div className="mb-4 pt-0 flex flex-row flex-nowrap w-full md:w-2/3 lg:w-4/5">
                     <input
                         name={name + '_date'}
                         type="date"

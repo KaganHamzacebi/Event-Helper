@@ -33,7 +33,7 @@ export default function Switch({
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 className="px-3 py-1 bg-title text-primary relative rounded text-lg border border-gray-900 outline-none 
-            shadow-lg focus:ring-2 focus:ring-blue-600 w-4/5" />
+             focus:ring-2 focus:ring-blue-600 w-4/5" />
             </div>
             :
             <div>
