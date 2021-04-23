@@ -86,8 +86,9 @@ export default function EventCreateForm() {
       const element = e.target[i];
       element.focus();
       element.blur();
-
+      
       const _isValid = validate(element.name, element.value, setIsFormValid)
+      console.log(_isValid + " " + element.name)
       if (!_isValid) return;
       payload[element.name] = element.value;
     }
@@ -96,10 +97,10 @@ export default function EventCreateForm() {
 
     console.log(payload);
     axios
-      .post("https://localhost:3001/create_event", payload)
+      .post("http://localhost:3001/api/create_event", payload)
       .then(function (response) {
         console.log(response);
-        history.push("/event_create_successful")
+        history.push("/event_create_success")
       })
       .catch(function (error) {
         // TODO: server_error ekle

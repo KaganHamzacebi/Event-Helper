@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import './DateInput.css'
 import { ExclamationIcon } from '@heroicons/react/solid'
-import { validate } from "../../inputValidations";
+import { validate, getErrorMessage } from "../../inputValidations";
 
 export default function DateInput({
     name,
@@ -19,11 +19,11 @@ export default function DateInput({
     const [isTimeValid, setIsTimeValid] = useState(true);
 
     useEffect(() => {
-        validate("date", date, setIsDateValid)
+        validate("general_event_date", date, setIsDateValid)
     }, [date])
 
     useEffect(() => {
-        validate("time", time, setIsTimeValid)
+        validate("general_event_time", time, setIsTimeValid)
     }, [time])
 
 
@@ -55,7 +55,7 @@ export default function DateInput({
                 <span className={`text-xs font-bold inline-block py-1 px-2 rounded text-red-600 opacity-0 bg-red-300 last:mr-0 mr-1 
                     ${(isTimeValid && isDateValid) ? "transition-opacity duration-800 ease-out opacity-0" : "transition-opacity duration-1000 ease-in opacity-100"}`}>
                     <ExclamationIcon className="w-4 inline-block" />
-                    {" " + errors[title]}
+                    {" " + getErrorMessage("general_event_date")}
                 </span>
             </div>
         </div>

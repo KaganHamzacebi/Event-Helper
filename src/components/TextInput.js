@@ -24,7 +24,7 @@ export default function TextInput({
           <div className='w-full h-14 md:w-2/3 lg:w-2/5 relative'>
             <input
               name={name}
-              onBlur={() => { validate(title, value, setIsValid) }}
+              onBlur={() => { validate(name, value, setIsValid) }}
               type={type}
               value={value}
               onChange={(e) => setValue(e.target.value)}
@@ -41,7 +41,7 @@ export default function TextInput({
         <span className={`text-xs font-bold inline-block py-1 px-2 rounded text-red-600 opacity-0 bg-red-300 last:mr-0 mr-1 
             ${isValid ? "transition-opacity duration-800 ease-out opacity-0" : "transition-opacity duration-1000 ease-in opacity-100"}`}>
           <ExclamationIcon className="w-4 inline-block" />
-          {" " + getErrorMessage(title)}
+          {" " + getErrorMessage(name)}
         </span>
       </div>
     </div>
