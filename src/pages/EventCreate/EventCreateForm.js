@@ -86,14 +86,13 @@ export default function EventCreateForm() {
       const element = e.target[i];
       element.focus();
       element.blur();
-      
       const _isValid = validate(element.name, element.value, setIsFormValid)
-      console.log(_isValid + " " + element.name)
       if (!_isValid) return;
       payload[element.name] = element.value;
     }
 
     delete payload.submit;
+    delete payload[""];
 
     console.log(payload);
     axios
