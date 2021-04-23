@@ -190,7 +190,7 @@ export default function EventCreateForm() {
                   description="Please enter the channel that you want to get event"
                 />
               </div>
-              <div class='grid grid-flow-col grid-col-2'>
+              <div className='grid grid-flow-col grid-col-2'>
                 <div className='py-4'>
                   <DateInput
                     title="Event Date"

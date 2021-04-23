@@ -7,9 +7,9 @@ export default function AdvancedOptionInput({
 
     const advancedOptions = [
         {
-            name: 'adv_option_1',
+            name: 'color',
             description: 'Changes discord embed message color',
-            type: 'switch',
+            type: 'color-picker',
             premium: false,
             disabled: false
         },
@@ -23,7 +23,7 @@ export default function AdvancedOptionInput({
         {
             name: 'adv_option_3',
             description: 'Changes discord embed message color',
-            type: 'dropdown',
+            type: 'select',
             content:
                 [
                     { label: 'Blue', value: 'blue' },
@@ -53,23 +53,23 @@ export default function AdvancedOptionInput({
                 {
                     advancedOptions.map((advancedOption, index) => {
                         return <div key={index} className={`flex flex-row border border-gray-900 rounded bg-title mt-4 p-2 h-28 ${advancedOption.disabled ? 'blur-2xl' : ''}`}>
-                                    {
-                                        title !== '' ?
-                                            <div className='ml-2 self-center flex-grow'>
-                                                <h1 className='text-xl font-bold text-primary whitespace-nowrap'>{advancedOption.name} {advancedOption.premium ? '⭐' : ''}</h1>
-                                                <span className="text-sm text-primary-light">{advancedOption.description}</span>
-                                            </div>
-                                            :
-                                            ''
-                                    }
-                                    <div className='self-center mr-4'>
-                                        <Switch name={advancedOption.name}
-                                            type={advancedOption.type}
-                                            placeholder={advancedOption.placeholder}
-                                            content={advancedOption.content}
-                                        />
+                            {
+                                title !== '' ?
+                                    <div className='ml-2 self-center flex-grow'>
+                                        <h1 className='text-xl font-bold text-primary whitespace-nowrap'>{advancedOption.name} {advancedOption.premium ? '⭐' : ''}</h1>
+                                        <span className="text-sm text-primary-light">{advancedOption.description}</span>
                                     </div>
-                                </div>
+                                    :
+                                    ''
+                            }
+                            <div className='self-center mr-4'>
+                                <Switch name={advancedOption.name}
+                                    type={advancedOption.type}
+                                    placeholder={advancedOption.placeholder}
+                                    content={advancedOption.content}
+                                />
+                            </div>
+                        </div>
 
                     })
                 }
