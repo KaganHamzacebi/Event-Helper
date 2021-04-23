@@ -90,6 +90,7 @@ export default function Switch({
               </div>
               : type === 'color-picker' ?
                 <div>
+                  <input type="hidden" name="color" value={color}/>
                   <div style={colorPickerStyles.swatch} onClick={handleClick}>
                     <div style={colorPickerStyles.color} />
                   </div>
