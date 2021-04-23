@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { verifyToken } from "../../crypto";
+import { verifyToken, decodeToken } from "../../crypto";
 
 import { ExclamationIcon } from '@heroicons/react/solid'
 
@@ -90,7 +90,12 @@ export default function EventCreateForm() {
       if (!_isValid) return;
       payload[element.name] = element.value;
     }
-
+    const tokenData = decodeToken(token)
+    
+    payload.gid= tokenData.gid;
+    payload.cid= tokenData.cid;
+    payload.id= tokenData.id;
+    
     delete payload.submit;
     delete payload[""];
 
