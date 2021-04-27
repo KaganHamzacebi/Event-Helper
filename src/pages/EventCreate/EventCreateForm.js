@@ -10,6 +10,8 @@ import Collapse from "../../components/Collapse"
 import Header from "../../components/Header";
 import TextInput from "../../components/TextInput";
 import DateInput from "../../components/DateInput/DateInput";
+import SelectInput from "../../components/SelectInput/SelectInput";
+import TagPickerInput from "../../components/TagPickerInput/TagPickerInput"
 import TextAreaInput from "../../components/TextAreaInput";
 import TemplateInput from "../../components/TemplateInput";
 import AdvancedOptionInput from "../../components/AdvancedOptionInput";
@@ -78,9 +80,7 @@ export default function EventCreateForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const payload = {
-
-    }
+    const payload = {}
 
     for (let i = 0; i < e.target.length; i++) {
       const element = e.target[i];
@@ -91,11 +91,11 @@ export default function EventCreateForm() {
       payload[element.name] = element.value;
     }
     const tokenData = decodeToken(token)
-    
-    payload.gid= tokenData.gid;
-    payload.cid= tokenData.cid;
-    payload.id= tokenData.id;
-    
+
+    payload.gid = tokenData.gid;
+    payload.cid = tokenData.cid;
+    payload.id = tokenData.id;
+
     delete payload.submit;
     delete payload[""];
 
@@ -103,6 +103,7 @@ export default function EventCreateForm() {
     axios
       .post("http://localhost:3001/api/create_event", payload)
       .then(function (response) {
+        console.log('basarili')
         console.log(response);
         history.push("/event_create_success")
       })
@@ -128,7 +129,7 @@ export default function EventCreateForm() {
         })
 
         setChannels(tmpChannels);
-        setRoles(tmpRoles)
+        setRoles(tmpRoles);
       })
       .catch(function (error) {
         console.log(error);
@@ -187,13 +188,29 @@ export default function EventCreateForm() {
                   description="Please enter the description for event (Optional)"
                 />
               </div>
-              <div className='py-4'>
-                <TextInput
-                  title="Channel"
-                  type="text"
-                  name='general_channel'
-                  description="Please enter the channel that you want to get event"
-                />
+              <div className='grid grid-flow-col grid-col-2'>
+                <div className='py-4 pb-14'>
+                  <SelectInput
+                    title="Channel"
+                    description="Please enter the channel that you want to get event"
+                    name='general_channel'
+                    content={channels}
+                    width='4/5'
+                    height={14}
+                    placeholder='Select'
+                  />
+                </div>
+                <div className='py-4 pb-14'>
+                  <TagPickerInput
+                    title="Mentions"
+                    description="Please select the roles that yo want to mention"
+                    name='general_mentions'
+                    content={roles}
+                    width='4/5'
+                    height={56}
+                    placeholder='Select'
+                  />
+                </div>
               </div>
               <div className='grid grid-flow-col grid-col-2'>
                 <div className='py-4'>
@@ -239,6 +256,6 @@ export default function EventCreateForm() {
           </div>
         </form>
       </main>
-    </div>
+    </div >
   );
 }

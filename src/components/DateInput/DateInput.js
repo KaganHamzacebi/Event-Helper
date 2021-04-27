@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import './DateInput.css'
+import moment from 'moment';
 import { ExclamationIcon } from '@heroicons/react/solid'
 import { validate, getErrorMessage } from "../../inputValidations";
 
@@ -15,15 +16,20 @@ export default function DateInput({
 
     const [date, setDate] = useState("2021-04-15");
     const [time, setTime] = useState("00:00");
+    const [value, setValue] = useState(0);
     const [isDateValid, setIsDateValid] = useState(true);
     const [isTimeValid, setIsTimeValid] = useState(true);
 
     useEffect(() => {
         validate("general_event_date", date, setIsDateValid)
+        const value = moment(date + ' ' + time).unix(Number);
+        setValue(value);
     }, [date])
 
     useEffect(() => {
         validate("general_event_time", time, setIsTimeValid)
+        const value = moment(date + ' ' + time).unix(Number);
+        setValue(value);
     }, [time])
 
 
@@ -31,10 +37,10 @@ export default function DateInput({
         <div>
             <h3 className="text-2xl font-bold text-primary">{title}</h3>
             <span className="text-sm text-primary-light">{description}</span>
+            <input type='hidden' name={name + '_date'} value={value} />
             <div className="mt-4">
                 <div className="mb-4 pt-0 flex flex-row flex-nowrap w-full md:w-2/3 lg:w-4/5">
                     <input
-                        name={name + '_date'}
                         type="date"
                         placeholder="Enter date"
                         value={date}
@@ -43,7 +49,6 @@ export default function DateInput({
                         ${(isDateValid) ? "border-gray-900 focus:ring-2 focus:ring-blue-600" : "ring-2 ring-red-600"}`}
                     />
                     <input
-                        name={name + '_time'}
                         type="time"
                         placeholder="Enter time"
                         value={time}

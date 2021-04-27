@@ -6,16 +6,19 @@ import { useState } from "react"
 
 export default function Switch({
   name,
+  label,
   type,
   content,
   placeholder
 }) {
 
+  //Values
   const [enabled, setEnabled] = useState(false);
-  const [value, setValue] = useState('');
+  const [valueNumber, setValueNumber] = useState(0);
+  const [valueText, setValueText] = useState('');
+  const [color, setColor] = useState('#D6A044');
 
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
-  const [color, setColor] = useState('#D6A044');
 
   const colorPickerStyles = reactCSS({
     'default': {
@@ -75,36 +78,49 @@ export default function Switch({
           : type === 'text' ?
             <div className="flex items-center justify-end">
               <input
-                type="text"
+                type='text'
                 id="switch-text"
                 name={name}
                 placeholder={placeholder}
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+                value={valueText}
+                onChange={(e) => setValueText(e.target.value)}
                 className="px-3 py-1 bg-title text-primary relative rounded text-lg border border-gray-900 outline-none 
              focus:ring-2 focus:ring-blue-600 w-4/5" />
             </div>
-            : type === 'select' ?
-              <div>
-                <SelectInput name={name} content={content} placeholder="Select" width={32} />
+            : type === 'number' ?
+              <div className="flex items-center justify-end">
+                <input
+                  type='number'
+                  min={0}
+                  id="switch-text"
+                  name={name}
+                  placeholder={placeholder}
+                  value={valueNumber}
+                  onChange={(e) => setValueNumber(e.target.value)}
+                  className="px-3 py-1 bg-title text-primary relative rounded text-lg border border-gray-900 outline-none 
+             focus:ring-2 focus:ring-blue-600 w-3/5" />
               </div>
-              : type === 'color-picker' ?
+              : type === 'select' ?
                 <div>
-                  <input type="hidden" name="color" value={color}/>
-                  <div style={colorPickerStyles.swatch} onClick={handleClick}>
-                    <div style={colorPickerStyles.color} />
-                  </div>
-                  {displayColorPicker ?
-                    <div style={colorPickerStyles.popover}>
-                      <div style={colorPickerStyles.cover} onClick={handleClose} />
-                      <SketchPicker name={name} value={color} color={color} onChange={handleChange} disableAlpha />
-                    </div>
-                    :
-                    null
-                  }
+                  <SelectInput name={name} content={content} placeholder="Select" width={32} />
                 </div>
-                :
-                ''
+                : type === 'color-picker' ?
+                  <div>
+                    <input type="hidden" name={name} value={color} />
+                    <div style={colorPickerStyles.swatch} onClick={handleClick}>
+                      <div style={colorPickerStyles.color} />
+                    </div>
+                    {displayColorPicker ?
+                      <div style={colorPickerStyles.popover}>
+                        <div style={colorPickerStyles.cover} onClick={handleClose} />
+                        <SketchPicker name={name} value={color} color={color} onChange={handleChange} disableAlpha />
+                      </div>
+                      :
+                      null
+                    }
+                  </div>
+                  :
+                  ''
       }
 
     </div >

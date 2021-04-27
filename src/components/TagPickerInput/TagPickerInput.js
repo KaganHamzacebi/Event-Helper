@@ -28,7 +28,7 @@ export default function TagPickerInput({
         let newState = { ...state };
         switch (action.type) {
             case "TOGGLE":
-                const newValue = { label: state[action.id].label, color: state[action.id].color, selected: state[action.id].selected ? false : true }
+                const newValue = { label: state[action.id].label, color: state[action.id].color, value: state[action.id].value, selected: state[action.id].selected ? false : true }
                 newState[action.id] = newValue;
                 return newState;
                 break;
@@ -72,8 +72,15 @@ export default function TagPickerInput({
 
     }, [focusSelect, focusSearch, focusSearchDiv])
 
+    const [tagPickerValue, setTagPickerValue] = useState([]);
+
+    useEffect(() => {
+        let tmp = Object.values(state).filter(tag => tag.selected).map(tag => { return tag.value });
+        setTagPickerValue(tmp);
+    }, [state])
+
     return (
-        <div>
+        <div className='relative' >
             { title &&
                 <div className="mb-4">
                     <h3 className="text-2xl font-bold text-primary">{title}</h3>
@@ -82,6 +89,7 @@ export default function TagPickerInput({
             }
 
             <div className={`relative w-72 ${width && 'w-' + width}`}>
+                <input name={name} value={tagPickerValue} type='hidden' />
                 <div tabIndex="1"
                     onClick={() => divRef.current.focus()}
                     ref={divRef}

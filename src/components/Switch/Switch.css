@@ -5,3 +5,8 @@ input:checked ~ .dot {
 input[id='switch-text']::-webkit-input-placeholder {
   font-size: 14px;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  
+}

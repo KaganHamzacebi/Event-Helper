@@ -41,7 +41,7 @@ export default function SelectInput({
     }, [searchValue, content])
 
     return (
-        <div>
+        <div className='relative'>
             {title &&
                 <div className='mb-4'>
                     <h3 className="text-2xl font-bold text-primary">{title}</h3>
