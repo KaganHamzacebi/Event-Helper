@@ -23,7 +23,7 @@ const templates = [
   {
     id: 0,
     templateName: "World of Warcraft",
-    imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/Unbenannt.png",
+    imgUrl: "https://cdn.worldvectorlogo.com/logos/world-of-warcraft.svg",
   },
   {
     id: 1,
@@ -32,26 +32,6 @@ const templates = [
   },
   {
     id: 2,
-    templateName: "Tabletop Games",
-    imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png",
-  },
-  {
-    id: 3,
-    templateName: "Tabletop Games",
-    imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png",
-  },
-  {
-    id: 4,
-    templateName: "Tabletop Games",
-    imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png",
-  },
-  {
-    id: 5,
-    templateName: "Tabletop Games",
-    imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png",
-  },
-  {
-    id: 6,
     templateName: "Tabletop Games",
     imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png",
   },
@@ -92,9 +72,9 @@ export default function EventCreateForm() {
     }
     const tokenData = decodeToken(token)
 
-    payload.gid = tokenData.gid;
-    payload.cid = tokenData.cid;
-    payload.id = tokenData.id;
+    payload.guild_id = tokenData.gid;
+    payload.channel_id = tokenData.cid;
+    payload.leader_id = tokenData.id;
 
     delete payload.submit;
     delete payload[""];
