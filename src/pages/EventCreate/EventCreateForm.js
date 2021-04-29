@@ -79,12 +79,9 @@ export default function EventCreateForm() {
     delete payload.submit;
     delete payload[""];
 
-    console.log(payload);
     axios
       .post("http://localhost:3001/api/create_event", payload)
       .then(function (response) {
-        console.log('basarili')
-        console.log(response);
         history.push("/event_create_success")
       })
       .catch(function (error) {

@@ -22,13 +22,13 @@ export default function DateInput({
 
     useEffect(() => {
         validate("general_event_date", date, setIsDateValid)
-        const value = moment(date + ' ' + time).unix(Number);
+        const value = moment(date + ' ' + time).format('X');
         setValue(value);
     }, [date])
 
     useEffect(() => {
         validate("general_event_time", time, setIsTimeValid)
-        const value = moment(date + ' ' + time).unix(Number);
+        const value = moment(date + ' ' + time).format('X');
         setValue(value);
     }, [time])
 
