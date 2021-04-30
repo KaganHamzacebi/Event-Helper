@@ -7,6 +7,7 @@ export default function TextInput({
   name,
   type,
   title,
+  width,
   description
 }) {
 
@@ -21,7 +22,7 @@ export default function TextInput({
 
       <div className="mt-4">
         <div className="mb-3 pt-0">
-          <div className='w-full h-14 md:w-2/3 lg:w-2/5 relative'>
+          <div className={`w-full h-14 md:w-2/3 lg:w-${width ? width : '2/5'} relative`}>
             <input
               name={name}
               onBlur={() => { validate(name, value, setIsValid) }}
@@ -29,7 +30,7 @@ export default function TextInput({
               value={value}
               onChange={(e) => setValue(e.target.value)}
               placeholder={"Enter " + title.toLowerCase()}
-              className={`px-3 py-3 bg-title text-primary relative rounded text-lg border border-gray-900 outline-none focus:outline-none focus:shadow-outline w-full h-full
+              className={`px-3 pr-14 py-3 bg-title text-primary relative rounded text-lg border border-gray-900 outline-none focus:outline-none focus:shadow-outline w-full h-full
               ${isValid ? "focus:ring-2 focus:ring-blue-600" : "ring-2 ring-red-600"}`}
             />
             <XIcon

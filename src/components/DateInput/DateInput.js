@@ -14,20 +14,20 @@ export default function DateInput({
         "Date": "Date can't be empty"
     }
 
-    const [date, setDate] = useState("2021-04-15");
-    const [time, setTime] = useState("00:00");
+    const [date, setDate] = useState(moment().format('YYYY-MM-DD'));
+    const [time, setTime] = useState(moment().format('HH:MM'));
     const [value, setValue] = useState(0);
     const [isDateValid, setIsDateValid] = useState(true);
     const [isTimeValid, setIsTimeValid] = useState(true);
 
     useEffect(() => {
-        validate("general_event_date", date, setIsDateValid)
+        validate("event_date", date, setIsDateValid)
         const value = moment(date + ' ' + time).format('X');
         setValue(value);
     }, [date])
 
     useEffect(() => {
-        validate("general_event_time", time, setIsTimeValid)
+        validate("event_time", time, setIsTimeValid)
         const value = moment(date + ' ' + time).format('X');
         setValue(value);
     }, [time])
@@ -37,12 +37,13 @@ export default function DateInput({
         <div>
             <h3 className="text-2xl font-bold text-primary">{title}</h3>
             <span className="text-sm text-primary-light">{description}</span>
-            <input type='hidden' name={name + '_date'} value={value} />
+            <input type='hidden' name={name} value={value} />
             <div className="mt-4">
-                <div className="mb-4 pt-0 flex flex-row flex-nowrap w-full md:w-2/3 lg:w-4/5">
+                <div className="mb-4 pt-0 flex flex-row flex-nowrap w-full md:w-2/3 lg:w-full">
                     <input
                         type="date"
                         placeholder="Enter date"
+                        min={moment().format('YYYY-MM-DD')}
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
                         className={`px-3 py-3 bg-title text-primary relative rounded text-lg border border-gray-900 outline-none focus:outline-none focus:shadow-outline mr-4 flex-grow

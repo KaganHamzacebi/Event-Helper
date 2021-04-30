@@ -27,13 +27,13 @@ const templates = [
   },
   {
     id: 1,
-    templateName: "Yes & No",
-    imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/poll.png",
+    templateName: "Destiny 2",
+    imgUrl: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/46b63d3c-ae67-464c-9a37-670829b2a157/db41v46-5a57ca9f-48ba-47ac-aee9-684ce7043e3e.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQ2YjYzZDNjLWFlNjctNDY0Yy05YTM3LTY3MDgyOWIyYTE1N1wvZGI0MXY0Ni01YTU3Y2E5Zi00OGJhLTQ3YWMtYWVlOS02ODRjZTcwNDNlM2UucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.vdZaLR6CAMuc1rswCRde8cg9MThDpfgyc3BVAM9evQk",
   },
   {
     id: 2,
-    templateName: "Tabletop Games",
-    imgUrl: "https://raid-helper.com/wp-content/uploads/2021/04/tabletop.png",
+    templateName: "Rainbox Six Siege",
+    imgUrl: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9eb92786-5e60-46ac-ae2c-d33af137f691/d8yvme8-1fa1c81b-5a73-45b0-8051-49d0bec9a73f.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvOWViOTI3ODYtNWU2MC00NmFjLWFlMmMtZDMzYWYxMzdmNjkxXC9kOHl2bWU4LTFmYTFjODFiLTVhNzMtNDViMC04MDUxLTQ5ZDBiZWM5YTczZi5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.2G7aRj8V8ZeRR5ZngnSmbX_ca-biHpBgiGlDWe0mkWc",
   },
 ];
 
@@ -148,64 +148,90 @@ export default function EventCreateForm() {
                   description="You can select a template here"
                 />
               </div>
-              <div className='py-4'>
-                <TextInput
-                  title="Title"
-                  type="text"
-                  name='general_title'
-                  description="Please enter the event title"
-                />
+              <div className='grid grid-flow-col grid-cols-2 gap-x-48'>
+                <div className='py-4'>
+                  <TextInput
+                    title="Title"
+                    type="text"
+                    name='title'
+                    width='full'
+                    description="Please enter the event title"
+                  />
+                </div>
               </div>
-              <div className='py-4'>
-                <TextAreaInput
-                  title="Description"
-                  rows={2}
-                  type="text"
-                  name='general_description'
-                  description="Please enter the description for event (Optional)"
-                />
+              <div className='grid grid-flow-col grid-cols-2 gap-x-48'>
+                <div className='py-4'>
+                  <TextAreaInput
+                    title="Description"
+                    rows={2}
+                    type="text"
+                    name='description'
+                    width='full'
+                    description="Please enter the description for event (Optional)"
+                  />
+                </div>
               </div>
-              <div className='grid grid-flow-col grid-col-2'>
+              <div className='grid grid-flow-col grid-cols-2 gap-x-48'>
                 <div className='py-4 pb-14'>
                   <SelectInput
                     title="Channel"
                     description="Please enter the channel that you want to get event"
-                    name='general_channel'
+                    name='channel'
                     content={channels}
-                    width='4/5'
+                    width='full'
                     height={14}
                     placeholder='Select'
                   />
                 </div>
-                <div className='py-4 pb-14'>
+                <div className='py-4'>
                   <TagPickerInput
                     title="Mentions"
                     description="Please select the roles that yo want to mention"
-                    name='general_mentions'
+                    name='mentions'
                     content={roles}
-                    width='4/5'
+                    width='full'
                     height={56}
                     placeholder='Select'
                   />
                 </div>
               </div>
-              <div className='grid grid-flow-col grid-col-2'>
+              <div className='grid grid-flow-col grid-cols-2 gap-x-48'>
+                <div className='py-4'>
+                  <TextInput
+                    title="Thumbnail"
+                    type="text"
+                    name='thumbnail'
+                    width='full'
+                    description="Please enter thumbnail url for event"
+                  />
+                </div>
+                <div className='py-4'>
+                  <TextInput
+                    title="Image"
+                    type="text"
+                    name='image'
+                    width='full'
+                    description="Please enter image url for event"
+                  />
+                </div>
+              </div>
+              <div className='grid grid-flow-col grid-cols-2 gap-x-48'>
                 <div className='py-4'>
                   <DateInput
                     title="Event Date"
-                    name='general_event'
+                    name='event_date'
                     description="Please enter the date that event gonna occur"
                   />
                 </div>
                 <div className='py-4'>
                   <DateInput
                     title="Post Date"
-                    name='general_post'
+                    name='post_date'
                     description="Please enter the date that event gonna occur"
                   />
                 </div>
               </div>
-              <div className='py-8'>
+              <div className='pt-8'>
                 <Collapse name="Reminder Options" description="Announcement  options can be setted with using collapse menu">
                   <ReminderOptionsInput channelContent={channels} roleContent={roles} />
                 </Collapse>

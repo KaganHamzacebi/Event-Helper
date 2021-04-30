@@ -16,7 +16,7 @@ export default function Switch({
   const [enabled, setEnabled] = useState(false);
   const [valueNumber, setValueNumber] = useState(0);
   const [valueText, setValueText] = useState('');
-  const [color, setColor] = useState('#D6A044');
+  const [color, setColor] = useState('#90D140');
 
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
 

@@ -48,6 +48,14 @@ export default function AdvancedOptionInput({
             premium: false,
             disabled: false
         },
+        {
+            name: 'adv_single_participation',
+            label: 'Single Participation',
+            description: 'Allow single entrance',
+            type: 'switch',
+            premium: false,
+            disabled: false
+        },
     ];
 
     return (

@@ -8,13 +8,13 @@ export default function ReminderOptionsInput({
 }) {
 
     return (
-        <div className='ml-1 mt-4 grid grid-flow-col md:grid-rows-2 grid-rows-4'>
+        <div className='ml-1 mt-12 grid grid-flow-col md:grid-rows-2 grid-rows-4 gap-x-48'>
             <SelectInput
                 title='Reminder Channel'
                 description='Please select channel that you want the announcement'
                 name='reminder_channel'
                 content={channelContent}
-                width='96'
+                width='full'
                 height={14}
                 placeholder='Select'
             />
@@ -22,7 +22,7 @@ export default function ReminderOptionsInput({
                 title="Reminder Description"
                 name='reminder_description'
                 rows={2}
-                width='96'
+                width='full'
                 type="text"
                 description="Please enter the description for announcement (Optional)"
             />
@@ -31,7 +31,7 @@ export default function ReminderOptionsInput({
                 description='Please select the roles you want to remind event'
                 name='reminder_mentions'
                 content={roleContent}
-                width={96}
+                width='full'
                 placeholder='Select'
             />
             <SelectInput
@@ -39,7 +39,7 @@ export default function ReminderOptionsInput({
                 description='Select the time when you want to get announced'
                 name='reminder_times'
                 content={channelContent}
-                width='96'
+                width='full'
                 height={14}
                 placeholder='Select'
             />
