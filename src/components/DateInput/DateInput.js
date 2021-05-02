@@ -7,6 +7,8 @@ import { validate, getErrorMessage } from "../../inputValidations";
 export default function DateInput({
     name,
     title,
+    valueDate,
+    valueTime,
     description
 }) {
 
@@ -14,8 +16,8 @@ export default function DateInput({
         "Date": "Date can't be empty"
     }
 
-    const [date, setDate] = useState(moment().format('YYYY-MM-DD'));
-    const [time, setTime] = useState(moment().format('HH:MM'));
+    const [date, setDate] = useState(valueDate);
+    const [time, setTime] = useState(valueTime);
     const [value, setValue] = useState(0);
     const [isDateValid, setIsDateValid] = useState(true);
     const [isTimeValid, setIsTimeValid] = useState(true);
@@ -61,7 +63,7 @@ export default function DateInput({
                 <span className={`text-xs font-bold inline-block py-1 px-2 rounded text-red-600 opacity-0 bg-red-300 last:mr-0 mr-1 
                     ${(isTimeValid && isDateValid) ? "transition-opacity duration-800 ease-out opacity-0" : "transition-opacity duration-1000 ease-in opacity-100"}`}>
                     <ExclamationIcon className="w-4 inline-block" />
-                    {" " + getErrorMessage("general_event_date")}
+                    {" " + getErrorMessage("event_date")}
                 </span>
             </div>
         </div>

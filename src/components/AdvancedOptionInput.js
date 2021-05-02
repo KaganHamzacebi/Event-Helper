@@ -24,8 +24,8 @@ export default function AdvancedOptionInput({
         },
         {
             name: 'adv_show_participant_order',
-            label: 'Participant Order',
-            description: 'Adds join order to event',
+            label: 'Show Join Order',
+            description: 'Adds join order to entries',
             type: 'switch',
             premium: false,
             disabled: false
@@ -49,9 +49,9 @@ export default function AdvancedOptionInput({
             disabled: false
         },
         {
-            name: 'adv_single_participation',
-            label: 'Single Participation',
-            description: 'Allow single entrance',
+            name: 'adv_multi_entry',
+            label: 'Multiple Participation',
+            description: 'Allow multiple entry',
             type: 'switch',
             premium: false,
             disabled: false

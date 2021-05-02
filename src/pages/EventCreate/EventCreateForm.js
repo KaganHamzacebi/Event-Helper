@@ -18,6 +18,7 @@ import AdvancedOptionInput from "../../components/AdvancedOptionInput";
 import ReminderOptionsInput from "../../components/ReminderOptionsInput";
 
 import { validate } from "../../inputValidations";
+import moment from "moment";
 
 const templates = [
   {
@@ -79,6 +80,7 @@ export default function EventCreateForm() {
     delete payload.submit;
     delete payload[""];
 
+    console.log(payload);
     axios
       .post("http://localhost:3001/api/create_event", payload)
       .then(function (response) {
@@ -220,6 +222,8 @@ export default function EventCreateForm() {
                   <DateInput
                     title="Event Date"
                     name='event_date'
+                    valueDate={moment().format('YYYY-MM-DD')}
+                    valueTime={moment().format('HH:DD')}
                     description="Please enter the date that event gonna occur"
                   />
                 </div>
@@ -227,6 +231,8 @@ export default function EventCreateForm() {
                   <DateInput
                     title="Post Date"
                     name='post_date'
+                    valueDate={'yyyy-mm-dd'}
+                    valueTime={'--:--'}
                     description="Please enter the date that event gonna occur"
                   />
                 </div>
