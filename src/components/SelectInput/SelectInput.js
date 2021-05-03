@@ -48,14 +48,13 @@ export default function SelectInput({
                     <span className="text-sm text-primary-light">{description}</span>
                 </div>
             }
-
+            <input name={name} value={value ? value.value : ''} type='hidden' />
             <div className={`relative ${width ? 'w-' + width : 'width-32'} `} >
                 <input
                     type='text'
-                    name={name}
                     placeholder={placeholder}
                     className={`w-full border ${height && 'h-' + height} border-gray-900 rounded pl-3.5 pr-8 outline-none ${value ? 'text-primary ' : 'text-gray-500'} bg-title text-lg placeholder-white placeholder-opacity-30  transition duration-800 focus:ring-2 focus:ring-blue-600`}
-                    value={value ? value : ""}
+                    value={value ? value.label : ""}
                     onChange={null}
                     onFocus={() => setFocusSelect(true)}
                     onBlur={() => setFocusSelect(false)}
@@ -90,7 +89,7 @@ export default function SelectInput({
                     {
                         filteredData.map((item, index) => {
                             return <div key={index} className='rounded hover:bg-gray-600'>
-                                <p className='text-white pl-3.5 py-1 select-none' onClick={() => setValue(item.label)}>{item.label}</p>
+                                <p className='text-white pl-3.5 py-1 select-none' onClick={() => setValue(item)}>{item.label}</p>
                             </div>
                         })
                     }

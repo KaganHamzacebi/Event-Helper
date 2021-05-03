@@ -100,7 +100,7 @@ export default function EventCreateForm() {
       .then(function (response) {
 
         const tmpChannels = response.data.channels.map((channel) => {
-          return { label: channel.name, value: channel.value }
+          return { label: channel.name, value: channel.id }
         })
 
         const tmpRoles = response.data.roles.map((role, index) => {

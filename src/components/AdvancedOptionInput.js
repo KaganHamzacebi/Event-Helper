@@ -56,6 +56,14 @@ export default function AdvancedOptionInput({
             premium: false,
             disabled: false
         },
+        {
+            name: 'adv_dm_reminder',
+            label: 'DM Reminder',
+            description: 'Sends direct message to signed people',
+            type: 'switch',
+            premium: false,
+            disabled: false
+        },
     ];
 
     return (
