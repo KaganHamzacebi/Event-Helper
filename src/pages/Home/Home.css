@@ -1,0 +1,11 @@
+.gradient {
+    background: rgb(120,51,140);
+    background: -moz-linear-gradient(135deg, rgba(120,51,140,1) 0%, rgba(224,64,88,1) 50%, rgba(120,51,140,1) 100%);
+    background: -webkit-linear-gradient(135deg, rgba(120,51,140,1) 0%, rgba(224,64,88,1) 50%, rgba(120,51,140,1) 100%);
+    background: linear-gradient(135deg, rgba(120,51,140,1) 0%, rgba(224,64,88,1) 50%, rgba(120,51,140,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#78338c",endColorstr="#78338c",GradientType=1);
+}
+
+.bg-home-grid {
+    background: #212225;
+}

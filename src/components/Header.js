@@ -13,7 +13,7 @@ export default function Header(props) {
     }
 
     return (
-        <Disclosure as="nav" className="bg-header">
+        <Disclosure as="nav" className="bg-transparent">
             {({ open }) => (
                 <>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

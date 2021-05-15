@@ -64,6 +64,14 @@ export default function AdvancedOptionInput({
             premium: false,
             disabled: false
         },
+        {
+            name: 'adv_reasons',
+            label: 'Take Reasons',
+            description: 'Take reason from late, tentative and absent participants',
+            type: 'switch',
+            premium: false,
+            disabled: false
+        },
     ];
 
     return (
