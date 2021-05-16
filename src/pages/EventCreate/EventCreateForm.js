@@ -45,11 +45,11 @@ const templates = [
 
 export default function EventCreateForm() {
   const history = useHistory();
+
   const { token } = useParams();
   const [isFormValid, setIsFormValid] = useState(true);
   const [channels, setChannels] = useState([]);
   const [roles, setRoles] = useState([]);
-
 
   useEffect(() => {
     if (!verifyToken(token)) {
