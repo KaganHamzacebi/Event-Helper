@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState, useContext } from "react";
 import { useHistory } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { UserContext } from '../App';
@@ -7,8 +8,12 @@ import { UserContext } from '../App';
 export default function Header() {
     const history = useHistory();
 
-    const [popup, setPopup] = useState(null);
-    const { user, setUser, userToken, setUserToken } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
+    const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
+
+    useEffect(() => {
+        
+    }, [user])
 
     const navigation = ["Dashboard", "Team", "Projects", "Calendar", "Reports"];
 
@@ -16,26 +21,14 @@ export default function Header() {
         return classes.filter(Boolean).join(" ");
     }
 
-    useEffect(() => {
-        window.addEventListener('message', (event) => {
-            if (event.source === popup) {
-                setUserToken(event.data);
-                /* history.push('/dashboard'); */
-            }
-        });
-    })
-
     function handleLogin() {
-        const myPopup = window.open('https://discord.com/api/oauth2/authorize?client_id=833070237247209499&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Flogin_redirect&response_type=token&scope=identify%20email%20guilds', '_blank', 'width=520,height=820');
-        setPopup(myPopup);
+        window.open('https://discord.com/api/oauth2/authorize?client_id=833070237247209499&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Flogin_redirect&response_type=token&scope=identify%20email%20guilds', '_blank', 'width=520,height=820');
     }
 
     function signOut() {
         setUser(null);
-        setUserToken(null);
 
-        localStorage.removeItem('userToken');
-        localStorage.removeItem('user');
+        removeCookie('userToken');
         history.push('/');
     }
 

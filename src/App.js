@@ -1,5 +1,6 @@
 import './App.css';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 import EventCreateForm from './pages/EventCreate/EventCreateForm'
 import EventCreateSuccess from './pages/EventCreate/EventCreateSuccess'
@@ -16,14 +17,14 @@ export const UserContext = createContext(null);
 export const UserTokenContext = createContext(null);
 
 function App() {
-  const history = useHistory();
+  const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
+  const [user, setUser] = useState(null);
 
-  const [user, setUser] = useState(localStorage.getItem('user'));
-  const [userToken, setUserToken] = useState(localStorage.getItem('userToken'));
+  console.log(user);
 
   useEffect(() => {
-    if (userToken) {
-      const fragment = new URLSearchParams(userToken);
+    if (cookies.userToken) {
+      const fragment = new URLSearchParams(cookies.userToken);
       const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
 
       fetch('https://discord.com/api/users/@me', {
@@ -33,18 +34,14 @@ function App() {
       })
         .then(result => result.json())
         .then(response => {
-          setUserToken(userToken);
           setUser(response);
-          localStorage.setItem('userToken', userToken);
-          localStorage.setItem('user', JSON.stringify(response));
-          /* history.push('/dashboard'); */
         })
         .catch(console.error);
     }
-  }, [userToken])
+  }, [cookies.userToken])
 
   return (
-    <UserContext.Provider value={{ user, setUser, userToken, setUserToken }}>
+    <UserContext.Provider value={{ user, setUser }}>
       <div>
         <div id="header-wrapper">
           <Header />

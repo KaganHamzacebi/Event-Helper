@@ -1,10 +1,18 @@
+import moment from 'moment';
 import { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
 
 export default function LoginRedirect() {
+    const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
 
     useEffect(() => {
-        window.opener.postMessage(window.location.hash.slice(1), 'http://localhost:3000/login_redirect');
+        setCookie('userToken', window.location.hash.slice(1), {
+            expires: new Date(moment().add(7, 'd')),
+            secure: true,
+            sameSite: true,
+        });
         window.close();
+        window.opener.location.reload();
     }, [])
 
     return (
