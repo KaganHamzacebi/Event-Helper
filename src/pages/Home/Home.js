@@ -25,7 +25,7 @@ export default function Home() {
                             </div>
                             <div className="mx-auto">
                                 <button
-                                    className={`text-primary w-72 font-semibold rounded focus:outline-none inline-flex shadow-xl mr-8`}
+                                    className={`text-primary w-72 font-semibold rounded focus:outline-none inline-flex shadow-xl`}
                                     style={{ backgroundColor: '#7289DA' }}
                                     onClick={handleLogin}
                                     type='submit'
@@ -41,7 +41,7 @@ export default function Home() {
 
                                 </button>
                                 <button
-                                    className={`text-primary w-72 font-semibold rounded focus:outline-none shadow-xl inline-flex mr-8`}
+                                    className={`text-primary w-72 font-semibold rounded focus:outline-none shadow-xl inline-flex ml-4`}
                                     style={{ backgroundColor: '#131313' }}
                                     type='submit'
                                 >

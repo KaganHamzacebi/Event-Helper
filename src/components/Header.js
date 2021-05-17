@@ -11,15 +11,11 @@ export default function Header() {
     const { user, setUser } = useContext(UserContext);
     const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
 
-    useEffect(() => {
-        
-    }, [user])
-
-    const navigation = ["Dashboard", "Team", "Projects", "Calendar", "Reports"];
-
     function classNames(...classes) {
         return classes.filter(Boolean).join(" ");
     }
+
+    useEffect(() => console.log(user), []);
 
     function handleLogin() {
         window.open('https://discord.com/api/oauth2/authorize?client_id=833070237247209499&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Flogin_redirect&response_type=token&scope=identify%20email%20guilds', '_blank', 'width=520,height=820');
@@ -41,33 +37,26 @@ export default function Header() {
                             <div className="flex items-center">
                                 <div className="flex-shrink-0">
                                     <img
-                                        className="h-8 w-8"
+                                        onClick={() => history.push('/')}
+                                        className="h-8 w-8 cursor-pointer"
                                         src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
                                         alt="Workflow"
                                     />
                                 </div>
                                 <div className="hidden md:block">
                                     <div className="ml-10 flex items-baseline space-x-4">
-                                        {navigation.map((item, itemIdx) =>
-                                            itemIdx === 0 ? (
-                                                <Fragment key={item}>
-                                                    {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                                                    <button
-                                                        className="bg-gray-900 text-primary px-3 py-2 rounded-md text-sm font-medium"
-                                                    >
-                                                        {item}
-                                                    </button>
-                                                </Fragment>
-                                            ) : (
-                                                <a
-                                                    key={item}
-                                                    href="/"
-                                                    className="text-primary hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                                                >
-                                                    {item}
-                                                </a>
-                                            )
-                                        )}
+                                        <button
+                                            className="text-primary hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                            onClick={() => {
+                                                console.log(user);
+                                                user ?
+                                                    history.push('/dashboard')
+                                                    :
+                                                    handleLogin()
+                                            }}
+                                        >
+                                            Dashboard
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -147,32 +136,23 @@ export default function Header() {
 
                     <Disclosure.Panel className="md:hidden">
                         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                            {navigation.map((item, itemIdx) =>
-                                itemIdx === 0 ? (
-                                    <Fragment key={item}>
-                                        {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                                        <a
-                                            href="/"
-                                            className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-                                        >
-                                            {item}
-                                        </a>
-                                    </Fragment>
-                                ) : (
-                                    <a
-                                        key={item}
-                                        href="/"
-                                        className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                                    >
-                                        {item}
-                                    </a>
-                                )
-                            )}
+                            <button
+                                className="w-full text-white text-left px-3 py-2 rounded-md text-base font-medium focus:outline-none"
+                                onClick={() => history.push('/')}
+                            >
+                                Dashboard
+                            </button>
+                            <button
+                                className="w-full text-white text-left px-3 py-2 rounded-md text-base font-medium focus:outline-none"
+                                onClick={() => history.push('/')}
+                            >
+                                Dashboard 2
+                            </button>
                         </div>
-                        <div className="pt-4 pb-3 border-t border-gray-700">
+                        <div className="px-2 pt-2 border-t border-gray-700 flex">
                             {
-                                user &&
-                                <div className="flex items-center px-5">
+                                user !== null &&
+                                <div className="flex items-center">
                                     <div className="flex-shrink-0">
                                         <img
                                             className="h-8 w-8 rounded-full"
@@ -187,20 +167,23 @@ export default function Header() {
                                     </div>
                                 </div>
                             }
+                            <div className='flex-grow'>
+                            </div>
                             {
                                 user ?
-                                    <div className="mt-3 px-2 space-y-1">
+                                    <div className="my-auto pl-2">
                                         <button
-                                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+                                            className="w-full bg-red-500 text-white px-3 py-2 rounded-md text-base font-medium focus:outline-none"
                                             onClick={signOut}
                                         >
                                             Sign Out
                                         </button>
                                     </div>
                                     :
-                                    <div className="mt-3 px-2 space-y-1">
+                                    <div className="my-auto">
                                         <button
-                                            className="block w-full px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+                                            className="w-full text-white px-3 py-2 rounded-md text-base font-medium focus:outline-none"
+                                            style={{ backgroundColor: '#7289DA' }}
                                             onClick={handleLogin}
                                         >
                                             Sign In
