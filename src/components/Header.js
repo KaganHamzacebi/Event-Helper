@@ -15,10 +15,9 @@ export default function Header() {
         return classes.filter(Boolean).join(" ");
     }
 
-    useEffect(() => console.log(user), []);
-
     function handleLogin() {
-        window.open('https://discord.com/api/oauth2/authorize?client_id=833070237247209499&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Flogin_redirect&response_type=token&scope=identify%20email%20guilds', '_blank', 'width=520,height=820');
+        const uri = encodeURIComponent(process.env.REACT_APP_SERVER_URL + '/super_ultra_secret_uncreachable_access_token');
+        window.open(`https://discord.com/api/oauth2/authorize?client_id=833070237247209499&redirect_uri=${uri}&response_type=code&scope=identify%20connections%20guilds`, '_blank', 'width=520,height=820');
     }
 
     function signOut() {
@@ -29,7 +28,7 @@ export default function Header() {
     }
 
     return (
-        <Disclosure as="nav" className="bg-transparent">
+        <Disclosure as="nav" className="bg-transparent bg-home bg-opacity-50 border-b border-gray-800 border-opacity-50">
             {({ open }) => (
                 <>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,9 +45,8 @@ export default function Header() {
                                 <div className="hidden md:block">
                                     <div className="ml-10 flex items-baseline space-x-4">
                                         <button
-                                            className="text-primary hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                            className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
                                             onClick={() => {
-                                                console.log(user);
                                                 user ?
                                                     history.push('/dashboard')
                                                     :
@@ -74,7 +72,7 @@ export default function Header() {
                                             <>
                                                 <div className='flex flex-row'>
                                                     <p className={`text-primary px-3 py-2 rounded-md font-medium ${user ? '' : 'hidden'}`}>{user && user.username}</p>
-                                                    <Menu.Button className={`max-w-xs bg-gray-800 rounded-full flex items-center text-sm outline-none focus:outline-none ${user ? '' : 'hidden'}`}>
+                                                    <Menu.Button className={`max-w-xs flex items-center text-sm outline-none focus:outline-none ${user ? '' : 'hidden'}`}>
                                                         <span className="sr-only">Open user menu</span>
                                                         {
                                                             user && user.id &&
@@ -98,20 +96,15 @@ export default function Header() {
                                                 >
                                                     <Menu.Items
                                                         static
-                                                        className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10"
+                                                        className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg p-1 bg-title ring-1 ring-black ring-opacity-5 focus:outline-none z-10"
                                                     >
                                                         <Menu.Item>
-                                                            {({ active }) => (
-                                                                <button
-                                                                    onClick={signOut}
-                                                                    className={classNames(
-                                                                        active ? "bg-gray-100" : "",
-                                                                        "block w-full h-full px-4 py-2 text-sm text-gray-700 focus:outline-none"
-                                                                    )}
-                                                                >
-                                                                    Sign Out
-                                                                </button>
-                                                            )}
+                                                            <button
+                                                                onClick={signOut}
+                                                                className='"block rounded w-full h-full p-2 text-sm text-red-500 text-left hover:bg-content focus:outline-none"'
+                                                            >
+                                                                Sign Out
+                                                            </button>
                                                         </Menu.Item>
                                                     </Menu.Items>
                                                 </Transition>

@@ -22,6 +22,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-select": "^4.3.0",
+    "react-shimmer-effect": "^1.0.9",
     "reactcss": "^1.2.3",
     "swiper": "^6.5.7",
     "web-vitals": "^1.1.1"

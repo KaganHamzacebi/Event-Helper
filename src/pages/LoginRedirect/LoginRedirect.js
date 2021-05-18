@@ -1,20 +1,25 @@
+import axios from 'axios';
 import moment from 'moment';
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 
 export default function LoginRedirect() {
-    const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
 
     useEffect(() => {
-        if (!window.location.href.includes('error')) {
-            setCookie('userToken', window.location.hash.slice(1), {
-                expires: new Date(moment().add(7, 'd')),
-                secure: true,
-                sameSite: true,
-            });
-            window.opener.location.reload();
+        const url = window.location.href;
+        const searchParams = new URLSearchParams(url.substring(url.indexOf('?')));
+        if (searchParams.has('error')) window.close();
+        else {
+            const code = searchParams.get('code');
+            axios.get(`${process.env.REACT_APP_SERVER_URL}/super_ultra_secret_uncreachable_access_token`, {
+                headers: {
+                    authorization: code,
+                }
+            })
+                .then(res => {
+                    window.close();
+                })
         }
-        window.close();
     }, [])
 
     return (

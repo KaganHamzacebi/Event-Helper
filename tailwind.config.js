@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor: {
+        'home': '#1b1b1b',
         'header': '#292b2f',
         'title': '#2f3136',
         'content': '#36393f',
@@ -30,11 +31,11 @@ module.exports = {
         'height': 'height',
         'max-height': 'max-height',
         'spacing': 'margin, padding',
-       },
-       maxHeight: {
+      },
+      maxHeight: {
         'bigboi': '9999rem'
-       }
-    }   
+      }
+    }
   },
   variants: {
     extend: {

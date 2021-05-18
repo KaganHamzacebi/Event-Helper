@@ -6,7 +6,7 @@ import { Zoom, Slide } from "react-awesome-reveal";
 export default function Home() {
 
     function handleLogin() {
-        window.open('https://discord.com/api/oauth2/authorize?client_id=833070237247209499&permissions=8&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Flogin_redirect&scope=bot', '_blank', 'width=520,height=820');
+        window.open(`https://discord.com/api/oauth2/authorize?client_id=833070237247209499&permissions=8&scope=bot`, '_blank', 'width=520,height=820');
     }
 
     return (
@@ -41,8 +41,7 @@ export default function Home() {
 
                                 </button>
                                 <button
-                                    className={`text-primary w-72 font-semibold rounded focus:outline-none shadow-xl inline-flex ml-4`}
-                                    style={{ backgroundColor: '#131313' }}
+                                    className={`text-primary bg-content w-72 font-semibold rounded focus:outline-none inline-flex shadow-xl ml-4`}
                                     type='submit'
                                 >
                                     <div className="m-auto p-4">

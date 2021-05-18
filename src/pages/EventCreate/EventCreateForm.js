@@ -85,9 +85,8 @@ export default function EventCreateForm() {
     delete payload.submit;
     delete payload[""];
 
-    console.log(payload);
     axios
-      .post("http://localhost:3001/api/create_event", payload)
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/create_event`, payload)
       .then(function (response) {
         history.push("/event_create_success")
       })
@@ -101,7 +100,7 @@ export default function EventCreateForm() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/get_guild_data/" + token)
+      .get(`${process.env.REACT_APP_SERVER_URL}/get_guild_data/` + token)
       .then(function (response) {
 
         const tmpChannels = response.data.channels.map((channel) => {

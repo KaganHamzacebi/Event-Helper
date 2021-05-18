@@ -11,51 +11,53 @@ import Test from './pages/Test';
 import Loading from './pages/Loading/Loading';
 import Home from './pages/Home/Home';
 import LoginRedirect from './pages/LoginRedirect/LoginRedirect';
+import GuildsPanel from './pages/GuildsPanel/GuildsPanel';
 import Dashboard from './pages/Dashboard/Dashboard';
 import { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
+import { verifyToken } from './crypto';
 
 export const UserContext = createContext(null);
-export const UserTokenContext = createContext(null);
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
   const [user, setUser] = useState(null);
+  const [userGuilds, setUserGuilds] = useState(null);
+  const [userToken, setUserToken] = useState(cookies['userToken']);
   const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => {
-    console.log(cookies.userToken);
+  useEffect(async () => {
     if (cookies.userToken) {
-      const fragment = new URLSearchParams(cookies.userToken);
-      const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
-
-      fetch('https://discord.com/api/users/@me', {
+      const userResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/@me`, {}, {
         headers: {
-          authorization: `${tokenType} ${accessToken}`
-        }
-      })
-        .then(result => result.json())
-        .then(response => {
-          setUser(response);
-          setLoaded(true);
-        })
-        .catch(console.error);
+          authorization: cookies.userToken,
+        },
+      });
+
+      const user = userResponse.data;
+
+      if (user) {
+        setUser(user);
+        setLoaded(true);
+      }
     }
     else {
       setLoaded(true);
     }
-  }, [cookies.userToken])
+  }, [userToken])
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, userGuilds, setUserGuilds, userToken }}>
       { loaded ?
         <div>
-          <div id="header-wrapper">
+          <div id="header-wrapper" className='sticky top-0 z-50 items-start'>
             <Header />
           </div>
           <div id="content-wrapper" className="flex-grow-1">
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/dashboard" component={GuildsPanel} />
+              <Route path="/dashboard/:id" component={Dashboard} />
               <Route path="/create_event/:token" component={EventCreateForm} />
               <Route exact path="/invalid_token" component={InvalidToken} />
               <Route exact path="/event_create_success" component={EventCreateSuccess} />
