@@ -5,14 +5,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { HelmetProvider } from 'react-helmet-async';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CookiesProvider>
-      <Router>
-        <App />
-      </Router>
-    </CookiesProvider>
+    <HelmetProvider>
+      <CookiesProvider>
+        <Router>
+          <App />
+        </Router>
+      </CookiesProvider>
+    </HelmetProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

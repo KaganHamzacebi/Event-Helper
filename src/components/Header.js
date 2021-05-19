@@ -11,10 +11,6 @@ export default function Header() {
     const { user, setUser } = useContext(UserContext);
     const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
 
-    function classNames(...classes) {
-        return classes.filter(Boolean).join(" ");
-    }
-
     function handleLogin() {
         const uri = encodeURIComponent(process.env.REACT_APP_SERVER_URL + '/super_ultra_secret_uncreachable_access_token');
         window.open(`https://discord.com/api/oauth2/authorize?client_id=833070237247209499&redirect_uri=${uri}&response_type=code&scope=identify%20connections%20guilds`, '_blank', 'width=520,height=820');
@@ -22,7 +18,7 @@ export default function Header() {
 
     function signOut() {
         setUser(null);
-
+        console.log('xd');
         removeCookie('userToken');
         history.push('/');
     }
@@ -44,17 +40,30 @@ export default function Header() {
                                 </div>
                                 <div className="hidden md:block">
                                     <div className="ml-10 flex items-baseline space-x-4">
-                                        <button
+                                        <a
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
-                                            onClick={() => {
-                                                user ?
-                                                    history.push('/dashboard')
-                                                    :
-                                                    handleLogin()
-                                            }}
+                                            href='/entegrations'
                                         >
-                                            Dashboard
-                                        </button>
+                                            Entegrations
+                                        </a>
+                                        <a
+                                            className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
+                                            href='/features'
+                                        >
+                                            Features
+                                        </a>
+                                        <a
+                                            className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
+                                            href='/documentation'
+                                        >
+                                            Documentation
+                                        </a>
+                                        <a
+                                            className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
+                                            href='/commands'
+                                        >
+                                            Commands
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -100,8 +109,21 @@ export default function Header() {
                                                     >
                                                         <Menu.Item>
                                                             <button
+                                                                onClick={() => {
+                                                                    user ?
+                                                                        history.push('/dashboard')
+                                                                        :
+                                                                        handleLogin();
+                                                                }}
+                                                                className="block rounded w-full h-full p-2 text-sm text-primary text-left hover:bg-content focus:outline-none"
+                                                            >
+                                                                Dashboard
+                                                            </button>
+                                                        </Menu.Item>
+                                                        <Menu.Item>
+                                                            <button
                                                                 onClick={signOut}
-                                                                className='"block rounded w-full h-full p-2 text-sm text-red-500 text-left hover:bg-content focus:outline-none"'
+                                                                className="block rounded w-full h-full p-2 text-sm text-red-500 text-left hover:bg-content focus:outline-none"
                                                             >
                                                                 Sign Out
                                                             </button>
@@ -130,16 +152,15 @@ export default function Header() {
                     <Disclosure.Panel className="md:hidden">
                         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                             <button
-                                className="w-full text-white text-left px-3 py-2 rounded-md text-base font-medium focus:outline-none"
-                                onClick={() => history.push('/')}
+                                onClick={() => {
+                                    user ?
+                                        history.push('/dashboard')
+                                        :
+                                        handleLogin();
+                                }}
+                                className="block rounded w-full h-full p-2 text-sm text-primary text-left hover:bg-content focus:outline-none"
                             >
                                 Dashboard
-                            </button>
-                            <button
-                                className="w-full text-white text-left px-3 py-2 rounded-md text-base font-medium focus:outline-none"
-                                onClick={() => history.push('/')}
-                            >
-                                Dashboard 2
                             </button>
                         </div>
                         <div className="px-2 pt-2 border-t border-gray-700 flex">
@@ -186,7 +207,8 @@ export default function Header() {
                         </div>
                     </Disclosure.Panel>
                 </>
-            )}
-        </Disclosure>
+            )
+            }
+        </Disclosure >
     );
 }

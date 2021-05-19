@@ -10,14 +10,16 @@ import Footer from "./components/Footer";
 import Test from './pages/Test';
 import Loading from './pages/Loading/Loading';
 import Home from './pages/Home/Home';
-import LoginRedirect from './pages/LoginRedirect/LoginRedirect';
 import GuildsPanel from './pages/GuildsPanel/GuildsPanel';
 import Dashboard from './pages/Dashboard/Dashboard';
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import { verifyToken } from './crypto';
+import ReactGA from 'react-ga';
 
 export const UserContext = createContext(null);
+
+ReactGA.initialize('G-RF3Y8XFV54');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
@@ -62,7 +64,6 @@ function App() {
               <Route exact path="/invalid_token" component={InvalidToken} />
               <Route exact path="/event_create_success" component={EventCreateSuccess} />
               <Route exact path="/test" component={Test} />
-              <Route exact path="/login_redirect" component={LoginRedirect} />
             </Switch>
           </div>
           <div id="footer-wrapper">
