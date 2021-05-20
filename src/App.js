@@ -1,5 +1,5 @@
 import './App.css';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import moment from 'moment';
 import EventCreateForm from './pages/EventCreate/EventCreateForm'
@@ -15,11 +15,25 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import ReactGA from 'react-ga';
+import TagManager from 'react-gtm-module'
 
 export const UserContext = createContext(null);
 
-ReactGA.initialize('G-RF3Y8XFV54');
+ReactGA.initialize('UA-197548337-1');
+TagManager.initialize('GTM-NJSM4BL');
 ReactGA.pageview(window.location.pathname + window.location.search);
+
+const RouteChangeTracker = ({ history }) => {
+
+  history.listen((location, action) => {
+    ReactGA.set({ page: location.pathname });
+    ReactGA.pageview(location.pathname);
+  });
+
+  return <div></div>;
+};
+
+withRouter(RouteChangeTracker);
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
