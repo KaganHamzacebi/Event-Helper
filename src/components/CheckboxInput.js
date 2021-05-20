@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './CheckboxInput.css';
 
 export default function CheckboxInput({
@@ -6,7 +5,6 @@ export default function CheckboxInput({
     checked,
     toggleChecked
 }) {
-
 
     return (
         <div>

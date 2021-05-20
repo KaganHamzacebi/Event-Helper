@@ -1,24 +1,17 @@
-import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { CookiesProvider } from 'react-cookie';
-import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import React from 'react';
+import ReactGA from 'react-ga';
+import ReactDOM from 'react-dom';
+import TagManager from 'react-gtm-module'
+import { CookiesProvider } from 'react-cookie';
 import reportWebVitals from './reportWebVitals';
 import { HelmetProvider } from 'react-helmet-async';
-import ReactGA from 'react-ga';
-import TagManager from 'react-gtm-module'
+import { BrowserRouter as Router } from 'react-router-dom';
 
 ReactGA.initialize('UA-197548337-1');
 TagManager.initialize('GTM-NJSM4BL');
 ReactGA.pageview(window.location.pathname + window.location.search);
-
-ReactGA.event({
-  category: 'HOME_VISIT',
-  action: 'VISIT',
-  label: 'HOME'
-});
-
 
 ReactDOM.render(
   <React.StrictMode>

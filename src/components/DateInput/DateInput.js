@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
 import './DateInput.css'
 import moment from 'moment';
+import { useState, useEffect } from "react";
 import { ExclamationIcon } from '@heroicons/react/solid'
 import { validate, getErrorMessage } from "../../inputValidations";
 
@@ -12,13 +12,9 @@ export default function DateInput({
     description
 }) {
 
-    const errors = {
-        "Date": "Date can't be empty"
-    }
-
+    const [value, setValue] = useState(0);
     const [date, setDate] = useState(valueDate);
     const [time, setTime] = useState(valueTime);
-    const [value, setValue] = useState(0);
     const [isDateValid, setIsDateValid] = useState(true);
     const [isTimeValid, setIsTimeValid] = useState(true);
 
@@ -26,14 +22,15 @@ export default function DateInput({
         validate("event_date", date, setIsDateValid)
         const value = moment(date + ' ' + time).format('X');
         setValue(value);
+        // eslint-disable-next-line
     }, [date])
 
     useEffect(() => {
         validate("event_time", time, setIsTimeValid)
         const value = moment(date + ' ' + time).format('X');
         setValue(value);
+        // eslint-disable-next-line
     }, [time])
-
 
     return (
         <div>

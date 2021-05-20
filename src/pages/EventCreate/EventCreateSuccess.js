@@ -1,4 +1,3 @@
-import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 
 import { CheckCircleIcon } from '@heroicons/react/solid'
@@ -7,6 +6,7 @@ export default function InvalidToken(props) {
     const [isAnimationPlayed, setIsAnimationPlayed] = useState(false)
     useEffect(() => {
         setTimeout(() => { setIsAnimationPlayed(true) }, 200)
+        // eslint-disable-next-line
     }, [])
     return (
         <div className="h-full w-full flex flex-initial flex-col items-center justify-center overflow-hidden px-4 sm:px-10 py-28 ">

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
+import { XIcon } from '@heroicons/react/solid'
 import { SearchIcon } from '@heroicons/react/solid'
 import { ChevronUpIcon } from '@heroicons/react/solid'
-import { XIcon } from '@heroicons/react/solid'
 
 import './SelectInput.css'
 
@@ -21,17 +21,17 @@ export default function SelectInput({
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
     const [filteredData, setFilteredData] = useState(content);
-    let timeout;
+    const [myTimeout, setMyTimeout] = useState(null);
 
     useEffect(() => {
         //setIsDropdownOpen(focusSelect || focusSearch);
         if (!(focusSelect || focusSearch)) {
-            timeout = setTimeout(() => setIsDropdownOpen(false), 100)
+            setMyTimeout(setTimeout(() => setIsDropdownOpen(false), 100));
         } else {
             setIsDropdownOpen(true)
         }
-        return () => clearTimeout(timeout)
-
+        return () => clearTimeout(myTimeout);
+        // eslint-disable-next-line
     }, [focusSelect, focusSearch])
 
     useEffect(() => {

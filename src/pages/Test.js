@@ -1,13 +1,7 @@
-import { useState, useEffect } from "react";
 import TagPickerInput from "../components/TagPickerInput/TagPickerInput";
-import Tag from "../components/TagPickerInput/Tag";
-import Switch from "../components/Switch/Switch";
 
-import CheckboxInput from "../components/CheckboxInput";
-
-export default function Test({
-
-}) {
+export default function Test() {
+  
   const advancedOptions = {
     1: { label: "Blue", selected: false },
     2: { label: "Black", selected: false },

@@ -1,9 +1,9 @@
 import './Home.css';
 import CountUp from 'react-countup';
-import ExampleVideo from '../../assets/example.webm'
-import { Zoom, Slide } from "react-awesome-reveal";
 import { Helmet } from 'react-helmet-async';
 import { metaData } from '../../utils/MetaData';
+import { Zoom, Slide } from "react-awesome-reveal";
+import ExampleVideo from '../../assets/example.webm';
 
 export default function Home() {
 
@@ -21,7 +21,7 @@ export default function Home() {
                     content='Home page for Event Helper application. Event Helper is a discord bot which lets you create fully customizable repeatable events with companies and gamers. You can also set reminders and many other customization.'
                     data-react-helmet='true'
                 />
-                <meta name='keywords' content='Event, Discord, Raid, Meeting, Bot, WOW, World of Warcraft, Yes & No, Yes No, one click' />
+                <meta name='keywords' content='Event, Discord, Raid, Meeting, Bot, WOW, World of Warcraft, Yes & No, Yes No, one click, Home' />
                 <link rel="canonical" href="http://localhost:3000/" />
                 <script className='structured-data-list' type="application/ld+json">{metaData()}</script>
             </Helmet>

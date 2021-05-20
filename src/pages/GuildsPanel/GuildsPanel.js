@@ -7,25 +7,29 @@ import './GuildsPanel.css';
 export default function GuildsPanel() {
     const history = useHistory();
 
-    const { user, setUser, userGuilds, setUserGuilds, userToken } = useContext(UserContext);
+    const { userToken } = useContext(UserContext);
     const [managedGuilds, setManagedGuilds] = useState([]);
     const [ready, setReady] = useState(false);
 
-    useEffect(async () => {
-        if (userToken) {
+    useEffect(() => {
+        async function fetchData() {
             const managedGuildsResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/@me/guilds`, {}, {
                 headers: {
                     authorization: userToken,
                 }
             });
-            console.log(managedGuildsResponse.data);
             setManagedGuilds(managedGuildsResponse.data);
             setReady(true);
+        }
+
+        if (userToken) {
+            fetchData();
         }
         else {
             window.location.href = process.env.REACT_APP_WEB_URL;
         }
-    }, [])
+        // eslint-disable-next-line
+    }, [userToken])
 
     function handleClick(guild) {
         if (guild.bot) {

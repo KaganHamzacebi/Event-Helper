@@ -5,33 +5,37 @@ import { useCookies } from 'react-cookie';
 
 export default function LoginRedirect() {
 
+    // eslint-disable-next-line
+    const [cookies, setCookie] = useCookies(['userToken']);
 
-    const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
-
-    useEffect(async () => {
+    useEffect(() => {
         const extension = window.location.search;
         const search = new URLSearchParams(extension);
         const code = search.get('code');
 
-        const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/super_ultra_secret_uncreachable_access_token`, {}, {
-            headers: {
-                authorization: code,
-            },
-        })
-
-        const token = res.data;
-        if (token) {
-            setCookie('userToken', token, {
-                maxAge: parseInt(moment().format('x')),
+        async function fetchData() {
+            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/super_ultra_secret_uncreachable_access_token`, {}, {
+                headers: {
+                    authorization: code,
+                },
             })
-            window.opener.location.href.includes('event') ? window.opener.location.reload() : window.opener.location.href += 'dashboard';
-            window.close();
+
+            const token = res.data;
+            if (token) {
+                setCookie('userToken', token, {
+                    maxAge: parseInt(moment().format('x')),
+                })
+                window.opener.location.href.includes('event') ? window.opener.location.reload() : window.opener.location.href += 'dashboard';
+                window.close();
+            }
         }
+        fetchData();
+
+        // eslint-disable-next-line
     }, [])
 
     return (
         <div>
-            
         </div>
     )
 }

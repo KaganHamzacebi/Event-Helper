@@ -1,10 +1,10 @@
-import { useState, useEffect, useReducer, useRef } from 'react';
-import { SearchIcon } from '@heroicons/react/solid'
-import { ChevronUpIcon } from '@heroicons/react/solid'
-import { XIcon } from '@heroicons/react/solid'
 import Tag from './Tag'
 import './TagPickerInput.css'
 import CheckboxInput from '../CheckboxInput';
+import { XIcon } from '@heroicons/react/solid'
+import { SearchIcon } from '@heroicons/react/solid'
+import { ChevronUpIcon } from '@heroicons/react/solid'
+import { useState, useEffect, useReducer, useRef } from 'react';
 
 export default function TagPickerInput({
     name,
@@ -31,13 +31,11 @@ export default function TagPickerInput({
                 const newValue = { label: state[action.id].label, color: state[action.id].color, value: state[action.id].value, selected: state[action.id].selected ? false : true }
                 newState[action.id] = newValue;
                 return newState;
-                break;
             case "CLEAR":
                 Object.keys(state).forEach((id) => {
                     newState[id].selected = false;
                 })
                 return newState;
-                break;
             case "NEW_CONTENT":
                 return action.content;
             default:
@@ -45,31 +43,32 @@ export default function TagPickerInput({
         }
     }
 
+    const [myTimeout, setMyTimeout] = useState(null);
+    const [searchValue, setSearchValue] = useState("");
     const [focusSelect, setFocusSelect] = useState(false);
     const [focusSearch, setFocusSearch] = useState(false);
     const [focusSearchDiv, setFocusSearchDiv] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [searchValue, setSearchValue] = useState("")
+
     const [state, dispatch] = useReducer(reducer, content);
+
     const divRef = useRef(null)
     const searchDivRef = useRef(null)
 
-    let timeout;
-
     useEffect(() => {
         dispatch({ type: "NEW_CONTENT", content: content })
-
+        // eslint-disable-next-line
     }, [content])
 
     useEffect(() => {
         //setIsDropdownOpen(focusSelect || focusSearch);
         if (!(focusSelect || focusSearch || focusSearchDiv)) {
-            timeout = setTimeout(() => setIsDropdownOpen(false), 100)
+            setMyTimeout(setTimeout(() => setIsDropdownOpen(false), 100));
         } else {
             setIsDropdownOpen(true)
         }
-        return () => clearTimeout(timeout)
-
+        return () => clearTimeout(myTimeout);
+        // eslint-disable-next-line
     }, [focusSelect, focusSearch, focusSearchDiv])
 
     const [tagPickerValue, setTagPickerValue] = useState([]);
@@ -77,6 +76,7 @@ export default function TagPickerInput({
     useEffect(() => {
         let tmp = Object.values(state).filter(tag => tag.selected).map(tag => { return tag.value });
         setTagPickerValue(tmp);
+        // eslint-disable-next-line
     }, [state])
 
     return (
@@ -87,7 +87,6 @@ export default function TagPickerInput({
                     <span className="text-sm text-primary-light">{description}</span>
                 </div>
             }
-
             <div className={`relative w-72 ${width && 'w-' + width}`}>
                 <input name={name} value={tagPickerValue} type='hidden' />
                 <div tabIndex="1"
@@ -161,7 +160,6 @@ export default function TagPickerInput({
                                     })
                             }
                         </div>
-
                     }
                 </div>
             </div>

@@ -1,8 +1,6 @@
-import { useCookies } from 'react-cookie';
 import './Loading.css';
 
 export default function Loading() {
-    const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
 
     return (
         <div>

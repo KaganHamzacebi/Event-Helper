@@ -6,19 +6,19 @@ export default function Collapse({
   children
 }) {
 
-  const collapseRef = useRef(null)
   const [isOpen, setIsOpen] = useState(false);
-
   const [overflow, setOverflow] = useState(true);
-  let timeout;
+  const [myTimeout, setMyTimeout] = useState(null);
+
+  const collapseRef = useRef(null);
 
   useEffect(() => {
-    timeout = setTimeout(() => {
+    setMyTimeout(setTimeout(() => {
       setOverflow(isOpen ? false : true);
-      return () => { clearTimeout(timeout) }
-    }, 100)
-  }
-    , [isOpen])
+      return () => { clearTimeout(myTimeout) }
+    }, 100));
+    // eslint-disable-next-line
+  }, [isOpen])
 
   return (
     <div className="flex flex-col w-full border-gray-500 rounded">
@@ -34,7 +34,7 @@ export default function Collapse({
         </svg>
       </div>
 
-      <div className={overflow ? 'overflow-hidden' : undefined } >
+      <div className={overflow ? 'overflow-hidden' : undefined} >
         <div style={isOpen ? { maxHeight: collapseRef.current.scrollHeight } : { maxHeight: 0 }} ref={collapseRef} className={`transition-all duration-500 transform`}>
           {children}
         </div>

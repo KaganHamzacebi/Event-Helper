@@ -1,14 +1,15 @@
-import React, { Fragment, useEffect, useState, useContext } from "react";
-import { useHistory } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { UserContext } from '../App';
+import { useCookies } from 'react-cookie';
+import { useHistory } from 'react-router-dom';
+import React, { Fragment, useContext } from "react";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
 
 export default function Header() {
     const history = useHistory();
 
     const { user, setUser } = useContext(UserContext);
+    // eslint-disable-next-line
     const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
 
     window.addEventListener('message', (event) => {

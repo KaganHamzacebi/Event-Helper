@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { verifyToken, decodeToken } from "../../crypto";
+import { verifyToken, decodeToken } from "../../utils/crypto";
 
 import { ExclamationIcon } from '@heroicons/react/solid'
 
 import { useParams, useHistory } from "react-router-dom";
 
 import Collapse from "../../components/Collapse"
-import Header from "../../components/Header";
 import TextInput from "../../components/TextInput";
 import DateInput from "../../components/DateInput/DateInput";
 import SelectInput from "../../components/SelectInput/SelectInput";
@@ -62,6 +61,7 @@ export default function EventCreateForm() {
     if (!isFormValid) {
       setTimeout(() => setIsFormValid(true), 4000)
     }
+    // eslint-disable-next-line
   }, [isFormValid])
 
   const handleSubmit = (e) => {
@@ -118,6 +118,7 @@ export default function EventCreateForm() {
         console.log(error);
 
       })
+    // eslint-disable-next-line
   }, [])
 
 

@@ -8,13 +8,14 @@ export default function Footer() {
                     </svg>
                     <h1 className='text-primary-light text-base'>Event Helper - All rights reserved</h1>
                 </div>
+                {/* TODO: SET HREF's */}
                 <div className='flex m-auto'>
-                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='#' >Status</a>
-                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='#' >Twitter</a>
-                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='#' >Contact Us</a>
-                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='#' >Docs</a>
-                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='#' >API</a>
-                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='#' >Terms of Service</a>
+                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='/' >Status</a>
+                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='/' >Twitter</a>
+                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='/' >Contact Us</a>
+                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='/' >Docs</a>
+                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='/' >API</a>
+                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='/' >Terms of Service</a>
                 </div>
             </div>
         </div>
