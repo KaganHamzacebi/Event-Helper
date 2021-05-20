@@ -6,6 +6,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { HelmetProvider } from 'react-helmet-async';
+import ReactGA from 'react-ga';
+import TagManager from 'react-gtm-module'
+
+ReactGA.initialize('UA-197548337-1');
+TagManager.initialize('GTM-NJSM4BL');
+ReactGA.pageview(window.location.pathname + window.location.search);
+
+ReactGA.event({
+  category: 'HOME_VISIT',
+  action: 'VISIT',
+  label: 'HOME'
+});
+
 
 ReactDOM.render(
   <React.StrictMode>

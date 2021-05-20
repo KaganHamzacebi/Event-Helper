@@ -24,14 +24,14 @@ export default function LoginRedirect() {
             setCookie('userToken', token, {
                 maxAge: parseInt(moment().format('x')),
             })
-            window.opener.location.reload();
+            window.opener.location.href.includes('event') ? window.opener.location.reload() : window.opener.location.href += 'dashboard';
             window.close();
         }
     }, [])
 
     return (
         <div>
-
+            
         </div>
     )
 }

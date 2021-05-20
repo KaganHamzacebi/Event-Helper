@@ -15,14 +15,8 @@ import GuildsPanel from './pages/GuildsPanel/GuildsPanel';
 import Dashboard from './pages/Dashboard/Dashboard';
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import ReactGA from 'react-ga';
-import TagManager from 'react-gtm-module'
 
 export const UserContext = createContext(null);
-
-ReactGA.initialize('UA-197548337-1');
-TagManager.initialize('GTM-NJSM4BL');
-ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
