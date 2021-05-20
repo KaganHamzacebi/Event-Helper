@@ -1,7 +1,6 @@
 import './App.css';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-import moment from 'moment';
 import EventCreateForm from './pages/EventCreate/EventCreateForm'
 import EventCreateSuccess from './pages/EventCreate/EventCreateSuccess'
 import InvalidToken from './pages/ErrorPage/InvalidToken';
@@ -10,6 +9,8 @@ import Footer from "./components/Footer";
 import Test from './pages/Test';
 import Loading from './pages/Loading/Loading';
 import Home from './pages/Home/Home';
+import Page404 from './pages/404/Page404';
+import LoginRedirect from './pages/LoginRedirect/LoginRedirect'
 import GuildsPanel from './pages/GuildsPanel/GuildsPanel';
 import Dashboard from './pages/Dashboard/Dashboard';
 import { createContext, useState, useEffect } from 'react';
@@ -22,18 +23,6 @@ export const UserContext = createContext(null);
 ReactGA.initialize('UA-197548337-1');
 TagManager.initialize('GTM-NJSM4BL');
 ReactGA.pageview(window.location.pathname + window.location.search);
-
-const RouteChangeTracker = ({ history }) => {
-
-  history.listen((location, action) => {
-    ReactGA.set({ page: location.pathname });
-    ReactGA.pageview(location.pathname);
-  });
-
-  return <div></div>;
-};
-
-withRouter(RouteChangeTracker);
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
@@ -75,9 +64,11 @@ function App() {
               <Route exact path="/dashboard" component={GuildsPanel} />
               <Route path="/dashboard/:id" component={Dashboard} />
               <Route path="/create_event/:token" component={EventCreateForm} />
+              <Route path="/login_redirect" component={LoginRedirect} />
               <Route exact path="/invalid_token" component={InvalidToken} />
               <Route exact path="/event_create_success" component={EventCreateSuccess} />
               <Route exact path="/test" component={Test} />
+              <Route path="*" component={Page404} />
             </Switch>
           </div>
           <div id="footer-wrapper">

@@ -11,16 +11,29 @@ export default function Header() {
     const { user, setUser } = useContext(UserContext);
     const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
 
+    window.addEventListener('message', (event) => {
+        if (event.origin === process.env.REACT_APP_SERVER_URL) {
+            if (event.data === 'login-success') {
+                window.location.href.includes('event') ? window.location.reload() : window.location.href = process.env.REACT_APP_WEB_URL + '/dashboard';
+            }
+        }
+    })
+
     function handleLogin() {
-        const uri = encodeURIComponent(process.env.REACT_APP_SERVER_URL + '/super_ultra_secret_uncreachable_access_token');
-        window.open(`https://discord.com/api/oauth2/authorize?client_id=833070237247209499&redirect_uri=${uri}&response_type=code&scope=identify%20connections%20guilds`, '_blank', 'width=520,height=820');
+        const uri = encodeURIComponent(process.env.REACT_APP_SERVER_URL + '/login_redirect');
+        window.open(`https://discord.com/api/oauth2/authorize?client_id=833070237247209499&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Flogin_redirect&response_type=code&scope=identify%20email%20guilds`, '_blank', 'width=520,height=820');
     }
 
     function signOut() {
         setUser(null);
-        console.log('xd');
-        removeCookie('userToken');
-        history.push('/');
+        removeCookie('userToken', { path: '/' });
+        const origin = window.location.origin;
+        if (origin.includes('event')) {
+            //do nothing
+        }
+        else if (origin !== '/') {
+            history.push('/');
+        }
     }
 
     return (

@@ -1,14 +1,13 @@
 
-         .btn-grad {background-image: linear-gradient(to right, #141E30 0%, #243B55  51%, #141E30  100%)}
-         .btn-grad {
-            transition: 0.5s;
-            background-size: 200% auto;
-            color: white;            
-          }
+.btn-grad {background-image: linear-gradient(to right, #141E30 0%, #243B55  51%, #141E30  100%)}
+.btn-grad {
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+}
 
-          .btn-grad:hover {
-            background-position: right center; /* change the direction of the change here */
-            color: #fff;
-            text-decoration: none;
-          }
-         
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
