@@ -68,7 +68,7 @@ function App() {
               <Route exact path="/invalid_token" component={InvalidToken} />
               <Route exact path="/event_create_success" component={EventCreateSuccess} />
               <Route exact path="/test" component={Test} />
-              <Route path="*" component={Page404} />
+              <Route component={Page404} />
             </Switch>
           </div>
           <div id="footer-wrapper">
