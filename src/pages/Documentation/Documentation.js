@@ -7,7 +7,7 @@ export default function Documentation() {
         <div>
             <Helmet>
                 <meta charSet='utf-8' />
-                <title>Documentation | Event Helper</title>
+                <title>Documentation | Tetherer</title>
                 <meta
                     name='description'
                     content='Documentation page contains the usage of Tetherer and API. You can start with getting started part.'

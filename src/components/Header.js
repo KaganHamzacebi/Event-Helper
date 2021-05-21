@@ -103,7 +103,7 @@ export default function Header() {
                                                             <img
                                                                 className="h-8 w-8 rounded-full"
                                                                 src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp`}
-                                                                alt=""
+                                                                alt="user_avatar"
                                                             />
                                                         }
                                                     </Menu.Button>
@@ -186,7 +186,7 @@ export default function Header() {
                                         <img
                                             className="h-8 w-8 rounded-full"
                                             src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp`}
-                                            alt=""
+                                            alt="user_avatar"
                                         />
                                     </div>
                                     <div className="ml-3">

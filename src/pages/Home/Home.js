@@ -15,13 +15,13 @@ export default function Home() {
         <div className='w-full'>
             <Helmet>
                 <meta charSet='utf-8' />
-                <title>Home | Event Helper</title>
+                <title>Home | Tetherer</title>
                 <meta
                     name='description'
                     content='Tetherer is a discord bot which lets you create widely customizable events to bring people together. Tetherer offers you various options and strong integrations.'
                     data-react-helmet='true'
                 />
-                <meta name='keywords' content='Tetherer, Discord, event, options, integrations, zoom, google, calendar, raid, guild, meeting, fast, simple' />
+                <meta name='keywords' content='Tetherer, Discord, event, events, options, integrations, zoom, google, calendar, raid, guild, meeting, fast, simple' />
                 <link rel="canonical" href={process.env.REACT_APP_WEB_URL} />
                 <script className='structured-data-list' type="application/ld+json">{metaData()}</script>
             </Helmet>
@@ -52,7 +52,7 @@ export default function Home() {
                                         <img
                                             className="h-8 mr-4 inline-block"
                                             src='https://lithi.io/file/RVtD.svg'
-                                            alt=""
+                                            alt="logo"
                                         />
                                         <span className='text-xl'>Add to Server</span>
                                     </div>

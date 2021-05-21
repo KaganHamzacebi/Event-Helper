@@ -58,12 +58,12 @@ export default function GuildsPanel() {
                                                 guild.icon ?
                                                     <img className='h-8 rounded-full inline-block mr-2'
                                                         src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp`}
-                                                        alt=""
+                                                        alt="guild_icon"
                                                     />
                                                     :
                                                     <img className='h-6 rounded-full inline-block mr-2'
                                                         src='https://discord.com/assets/3437c10597c1526c3dbd98c737c2bcae.svg'
-                                                        alt=""
+                                                        alt="guild_icon_none"
                                                     />
                                             }
                                             <span className='text-lg font-bold text-primary'>{guild.name}</span>
