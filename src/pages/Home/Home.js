@@ -22,7 +22,7 @@ export default function Home() {
                     data-react-helmet='true'
                 />
                 <meta name='keywords' content='Event, Discord, Raid, Meeting, Bot, WOW, World of Warcraft, Yes & No, Yes No, one click, Home' />
-                <link rel="canonical" href="http://localhost:3000/" />
+                <link rel="canonical" href={process.env.REACT_APP_WEB_URL} />
                 <script className='structured-data-list' type="application/ld+json">{metaData()}</script>
             </Helmet>
             <main>

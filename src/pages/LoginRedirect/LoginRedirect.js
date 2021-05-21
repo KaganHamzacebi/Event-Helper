@@ -14,7 +14,8 @@ export default function LoginRedirect() {
         const code = search.get('code');
 
         async function fetchData() {
-            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/super_ultra_secret_uncreachable_access_token`, {}, {
+            const res = await axios.post('/super_ultra_secret_uncreachable_access_token', {}, {
+                baseURL: process.env.REACT_APP_SERVER_URL,
                 headers: {
                     authorization: code,
                 },
