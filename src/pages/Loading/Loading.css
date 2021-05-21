@@ -2,11 +2,6 @@ body {
     background: #34495e;
   }
   
-  .loader {
-    position: flex;
-    margin: auto;
-  }
-  
   .bubble {
     animation: expand .75s ease-in-out infinite;
     border-radius: 20px;
