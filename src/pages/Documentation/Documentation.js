@@ -10,10 +10,10 @@ export default function Documentation() {
                 <title>Documentation | Event Helper</title>
                 <meta
                     name='description'
-                    content=''
+                    content='Documentation page contains the usage of Tetherer and API. You can start with getting started part.'
                     data-react-helmet='true'
                 />
-                <meta name='keywords' content='' />
+                <meta name='keywords' content='Tetherer, Discord, event, documentation, getting started, installation, api' />
                 <link rel="canonical" href={process.env.REACT_APP_WEB_URL + '/documentation'} />
                 <script className='structured-data-list' type="application/ld+json">{metaData()}</script>
             </Helmet>

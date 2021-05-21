@@ -10,10 +10,10 @@ export default function Features() {
                 <title>Features | Tetherer</title>
                 <meta
                     name='description'
-                    content=''
+                    content='In features page you can see all the options you have and how to use them.'
                     data-react-helmet='true'
                 />
-                <meta name='keywords' content='' />
+                <meta name='keywords' content='Tetherer, Discord, event, features, title, description, channel, event date, post date, reminder, color, direct message' />
                 <link rel="canonical" href={process.env.REACT_APP_WEB_URL + '/features'} />
                 <script className='structured-data-list' type="application/ld+json">{metaData()}</script>
             </Helmet>

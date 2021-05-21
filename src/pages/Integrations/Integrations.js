@@ -10,10 +10,10 @@ export default function Integrations() {
                 <title>Integrations | Tetherer</title>
                 <meta
                     name='description'
-                    content=''
+                    content='Integration page contains the data for our Tetherer integrations. You can easly use them with activating in create screen.'
                     data-react-helmet='true'
                 />
-                <meta name='keywords' content='' />
+                <meta name='keywords' content='Tetherer, Discord, event, integrations, zoom, google calendar' />
                 <link rel="canonical" href={process.env.REACT_APP_WEB_URL + '/integrations'} />
                 <script className='structured-data-list' type="application/ld+json">{metaData()}</script>
             </Helmet>
