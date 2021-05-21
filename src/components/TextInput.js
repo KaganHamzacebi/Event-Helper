@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ExclamationIcon } from '@heroicons/react/solid'
 import { XIcon } from '@heroicons/react/solid'
-import { validate, getErrorMessage } from "../inputValidations";
+import { validate, getErrorMessage } from "../utils/inputValidations";
 
 export default function TextInput({
   name,

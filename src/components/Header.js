@@ -57,9 +57,9 @@ export default function Header() {
                                     <div className="ml-10 flex items-baseline space-x-4">
                                         <a
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
-                                            href='/entegrations'
+                                            href='/integrations'
                                         >
-                                            Entegrations
+                                            Integrations
                                         </a>
                                         <a
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
@@ -130,7 +130,7 @@ export default function Header() {
                                                                         :
                                                                         handleLogin();
                                                                 }}
-                                                                className="block rounded w-full h-full p-2 text-sm text-primary text-left hover:bg-content focus:outline-none"
+                                                                className="block rounded p-2 text-sm text-primary text-left hover:bg-content focus:outline-none"
                                                             >
                                                                 Dashboard
                                                             </button>
@@ -138,7 +138,7 @@ export default function Header() {
                                                         <Menu.Item>
                                                             <button
                                                                 onClick={signOut}
-                                                                className="block rounded w-full h-full p-2 text-sm text-red-500 text-left hover:bg-content focus:outline-none"
+                                                                className="block rounded p-2 text-sm text-red-500 text-left hover:bg-content focus:outline-none"
                                                             >
                                                                 Sign Out
                                                             </button>
@@ -178,7 +178,7 @@ export default function Header() {
                                 Dashboard
                             </button>
                         </div>
-                        <div className="px-2 pt-2 border-t border-gray-700 flex">
+                        <div className="px-2 py-2 border-t border-gray-700 flex">
                             {
                                 user !== null &&
                                 <div className="flex items-center">
@@ -202,7 +202,7 @@ export default function Header() {
                                 user ?
                                     <div className="my-auto pl-2">
                                         <button
-                                            className="w-full bg-red-500 text-white px-3 py-2 rounded-md text-base font-medium focus:outline-none"
+                                            className="bg-red-500 text-white px-3 py-2 rounded-md text-base font-medium focus:outline-none"
                                             onClick={signOut}
                                         >
                                             Sign Out
@@ -211,7 +211,7 @@ export default function Header() {
                                     :
                                     <div className="my-auto">
                                         <button
-                                            className="w-full text-white px-3 py-2 rounded-md text-base font-medium focus:outline-none"
+                                            className="text-white px-3 py-2 rounded-md text-base font-medium focus:outline-none"
                                             style={{ backgroundColor: '#7289DA' }}
                                             onClick={handleLogin}
                                         >

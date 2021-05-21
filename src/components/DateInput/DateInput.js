@@ -2,7 +2,7 @@ import './DateInput.css'
 import moment from 'moment';
 import { useState, useEffect } from "react";
 import { ExclamationIcon } from '@heroicons/react/solid'
-import { validate, getErrorMessage } from "../../inputValidations";
+import { validate, getErrorMessage } from "../../utils/inputValidations";
 
 export default function DateInput({
     name,

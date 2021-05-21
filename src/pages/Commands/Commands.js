@@ -7,14 +7,14 @@ export default function Commands() {
         <div>
             <Helmet>
                 <meta charSet='utf-8' />
-                <title>Features / Event Helper</title>
+                <title>Commands | Tetherer</title>
                 <meta
                     name='description'
-                    content='Home page for Event Helper application. Event Helper is a discord bot which lets you create fully customizable repeatable events with companies and gamers. You can also set reminders and many other customization.'
+                    content=''
                     data-react-helmet='true'
                 />
                 <meta name='keywords' content='Event, Discord, Raid, Meeting, Bot, WOW, World of Warcraft, Yes & No, Yes No, one click, Documentation' />
-                <link rel="canonical" href="http://localhost:3000/" />
+                <link rel="canonical" href={process.env.REACT_APP_WEB_URL + '/commands'} />
                 <script className='structured-data-list' type="application/ld+json">{metaData()}</script>
             </Helmet>
             <main>

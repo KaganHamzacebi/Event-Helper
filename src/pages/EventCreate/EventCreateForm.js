@@ -8,15 +8,15 @@ import { useParams, useHistory } from "react-router-dom";
 
 import Collapse from "../../components/Collapse"
 import TextInput from "../../components/TextInput";
+import TextAreaInput from "../../components/TextAreaInput";
+import TemplateInput from "../../components/TemplateInput";
 import DateInput from "../../components/DateInput/DateInput";
 import SelectInput from "../../components/SelectInput/SelectInput";
 import TagPickerInput from "../../components/TagPickerInput/TagPickerInput"
-import TextAreaInput from "../../components/TextAreaInput";
-import TemplateInput from "../../components/TemplateInput";
 import AdvancedOptionInput from "../../components/AdvancedOptionInput";
 import ReminderOptionsInput from "../../components/ReminderOptionsInput";
 
-import { validate } from "../../inputValidations";
+import { validate } from "../../utils/inputValidations";
 import moment from "moment";
 
 const templates = [

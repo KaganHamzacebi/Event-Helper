@@ -14,7 +14,7 @@ import Commands from './pages/Commands/Commands';
 import Dashboard from './pages/Dashboard/Dashboard';
 import GuildsPanel from './pages/GuildsPanel/GuildsPanel';
 import InvalidToken from './pages/ErrorPage/InvalidToken';
-import Entegrations from './pages/Entegrations/Entegrations';
+import Entegrations from './pages/Integrations/Integrations';
 import Documentation from './pages/Documentation/Documentation';
 import LoginRedirect from './pages/LoginRedirect/LoginRedirect';
 import EventCreateForm from './pages/EventCreate/EventCreateForm';
