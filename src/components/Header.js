@@ -2,6 +2,7 @@ import { UserContext } from '../App';
 import { useCookies } from 'react-cookie';
 import { useHistory } from 'react-router-dom';
 import React, { Fragment, useContext } from "react";
+import { GetHeaderScripts } from '../locales/Scripts';
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 
@@ -59,25 +60,25 @@ export default function Header() {
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
                                             href='/integrations'
                                         >
-                                            Integrations
+                                            {GetHeaderScripts('integrations')}
                                         </a>
                                         <a
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
                                             href='/features'
                                         >
-                                            Features
+                                            {GetHeaderScripts('features')}
                                         </a>
                                         <a
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
                                             href='/documentation'
                                         >
-                                            Documentation
+                                            {GetHeaderScripts('commands')}
                                         </a>
                                         <a
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
                                             href='/commands'
                                         >
-                                            Commands
+                                            {GetHeaderScripts('integrations')}
                                         </a>
                                     </div>
                                 </div>
@@ -89,7 +90,9 @@ export default function Header() {
                                         style={{ backgroundColor: '#7289DA' }}
                                         type='submit'
                                         onClick={handleLogin}
-                                    >Login Here</button>
+                                    >
+                                        {GetHeaderScripts('login_button')}
+                                    </button>
                                     {/* Profile dropdown */}
                                     <Menu as="div" className="ml-3 relative">
                                         {({ open }) => (
