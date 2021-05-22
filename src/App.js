@@ -43,7 +43,6 @@ function App() {
   }
 
   useEffect(() => {
-    console.log('1');
     async function fetchData() {
       if (cookies.userToken) {
         const userResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/@me`, {}, {
@@ -65,7 +64,6 @@ function App() {
     }
 
     fetchData();
-    console.log('2');
     // eslint-disable-next-line
   }, [userToken])
 
