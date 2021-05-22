@@ -28,12 +28,19 @@ function App() {
 
   const [user, setUser] = useState(null);
   const [loaded, setLoaded] = useState(false);
-  const [language, setLanguage] = useState(localStorage.getItem('lang') ? localStorage.getItem('lang') : navigator.language);
   const [userGuilds, setUserGuilds] = useState(null);
   // eslint-disable-next-line
   const [cookies, setCookie] = useCookies(['userToken']);
   // eslint-disable-next-line
   const [userToken, setUserToken] = useState(cookies['userToken']);
+  const [language, setLanguage] = useState(localStorage.getItem('lang') ? localStorage.getItem('lang') : getNavigatorLang());
+
+  function getNavigatorLang() {
+    const supportedLanguages = ['en', 'tr'];
+    if (supportedLanguages.includes(navigator.language))
+      return navigator.language;
+    return 'en';
+  }
 
   useEffect(() => {
     async function fetchData() {
