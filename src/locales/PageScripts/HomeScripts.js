@@ -15,11 +15,11 @@ export function HomeScripts(value, lang) {
         },
         firstLookHeader: {
             'en': 'Build easy to join events',
-            'ty': 'Kolay oluşturulabilir etkinlikler',
+            'tr': 'Kolay oluşturulabilir etkinlikler',
         },
         firstLookParagraph: {
             'en': 'Tetherer is a discord bot which lets you create widely customizable events to bring people together. With many integrations, features you can create your own events. You can set a meeting for colleagues or raid with your guild.Now add to your Discord server and start using.',
-            'tr': '',
+            'tr': 'Tetherer insanları bir araya toplamayı amaçlayam özelleştirilebilir bir discord etkinlik botudur. Çeşitli entegrasyonlar ve özellikler ile beraber kendi etkinliklerini oluştur. İş arkadaşların ile bir toplantı düzenleyebilir veya ',
         },
         addToServerButton: {
             'en': 'Add to Server',
