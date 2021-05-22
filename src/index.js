@@ -17,26 +17,29 @@ const root = document.getElementById("root");
 
 if (root.hasChildNodes()) {
   hydrate(
-    <HelmetProvider>
-      <CookiesProvider>
-        <Router>
-          {console.log('render')}
-          <App />
-        </Router>
-      </CookiesProvider>
-    </HelmetProvider>,
+    <React.StrictMode>
+      <HelmetProvider>
+        <CookiesProvider>
+          <Router>
+            <App />
+          </Router>
+        </CookiesProvider>
+      </HelmetProvider>
+    </React.StrictMode>,
     root
   );
 }
 else {
   render(
-    <HelmetProvider>
-      <CookiesProvider>
-        <Router>
-          <App />
-        </Router>
-      </CookiesProvider>
-    </HelmetProvider>,
+    <React.StrictMode>
+      <HelmetProvider>
+        <CookiesProvider>
+          <Router>
+            <App />
+          </Router>
+        </CookiesProvider>
+      </HelmetProvider>
+    </React.StrictMode>,
     root
   );
 }
