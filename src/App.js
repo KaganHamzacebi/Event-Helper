@@ -14,7 +14,7 @@ import Commands from './pages/Commands/Commands';
 import Dashboard from './pages/Dashboard/Dashboard';
 import GuildsPanel from './pages/GuildsPanel/GuildsPanel';
 import InvalidToken from './pages/ErrorPage/InvalidToken';
-import Entegrations from './pages/Integrations/Integrations';
+import Integrations from './pages/Integrations/Integrations';
 import Documentation from './pages/Documentation/Documentation';
 import LoginRedirect from './pages/LoginRedirect/LoginRedirect';
 import EventCreateForm from './pages/EventCreate/EventCreateForm';
@@ -81,7 +81,7 @@ function App() {
           <div id="content-wrapper" className="flex-grow-1">
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/entegrations" component={Entegrations} />
+              <Route exact path="/integrations" component={Integrations} />
               <Route exact path="/features" component={Features} />
               <Route exact path="/documentation" component={Documentation} />
               <Route exact path="/commands" component={Commands} />

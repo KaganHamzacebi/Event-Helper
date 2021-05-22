@@ -51,7 +51,7 @@ export default function Home() {
                                             src='https://lithi.io/file/RVtD.svg'
                                             alt="logo"
                                         />
-                                        <span className='text-xl'>{GetHomeScripts('addToServerButton')}r</span>
+                                        <span className='text-xl'>{GetHomeScripts('addToServerButton')}</span>
                                     </div>
 
                                 </button>
