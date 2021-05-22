@@ -13,6 +13,8 @@ ReactGA.initialize('UA-197548337-1');
 TagManager.initialize({ gtmId: 'GTM-NJSM4BL' });
 ReactGA.pageview(window.location.pathname + window.location.search);
 
+console.log('render');
+
 const root = document.getElementById("root");
 
 if (root.hasChildNodes()) {
