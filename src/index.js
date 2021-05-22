@@ -17,29 +17,31 @@ const root = document.getElementById("root");
 
 if (root.hasChildNodes()) {
   hydrate(
-    <React>
+    <React.StrictMode>
       <HelmetProvider>
         <CookiesProvider>
           <Router>
+            {console.log('render')}
             <App />
           </Router>
         </CookiesProvider>
       </HelmetProvider>
-    </React>,
+    </React.StrictMode>,
     root
   );
 }
 else {
   render(
-    <React>
+    <React.StrictMode>
       <HelmetProvider>
         <CookiesProvider>
           <Router>
+            {console.log('render')}
             <App />
           </Router>
         </CookiesProvider>
       </HelmetProvider>
-    </React>,
+    </React.StrictMode>,
     root
   );
 }
