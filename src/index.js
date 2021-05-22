@@ -13,13 +13,11 @@ ReactGA.initialize('UA-197548337-1');
 TagManager.initialize({ gtmId: 'GTM-NJSM4BL' });
 ReactGA.pageview(window.location.pathname + window.location.search);
 
-console.log('render');
-
 const root = document.getElementById("root");
 
 if (root.hasChildNodes()) {
   hydrate(
-    <React.StrictMode>
+    <React>
       <HelmetProvider>
         <CookiesProvider>
           <Router>
@@ -27,13 +25,13 @@ if (root.hasChildNodes()) {
           </Router>
         </CookiesProvider>
       </HelmetProvider>
-    </React.StrictMode>,
+    </React>,
     root
   );
 }
 else {
   render(
-    <React.StrictMode>
+    <React>
       <HelmetProvider>
         <CookiesProvider>
           <Router>
@@ -41,7 +39,7 @@ else {
           </Router>
         </CookiesProvider>
       </HelmetProvider>
-    </React.StrictMode>,
+    </React>,
     root
   );
 }
