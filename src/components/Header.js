@@ -72,13 +72,13 @@ export default function Header() {
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
                                             href='/documentation'
                                         >
-                                            {GetHeaderScripts('commands')}
+                                            {GetHeaderScripts('documentation')}
                                         </a>
                                         <a
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
                                             href='/commands'
                                         >
-                                            {GetHeaderScripts('integrations')}
+                                            {GetHeaderScripts('commands')}
                                         </a>
                                     </div>
                                 </div>
