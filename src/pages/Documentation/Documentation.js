@@ -20,7 +20,7 @@ export default function Documentation() {
             <main>
                 <div className="container mx-auto px-6 2xl:px-40">
                     {/* Content Here */}
-                    <h1>Documentation</h1>
+                    <h1 className='text-primary'>Documentation</h1>
                 </div>
             </main>
         </div>
