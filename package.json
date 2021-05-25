@@ -1,6 +1,9 @@
 {
-  "name": "event-helper",
+  "name": "tetherer",
   "version": "0.1.0",
+  "engines": {
+    "node": "15.2.1"
+  },
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.0.0",
