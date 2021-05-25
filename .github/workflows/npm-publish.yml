@@ -1,0 +1,34 @@
+---
+name: 'deploy'
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cloning repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
+      - name: Dokku Deploy action
+        # You may pin to the exact commit or the version.
+        # uses: idoberko2/dokku-deploy-github-action@4b326b36625e4a10add5f9601e8ffbaf048444b9
+        uses: idoberko2/dokku-deploy-github-action@v1
+        with:
+          # The ssh private key to the dokku instance. WARNING: use a secret! Do not pass a plain text value!
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # The user to use for ssh (Default: dokku)
+          dokku-user: dokku
+          # The dokku host to ssh into
+          dokku-host: 161.35.208.75
+          # The dokku app name
+          app-name: tetherer.com
+          # The branch to push on the remote repository (Default: master)
+          remote-branch: master
+          # Additional flags to be passed to the git push command. Could be used to force push
