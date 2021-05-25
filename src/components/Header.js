@@ -46,40 +46,40 @@ export default function Header() {
                         <div className="flex items-center justify-between h-16">
                             <div className="flex items-center">
                                 <div className="flex-shrink-0">
-                                    <a href='/'>
+                                    <button onClick={() => history.push('/')}>
                                         <img
                                             className="h-8 w-8 cursor-pointer"
                                             src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
                                             alt="Workflow"
                                         />
-                                    </a>
+                                    </button>
                                 </div>
                                 <div className="hidden md:block">
                                     <div className="ml-10 flex items-baseline space-x-4">
-                                        <a
+                                        <button
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
-                                            href='/integrations'
+                                            onClick={() => history.push('/integrations')}
                                         >
                                             {GetHeaderScripts('integrations')}
-                                        </a>
-                                        <a
+                                        </button>
+                                        <button
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
-                                            href='/features'
+                                            onClick={() => history.push('/features')}
                                         >
                                             {GetHeaderScripts('features')}
-                                        </a>
-                                        <a
+                                        </button>
+                                        <button
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
-                                            href='/documentation'
+                                            onClick={() => history.push('/documentation')}
                                         >
                                             {GetHeaderScripts('documentation')}
-                                        </a>
-                                        <a
+                                        </button>
+                                        <button
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
-                                            href='/commands'
+                                            onClick={() => history.push('/commands')}
                                         >
                                             {GetHeaderScripts('commands')}
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>

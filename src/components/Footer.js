@@ -1,8 +1,10 @@
 import { useContext } from 'react';
 import { UserContext } from '../App';
+import { useHistory } from 'react-router-dom';
 
 export default function Footer() {
 
+    const history = useHistory();
     const { language, setLanguage } = useContext(UserContext);
 
     return (
@@ -18,14 +20,14 @@ export default function Footer() {
                         <option value="tr" className='text-primary'>Turkish</option>
                     </select>
                 </div>
-                {/* TODO: SET HREF's */}
+                {/* TODO: SET HISTORIES */}
                 <div className='flex m-auto'>
-                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='/' >Status</a>
-                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='/' >Twitter</a>
-                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='/' >Contact Us</a>
-                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='/' >Docs</a>
-                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='/' >API</a>
-                    <a className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' href='/' >Terms of Service</a>
+                    <button className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' onClick={() => history.push('/')}>Status</button>
+                    <button className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' onClick={() => history.push('/')}>Twitter</button>
+                    <button className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' onClick={() => history.push('/')}>Contact Us</button>
+                    <button className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' onClick={() => history.push('/')}>Docs</button>
+                    <button className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' onClick={() => history.push('/')}>API</button>
+                    <button className='text-primary-light transition-color text-base mx-4 duration-700 hover:text-white' onClick={() => history.push('/')}>Terms of Service</button>
                 </div>
             </div>
         </div>

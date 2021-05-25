@@ -1,12 +1,14 @@
 import './Home.css';
 import CountUp from 'react-countup';
 import { Helmet } from 'react-helmet-async';
+import { useHistory } from 'react-router-dom';
 import { metaData } from '../../utils/MetaData';
 import { Zoom, Slide } from "react-awesome-reveal";
 import ExampleVideo from '../../assets/example.webm';
 import { GetHomeScripts } from '../../locales/Scripts';
 
 export default function Home() {
+    const history = useHistory();
 
     function handleLogin() {
         window.open(`https://discord.com/api/oauth2/authorize?client_id=833070237247209499&permissions=8&scope=bot`, '_blank', 'width=520,height=820');
@@ -55,9 +57,9 @@ export default function Home() {
                                     </div>
 
                                 </button>
-                                <a
+                                <button
                                     className={`text-primary bg-content w-72 font-semibold rounded focus:outline-none inline-flex shadow-xl ml-4`}
-                                    href='/documentation'
+                                    onClick={() => history.push('/documentation')}
                                     type='submit'
                                 >
                                     <div className="m-auto p-4">
@@ -67,7 +69,7 @@ export default function Home() {
                                         <span className='text-xl '>{GetHomeScripts('documentationButton')}</span>
                                     </div>
 
-                                </a>
+                                </button>
                             </div>
 
                         </div>
