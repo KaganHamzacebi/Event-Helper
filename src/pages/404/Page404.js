@@ -1,6 +1,11 @@
+import { Helmet } from 'react-helmet-async';
+
 export default function Page404() {
     return (
         <div className='w-full'>
+            <Helmet>
+                <meta name='robots' content='noindex' />
+            </Helmet>
             <main>
                 <div className="container p-24 2xl:px-80 flex mx-auto">
                     <div className='flex-grow-0 m-auto'>

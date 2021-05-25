@@ -133,7 +133,7 @@ export default function Header() {
                                                                         :
                                                                         handleLogin();
                                                                 }}
-                                                                className="block rounded p-2 text-sm text-primary text-left hover:bg-content focus:outline-none"
+                                                                className="w-full block rounded p-2 text-sm text-primary text-left hover:bg-content focus:outline-none"
                                                             >
                                                                 Dashboard
                                                             </button>
@@ -141,7 +141,7 @@ export default function Header() {
                                                         <Menu.Item>
                                                             <button
                                                                 onClick={signOut}
-                                                                className="block rounded p-2 text-sm text-red-500 text-left hover:bg-content focus:outline-none"
+                                                                className="w-full block rounded p-2 text-sm text-red-500 text-left hover:bg-red-500 hover:text-primary focus:outline-none"
                                                             >
                                                                 Sign Out
                                                             </button>
