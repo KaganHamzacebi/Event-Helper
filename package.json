@@ -11,10 +11,12 @@
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
+    "autoprefixer": "^9.8.6",
     "axios": "^0.21.1",
     "customize-cra": "^1.0.0",
     "jsrsasign": "^10.2.0",
     "moment": "^2.29.1",
+    "postcss": "^7.0.35",
     "react": "^17.0.2",
     "react-app-rewired": "^2.1.8",
     "react-awesome-reveal": "^3.4.0",
@@ -31,6 +33,7 @@
     "react-shimmer-effect": "^1.0.9",
     "reactcss": "^1.2.3",
     "swiper": "^6.5.7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.2",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
@@ -60,9 +63,6 @@
   "devDependencies": {
     "@craco/craco": "^5.9.0",
     "@tailwindcss/postcss7-compat": "^2.1.0",
-    "autoprefixer": "^9.8.6",
-    "craco-less": "^1.17.1",
-    "postcss": "^7.0.35",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0"
+    "craco-less": "^1.17.1"
   }
 }
