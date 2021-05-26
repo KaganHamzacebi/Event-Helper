@@ -32,7 +32,7 @@ export default function Home() {
                 <div className="container mx-auto px-6 2xl:px-40">
                     <Zoom triggerOnce>
                         {/* First Look Part */}
-                        <div className='pb-14 pt-20 text-center'>
+                        <div className='pb-14 pt-10 lg:pt-20 text-center'>
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-48 w-48 mx-auto" viewBox="0 0 20 20" fill="white">
                                 <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
                             </svg>
@@ -40,9 +40,9 @@ export default function Home() {
                                 <h1 className='text-bold text-6xl text-primary font-black'>{GetHomeScripts('firstLookHeader')}</h1>
                                 <p className='text-bold text-2xl text-primary-light my-8 mb-16'>{GetHomeScripts('firstLookParagraph')}</p>
                             </div>
-                            <div className="container">
+                            <div className="space-y-4 lg:space-y-0 lg:space-x-4">
                                 <button
-                                    className={`text-primary w-72 font-semibold rounded focus:outline-none inline-flex shadow-xl`}
+                                    className={`text-primary w-72 mx-auto font-semibold rounded focus:outline-none inline-flex shadow-xl`}
                                     style={{ backgroundColor: '#7289DA' }}
                                     onClick={handleLogin}
                                     type='submit'
@@ -58,7 +58,7 @@ export default function Home() {
 
                                 </button>
                                 <button
-                                    className={`text-primary bg-content w-72 font-semibold rounded focus:outline-none inline-flex shadow-xl ml-4`}
+                                    className={`text-primary bg-content w-72 mx-auto font-semibold rounded focus:outline-none inline-flex shadow-xl`}
                                     onClick={() => history.push('/documentation')}
                                     type='submit'
                                 >
@@ -74,8 +74,8 @@ export default function Home() {
 
                         </div>
                         {/* Stats Part */}
-                        <div className='container rounded-xl pb-10 text-center flex'>
-                            <div className='flex-grow text-4xl'>
+                        <div className='container rounded-xl pb-10 text-center grid grid-cols-2 lg:grid-cols-4'>
+                            <div className='text-4xl mb-4'>
                                 <CountUp className='text-primary'
                                     formattingFn={(num) => (num < 1000) ? num : num >= 1000000 ? (num / 1000000).toFixed(1) + 'M' : (num / 1000).toFixed(1) + 'K'}
                                     duration={4}
@@ -84,7 +84,7 @@ export default function Home() {
                                 />
                                 <p className='text-primary'>{GetHomeScripts('statsServers')}</p>
                             </div>
-                            <div className='flex-grow text-4xl'>
+                            <div className='text-4xl mb-4'>
                                 <CountUp className='text-primary'
                                     formattingFn={(num) => (num < 1000) ? num : num >= 1000000 ? (num / 1000000).toFixed(1) + 'M' : (num / 1000).toFixed(1) + 'K'}
                                     duration={4}
@@ -93,7 +93,7 @@ export default function Home() {
                                 />
                                 <p className='text-primary'>{GetHomeScripts('statsEvents')}</p>
                             </div>
-                            <div className='flex-grow text-4xl'>
+                            <div className='text-4xl'>
                                 <CountUp className='text-primary'
                                     formattingFn={(num) => (num < 1000) ? num : num >= 1000000 ? (num / 1000000).toFixed(1) + 'M' : (num / 1000).toFixed(1) + 'K'}
                                     duration={4}
@@ -102,7 +102,7 @@ export default function Home() {
                                 />
                                 <p className='text-primary'>{GetHomeScripts('statsUsers')}</p>
                             </div>
-                            <div className='flex-grow text-4xl'>
+                            <div className='text-4xl'>
                                 <CountUp className='text-primary'
                                     formattingFn={(num) => (num < 1000) ? num : num >= 1000000 ? (num / 1000000).toFixed(1) + 'M' : (num / 1000).toFixed(1) + 'K'}
                                     duration={4}
@@ -115,13 +115,13 @@ export default function Home() {
                     </Zoom>
                     <Slide triggerOnce>
                         {/* Feature Part - 1 */}
-                        <div className='container rounded-xl text-left flex gradient shadow-2xl mb-16'>
+                        <div className='container rounded-xl text-left flex-initial lg:flex gradient shadow-2xl mb-16'>
                             {/* Text */}
-                            <div className='w-4/12 p-12 m-auto'>
+                            <div className='w-full lg:w-4/12 p-12 m-auto'>
                                 <h2 className='text-primary text-2xl font-bold pb-4'>{GetHomeScripts('firstFeatureHeader')}</h2>
                                 <p className='text-primary text-xl font-semibold'>{GetHomeScripts('firstFeatureParagraph')}</p>
                             </div>
-                            <div className='w-8/12 p-4 mt-12'>
+                            <div className='w-10/12 lg:w-8/12 p-4 lg:mt-12'>
                                 {/* Gif Place */}
                                 <video className='rounded-xl' loop autoPlay muted playsInline>
                                     <source src={ExampleVideo} type="video/webm" />
@@ -169,15 +169,15 @@ export default function Home() {
                     </Zoom>
                     <Slide direction='right' triggerOnce>
                         {/* Feature 2 Part */}
-                        <div className='container rounded-xl flex gradient shadow-2xl my-16'>
+                        <div className='container rounded-xl text-left flex-initial lg:flex gradient shadow-2xl my-16'>
                             {/* Text */}
-                            <div className='w-8/12 p-4 mt-12'>
+                            <div className='w-10/12 lg:w-8/12 p-4 lg:mt-12'>
                                 {/* Gif Place */}
                                 <video className='rounded-xl' loop autoPlay muted playsInline>
                                     <source src={ExampleVideo} type="video/webm" />
                                 </video>
                             </div>
-                            <div className='w-4/12 p-12 m-auto'>
+                            <div className='w-full lg:w-4/12 p-12 m-auto'>
                                 <h1 className='text-primary text-2xl font-bold pb-4'>{GetHomeScripts('secondFeatureHeader')}</h1>
                                 <p className='text-primary text-xl font-semibold'>{GetHomeScripts('secondFeatureParagraph')}</p>
                             </div>
