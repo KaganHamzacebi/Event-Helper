@@ -121,7 +121,7 @@ export default function Home() {
                                 <h2 className='text-primary text-2xl font-bold pb-4'>{GetHomeScripts('firstFeatureHeader')}</h2>
                                 <p className='text-primary text-xl font-semibold'>{GetHomeScripts('firstFeatureParagraph')}</p>
                             </div>
-                            <div className='w-10/12 lg:w-8/12 p-4 lg:mt-12'>
+                            <div className='w-full lg:w-8/12 p-4 lg:mt-12'>
                                 {/* Gif Place */}
                                 <video className='rounded-xl' loop autoPlay muted playsInline>
                                     <source src={ExampleVideo} type="video/webm" />
@@ -171,7 +171,7 @@ export default function Home() {
                         {/* Feature 2 Part */}
                         <div className='container rounded-xl text-left flex-initial lg:flex gradient shadow-2xl my-16'>
                             {/* Text */}
-                            <div className='w-10/12 lg:w-8/12 p-4 lg:mt-12'>
+                            <div className='w-full lg:w-8/12 p-4 lg:mt-12'>
                                 {/* Gif Place */}
                                 <video className='rounded-xl' loop autoPlay muted playsInline>
                                     <source src={ExampleVideo} type="video/webm" />
