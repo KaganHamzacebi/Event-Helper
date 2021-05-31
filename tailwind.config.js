@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       backgroundColor: {
         'home': '#1b1b1b',
+        'home-light': '#272727',
         'header': '#292b2f',
         'title': '#2f3136',
         'content': '#36393f',

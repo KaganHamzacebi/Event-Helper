@@ -1,3 +1,5 @@
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import { Helmet } from 'react-helmet-async';
 import { metaData } from '../../utils/MetaData';
 
@@ -17,12 +19,18 @@ export default function Documentation() {
                 <link rel="canonical" href={process.env.REACT_APP_WEB_URL + '/documentation'} />
                 <script className='structured-data-list' type="application/ld+json">{metaData()}</script>
             </Helmet>
+            <div id="header-wrapper">
+                <Header />
+            </div>
             <main>
                 <div className="container mx-auto px-6 2xl:px-40">
                     {/* Content Here */}
                     <h1 className='text-primary'>Documentation</h1>
                 </div>
             </main>
+            <div id="footer-wrapper">
+                <Footer />
+            </div>
         </div>
     )
 }

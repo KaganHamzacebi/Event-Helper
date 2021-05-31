@@ -3,10 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-#content-wrapper {
-  flex: 1 0 auto;
-}
-
 body, #root, #root > div {
   height: 100vh;
   width: 100vw;

@@ -1,6 +1,8 @@
 import './Home.css';
 import CountUp from 'react-countup';
 import { Helmet } from 'react-helmet-async';
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import { useHistory } from 'react-router-dom';
 import { metaData } from '../../utils/MetaData';
 import { Zoom, Slide } from "react-awesome-reveal";
@@ -28,6 +30,9 @@ export default function Home() {
                 <link rel="canonical" href={process.env.REACT_APP_WEB_URL} />
                 <script className='structured-data-list' type="application/ld+json">{metaData()}</script>
             </Helmet>
+            <div id="header-wrapper" className='sticky top-0 z-50 items-start'>
+                <Header />
+            </div>
             <main>
                 <div className="container mx-auto px-6 2xl:px-40">
                     <Zoom triggerOnce>
@@ -40,38 +45,39 @@ export default function Home() {
                                 <h1 className='text-bold text-6xl text-primary font-black'>{GetHomeScripts('firstLookHeader')}</h1>
                                 <p className='text-bold text-2xl text-primary-light my-8 mb-16'>{GetHomeScripts('firstLookParagraph')}</p>
                             </div>
-                            <div className="space-y-4 lg:space-y-0 lg:space-x-4">
-                                <button
-                                    className={`text-primary w-72 mx-auto font-semibold rounded focus:outline-none inline-flex shadow-xl`}
-                                    style={{ backgroundColor: '#7289DA' }}
-                                    onClick={handleLogin}
-                                    type='submit'
-                                >
-                                    <div className="m-auto p-4">
-                                        <img
-                                            className="h-8 mr-4 inline-block"
-                                            src='https://lithi.io/file/RVtD.svg'
-                                            alt="logo"
-                                        />
-                                        <span className='text-xl'>{GetHomeScripts('addToServerButton')}</span>
-                                    </div>
+                            <div className='flex flex-wrap'>
+                                <div className="flex-grow sm:flex-grow-0 grid grid-cols-1 sm:grid-cols-2 sm:mx-auto gap-4">
+                                    <button
+                                        className={`text-primary w-full sm:w-72 mx-auto font-semibold rounded focus:outline-none inline-flex shadow-xl`}
+                                        style={{ backgroundColor: '#7289DA' }}
+                                        onClick={handleLogin}
+                                        type='submit'
+                                    >
+                                        <div className="m-auto p-4">
+                                            <img
+                                                className="h-8 mr-4 inline-block"
+                                                src='https://lithi.io/file/RVtD.svg'
+                                                alt="logo"
+                                            />
+                                            <span className='text-xl'>{GetHomeScripts('addToServerButton')}</span>
+                                        </div>
 
-                                </button>
-                                <button
-                                    className={`text-primary bg-content w-72 mx-auto font-semibold rounded focus:outline-none inline-flex shadow-xl`}
-                                    onClick={() => history.push('/documentation')}
-                                    type='submit'
-                                >
-                                    <div className="m-auto p-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 mr-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="white">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                        </svg>
-                                        <span className='text-xl '>{GetHomeScripts('documentationButton')}</span>
-                                    </div>
+                                    </button>
+                                    <button
+                                        className={`text-primary bg-content w-full sm:w-72 mx-auto font-semibold rounded focus:outline-none inline-flex shadow-xl`}
+                                        onClick={() => history.push('/documentation')}
+                                        type='submit'
+                                    >
+                                        <div className="m-auto p-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 mr-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="white">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                            </svg>
+                                            <span className='text-xl '>{GetHomeScripts('documentationButton')}</span>
+                                        </div>
 
-                                </button>
+                                    </button>
+                                </div>
                             </div>
-
                         </div>
                         {/* Stats Part */}
                         <div className='container rounded-xl pb-10 text-center grid grid-cols-2 lg:grid-cols-4'>
@@ -185,6 +191,9 @@ export default function Home() {
                     </Slide>
                 </div>
             </main>
+            <div id="footer-wrapper">
+                <Footer />
+            </div>
         </div>
     );
 }

@@ -140,6 +140,19 @@ export default function Header() {
                                                         </Menu.Item>
                                                         <Menu.Item>
                                                             <button
+                                                                onClick={() => {
+                                                                    user ?
+                                                                        history.push(`/user_settings`)
+                                                                        :
+                                                                        handleLogin();
+                                                                }}
+                                                                className="w-full block rounded p-2 text-sm text-primary text-left hover:bg-content focus:outline-none"
+                                                            >
+                                                                User Settings
+                                                            </button>
+                                                        </Menu.Item>
+                                                        <Menu.Item>
+                                                            <button
                                                                 onClick={signOut}
                                                                 className="w-full block rounded p-2 text-sm text-red-500 text-left hover:bg-red-500 hover:text-primary focus:outline-none"
                                                             >
@@ -179,6 +192,19 @@ export default function Header() {
                                 className="block rounded w-full h-full p-2 text-sm text-primary text-left hover:bg-content focus:outline-none"
                             >
                                 Dashboard
+                            </button>
+                        </div>
+                        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                            <button
+                                onClick={() => {
+                                    user ?
+                                        history.push(`/user_settings`)
+                                        :
+                                        handleLogin();
+                                }}
+                                className="w-full block rounded p-2 text-sm text-primary text-left hover:bg-content focus:outline-none"
+                            >
+                                User Settings
                             </button>
                         </div>
                         <div className="px-2 py-2 border-t border-gray-700 flex">

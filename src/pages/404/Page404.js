@@ -1,3 +1,6 @@
+
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import { Helmet } from 'react-helmet-async';
 import { useHistory } from 'react-router-dom';
 
@@ -5,12 +8,15 @@ export default function Page404() {
     const history = useHistory();
 
     return (
-        <div className='w-full'>
+        <div className='w-full flex flex-col'>
             <Helmet>
                 <meta name='robots' content='noindex' />
             </Helmet>
-            <main>
-                <div className="container p-24 2xl:px-80 flex mx-auto">
+            <div id="header-wrapper">
+                <Header />
+            </div>
+            <main className='flex-grow'>
+                <div className="container p-24 2xl:px-80 flex h-3/4 m-auto">
                     <div className='flex-grow-0 m-auto'>
                         <button onClick={() => history.push('/')} className='text-6xl text-primary font-extrabold flex-grow-0 cursor-pointer'>Tetherer</button>
                         <h1 className='text-4xl text-red-700 font-extrabold flex-grow-0 pt-8'>Page Not Found</h1>
@@ -18,6 +24,9 @@ export default function Page404() {
                     </div>
                 </div>
             </main>
+            <div id="footer-wrapper">
+                <Footer />
+            </div>
         </div>
     )
 }

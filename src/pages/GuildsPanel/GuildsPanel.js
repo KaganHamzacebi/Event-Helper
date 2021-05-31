@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { useState, useContext, useEffect } from 'react';
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
 import './GuildsPanel.css';
@@ -7,8 +9,7 @@ import './GuildsPanel.css';
 export default function GuildsPanel() {
     const history = useHistory();
 
-    const { userToken } = useContext(UserContext);
-    const [managedGuilds, setManagedGuilds] = useState([]);
+    const { userToken, userGuilds, setUserGuilds } = useContext(UserContext);
     const [ready, setReady] = useState(false);
 
     useEffect(() => {
@@ -18,7 +19,7 @@ export default function GuildsPanel() {
                     authorization: userToken,
                 }
             });
-            setManagedGuilds(managedGuildsResponse.data);
+            setUserGuilds(managedGuildsResponse.data);
             setReady(true);
         }
 
@@ -41,113 +42,121 @@ export default function GuildsPanel() {
     }
 
     return (
-        <div className='container h-full mx-auto px-6 2xl:px-40'>
-            <div className='md:px-60 md:py-12 py-4'>
-                <h1 className='text-white font-extrabold text-2xl text-center uppercase pb-4'>Please select a server</h1>
-                {
-                    ready ?
-                        <div>
-                            {
-                                managedGuilds.map(guild => {
-                                    return <div key={guild.id} className='flex border border-gray-700 hover:border-gray-400 transition-color duration-700 group mt-2 rounded-lg mx-2 cursor-pointer'>
-                                        <div
-                                            className='flex-grow p-2 rounded my-auto whitespace-nowrap truncate'
-                                            onClick={() => handleClick(guild)}
-                                        >
-                                            {
-                                                guild.icon ?
-                                                    <img className='h-8 rounded-full inline-block mr-2'
-                                                        src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp`}
-                                                        alt="guild_icon"
-                                                    />
-                                                    :
-                                                    <img className='h-6 rounded-full inline-block mr-2'
-                                                        src='https://discord.com/assets/3437c10597c1526c3dbd98c737c2bcae.svg'
-                                                        alt="guild_icon_none"
-                                                    />
-                                            }
-                                            <span className='text-lg font-bold text-primary'>{guild.name}</span>
-                                        </div>
-                                        <div className={`bg-gray-500 bg-opacity-20 ${guild.bot ? 'group-hover:bg-blue-600' : 'group-hover:bg-green-600'} transition duration-700 rounded-r p-4`}>
-                                            <span className={`h-full rounded font-bold text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`} type='submit'>{guild.bot ? 'Go To Dashboard' : 'Add to Server'}</span>
-                                        </div>
-                                    </div>
-                                })
-                            }
-                        </div>
-                        :
-                        //Placeholders - Shimmer
-                        <div>
-                            <div className='flex border border-gray-700 animate-pulse hover:border-gray-400 transition-color duration-700 group mt-2 rounded-lg mx-2'>
-                                <div className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
-                                <div className='inline-block flex-grow my-auto'>
-                                    <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
-                                    <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
-                                </div>
-                                <div className='flex-grow'></div>
-                                <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
-                                    <span className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`} type='submit'>Go To Dashboard</span>
-                                </div>
-                            </div>
-                            <div className='flex border border-gray-700 animate-pulse hover:border-gray-400 transition-color duration-700 group mt-2 rounded-lg mx-2'>
-                                <div className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
-                                <div className='inline-block flex-grow my-auto'>
-                                    <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
-                                    <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
-                                </div>
-                                <div className='flex-grow'></div>
-                                <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
-                                    <span className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`} type='submit'>Go To Dashboard</span>
-                                </div>
-                            </div>
-                            <div className='flex border border-gray-700 animate-pulse hover:border-gray-400 transition-color duration-700 group mt-2 rounded-lg mx-2'>
-                                <div className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
-                                <div className='inline-block flex-grow my-auto'>
-                                    <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
-                                    <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
-                                </div>
-                                <div className='flex-grow'></div>
-                                <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
-                                    <span className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`} type='submit'>Go To Dashboard</span>
-                                </div>
-                            </div>
-                            <div className='flex border border-gray-700 animate-pulse hover:border-gray-400 transition-color duration-700 group mt-2 rounded-lg mx-2'>
-                                <div className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
-                                <div className='inline-block flex-grow my-auto'>
-                                    <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
-                                    <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
-                                </div>
-                                <div className='flex-grow'></div>
-                                <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
-                                    <span className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`} type='submit'>Go To Dashboard</span>
-                                </div>
-                            </div>
-                            <div className='flex border border-gray-700 animate-pulse hover:border-gray-400 transition-color duration-700 group mt-2 rounded-lg mx-2'>
-                                <div className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
-                                <div className='inline-block flex-grow my-auto'>
-                                    <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
-                                    <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
-                                </div>
-                                <div className='flex-grow'></div>
-                                <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
-                                    <span className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`} type='submit'>Go To Dashboard</span>
-                                </div>
-                            </div>
-                            <div className='flex border border-gray-700 animate-pulse hover:border-gray-400 transition-color duration-700 group mt-2 rounded-lg mx-2'>
-                                <div className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
-                                <div className='inline-block flex-grow my-auto'>
-                                    <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
-                                    <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
-                                </div>
-                                <div className='flex-grow'></div>
-                                <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
-                                    <span className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`} type='submit'>Go To Dashboard</span>
-                                </div>
-                            </div>
-                        </div>
-                }
-
+        <div>
+            <div id="header-wrapper">
+                <Header />
             </div>
-        </div >
+            <div className='container mx-auto px-6 2xl:px-40'>
+                <div className='md:px-60 md:py-12 py-4'>
+                    <h1 className='text-white font-extrabold text-2xl text-center uppercase pb-4'>Please select a server</h1>
+                    {
+                        ready ?
+                            <div>
+                                {
+                                    userGuilds.map(guild => {
+                                        return <div key={guild.id} className='flex border border-gray-700 hover:border-gray-400 transition-color duration-700 group mt-2 rounded-lg mx-2 cursor-pointer'>
+                                            <div
+                                                className='flex-grow p-2 rounded my-auto whitespace-nowrap truncate'
+                                                onClick={() => handleClick(guild)}
+                                            >
+                                                {
+                                                    guild.icon ?
+                                                        <img className='h-8 rounded-full inline-block mr-2'
+                                                            src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp`}
+                                                            alt="guild_icon"
+                                                        />
+                                                        :
+                                                        <img className='h-6 rounded-full inline-block mr-2'
+                                                            src='https://discord.com/assets/3437c10597c1526c3dbd98c737c2bcae.svg'
+                                                            alt="guild_icon_none"
+                                                        />
+                                                }
+                                                <span className='text-lg font-bold text-primary'>{guild.name}</span>
+                                            </div>
+                                            <div className={`bg-gray-500 bg-opacity-20 ${guild.bot ? 'group-hover:bg-blue-600' : 'group-hover:bg-green-600'} transition duration-700 rounded-r p-4`}>
+                                                <span className={`h-full rounded font-bold text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`} type='submit'>{guild.bot ? 'Go To Dashboard' : 'Add to Server'}</span>
+                                            </div>
+                                        </div>
+                                    })
+                                }
+                            </div>
+                            :
+                            //Placeholders - Shimmer
+                            <div>
+                                <div className='flex border border-gray-700 animate-pulse transition-color duration-700 group mt-2 rounded-lg mx-2'>
+                                    <div className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
+                                    <div className='inline-block flex-grow my-auto'>
+                                        <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
+                                        <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
+                                    </div>
+                                    <div className='flex-grow'></div>
+                                    <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
+                                        <span className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`} type='submit'>Go To Dashboard</span>
+                                    </div>
+                                </div>
+                                <div className='flex border border-gray-700 animate-pulse transition-color duration-700 group mt-2 rounded-lg mx-2'>
+                                    <div className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
+                                    <div className='inline-block flex-grow my-auto'>
+                                        <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
+                                        <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
+                                    </div>
+                                    <div className='flex-grow'></div>
+                                    <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
+                                        <span className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`} type='submit'>Go To Dashboard</span>
+                                    </div>
+                                </div>
+                                <div className='flex border border-gray-700 animate-pulse transition-color duration-700 group mt-2 rounded-lg mx-2'>
+                                    <div className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
+                                    <div className='inline-block flex-grow my-auto'>
+                                        <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
+                                        <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
+                                    </div>
+                                    <div className='flex-grow'></div>
+                                    <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
+                                        <span className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`} type='submit'>Go To Dashboard</span>
+                                    </div>
+                                </div>
+                                <div className='flex border border-gray-700 animate-pulse transition-color duration-700 group mt-2 rounded-lg mx-2'>
+                                    <div className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
+                                    <div className='inline-block flex-grow my-auto'>
+                                        <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
+                                        <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
+                                    </div>
+                                    <div className='flex-grow'></div>
+                                    <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
+                                        <span className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`} type='submit'>Go To Dashboard</span>
+                                    </div>
+                                </div>
+                                <div className='flex border border-gray-700 animate-pulse transition-color duration-700 group mt-2 rounded-lg mx-2'>
+                                    <div className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
+                                    <div className='inline-block flex-grow my-auto'>
+                                        <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
+                                        <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
+                                    </div>
+                                    <div className='flex-grow'></div>
+                                    <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
+                                        <span className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`} type='submit'>Go To Dashboard</span>
+                                    </div>
+                                </div>
+                                <div className='flex border border-gray-700 animate-pulse transition-color duration-700 group mt-2 rounded-lg mx-2'>
+                                    <div className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
+                                    <div className='inline-block flex-grow my-auto'>
+                                        <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
+                                        <div className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
+                                    </div>
+                                    <div className='flex-grow'></div>
+                                    <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
+                                        <span className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`} type='submit'>Go To Dashboard</span>
+                                    </div>
+                                </div>
+                            </div>
+                    }
+
+                </div>
+            </div >
+            <div id="footer-wrapper">
+                <Footer />
+            </div>
+        </div>
     )
 }
