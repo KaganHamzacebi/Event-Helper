@@ -1,6 +1,6 @@
 import { UserContext } from '../App';
 import { useCookies } from 'react-cookie';
-import { useHistory } from 'react-router-dom';
+import { useHistory, NavLink, Link } from 'react-router-dom';
 import React, { Fragment, useContext } from "react";
 import { GetHeaderScripts } from '../locales/Scripts';
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
@@ -46,40 +46,44 @@ export default function Header() {
                         <div className="flex items-center justify-between h-16">
                             <div className="flex items-center">
                                 <div className="flex-shrink-0">
-                                    <button onClick={() => history.push('/')}>
+                                    <Link to='/'>
                                         <img
-                                            className="h-8 w-8 cursor-pointer"
+                                            className="h-8 w-8 cursor-pointer focus:outline-none"
                                             src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
                                             alt="Workflow"
                                         />
-                                    </button>
+                                    </Link>
                                 </div>
                                 <div className="hidden md:block">
                                     <div className="ml-10 flex items-baseline space-x-4">
-                                        <button
+                                        <NavLink
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
-                                            onClick={() => history.push('/integrations')}
+                                            to='/integrations'
+                                            activeClassName='bg-gray-700'
                                         >
                                             {GetHeaderScripts('integrations')}
-                                        </button>
-                                        <button
+                                        </NavLink>
+                                        <NavLink
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
-                                            onClick={() => history.push('/features')}
+                                            to='/features'
+                                            activeClassName='bg-gray-700'
                                         >
                                             {GetHeaderScripts('features')}
-                                        </button>
-                                        <button
+                                        </NavLink>
+                                        <NavLink
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
-                                            onClick={() => history.push('/documentation')}
+                                            to='/documentation'
+                                            activeClassName='bg-gray-700'
                                         >
                                             {GetHeaderScripts('documentation')}
-                                        </button>
-                                        <button
+                                        </NavLink>
+                                        <NavLink
                                             className="text-primary hover:bg-gray-700 hover:text-white focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
-                                            onClick={() => history.push('/commands')}
+                                            to='/commands'
+                                            activeClassName='bg-gray-700'
                                         >
                                             {GetHeaderScripts('commands')}
-                                        </button>
+                                        </NavLink>
                                     </div>
                                 </div>
                             </div>

@@ -54,11 +54,8 @@ export default function GuildsPanel() {
                             <div>
                                 {
                                     userGuilds.map(guild => {
-                                        return <div key={guild.id} className='flex border border-gray-700 hover:border-gray-400 transition-color duration-700 group mt-2 rounded-lg mx-2 cursor-pointer'>
-                                            <div
-                                                className='flex-grow p-2 rounded my-auto whitespace-nowrap truncate'
-                                                onClick={() => handleClick(guild)}
-                                            >
+                                        return <div key={guild.id} onClick={() => handleClick(guild)} className='flex border border-gray-700 hover:border-gray-400 transition-color duration-700 group mt-2 rounded-lg mx-2 cursor-pointer'>
+                                            <div className='flex-grow p-2 rounded my-auto whitespace-nowrap truncate'>
                                                 {
                                                     guild.icon ?
                                                         <img className='h-8 rounded-full inline-block mr-2'
