@@ -3,10 +3,10 @@ import CountUp from 'react-countup';
 import { Helmet } from 'react-helmet-async';
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { useHistory } from 'react-router-dom';
 import { metaData } from '../../utils/MetaData';
 import { Zoom, Slide } from "react-awesome-reveal";
-import ExampleVideo from '../../assets/example.webm';
+import ExampleVideo from '../../assets/example.mp4';
+import { useHistory, Link } from 'react-router-dom';
 import { GetHomeScripts } from '../../locales/Scripts';
 
 export default function Home() {
@@ -63,9 +63,9 @@ export default function Home() {
                                         </div>
 
                                     </button>
-                                    <button
+                                    <Link
                                         className={`text-primary bg-content w-full sm:w-72 mx-auto font-semibold rounded focus:outline-none inline-flex shadow-xl`}
-                                        onClick={() => history.push('/documentation')}
+                                        to='/documentation'
                                         type='submit'
                                     >
                                         <div className="m-auto p-4">
@@ -75,7 +75,7 @@ export default function Home() {
                                             <span className='text-xl '>{GetHomeScripts('documentationButton')}</span>
                                         </div>
 
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

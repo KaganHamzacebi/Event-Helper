@@ -1,12 +1,14 @@
 import './Dashboard.css'
 import axios from 'axios';
-import { useState, useEffect, createContext } from 'react';
-import SelectIconInput from '../../components/SelectIconInput/SelectIconInput';
-import { Switch, useHistory, useRouteMatch } from 'react-router';
-import { Route, useParams } from 'react-router-dom';
 import { UserContext } from '../../App';
 import React, { useContext } from "react";
-import GeneralSettings from './DashboardPages/GeneralSettings';
+import { Helmet } from 'react-helmet-async';
+import { useState, useEffect, createContext } from 'react';
+import { Route, useParams, NavLink } from 'react-router-dom';
+import { Switch, useHistory, useRouteMatch } from 'react-router';
+import SelectIconInput from '../../components/SelectIconInput/SelectIconInput';
+/* Pages */
+import GuildSettings from './DashboardPages/GuildSettings';
 
 export const GuildSettingsContext = createContext(null);
 
@@ -58,15 +60,19 @@ export default function Dashboard() {
 
     return (
         <div className='flex w-full h-full'>
+            <Helmet>
+                <title>Dashboard | Tetherer</title>
+                <meta name='robots' content='noindex' />
+            </Helmet>
             {/* Sidebar */}
             <div className={`${isOpen ? '-translate-x-full' : ''} transform transition-transform duration-500 flex fixed flex-shrink-0 flex-col flex-nowrap sm:static w-full sm:w-72 h-full bg-home pt-6 p-5 shadow-md`}>
                 <div className='flex flex-row items-center'>
-                    <div className='flex flex-grow cursor-pointer' onClick={() => history.push('/')}>
+                    <NavLink to='/' className='flex flex-grow cursor-pointer' onClick={() => history.push('/')}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" viewBox="0 0 20 20" fill="white">
                             <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
                         </svg>
                         <span className='text-primary font-bold text-2xl ml-2 flex-grow'>Tetherer</span>
-                    </div>
+                    </NavLink>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 visible sm:hidden" viewBox="0 0 20 20" fill="white" onClick={() => setIsOpen(!isOpen)}>
                         <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
@@ -95,25 +101,25 @@ export default function Dashboard() {
                     <div className='flex mt-6 flex-row items-center p-2'>
                         <span className='text-primary text-lg font-semibold uppercase'>Guild Settings</span>
                     </div>
-                    <div className='flex flex-row items-center bg-header bg-opacity-40 p-2 rounded cursor-pointer' onClick={() => history.push(url + '/general_settings')}>
+                    <NavLink to={url + '/guild_settings'} className='flex flex-row items-center p-2 rounded group cursor-pointer'>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="white">
                             <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
                         </svg>
                         <span className='ml-2 text-primary'>General</span>
-                    </div>
-                    <div className='flex flex-row items-center p-2 rounded group cursor-pointer'>
+                    </NavLink>
+                    <NavLink to={url + '/guild_settings'} className='flex flex-row items-center p-2 rounded group cursor-pointer'>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="white">
                             <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
                         <span className='ml-2 text-primary text-opacity-70 trainsition-all duration-500 group-hover:text-opacity-100'>Permissions</span>
-                    </div>
-                    <div className='flex flex-row items-center p-2 rounded group cursor-pointer'>
+                    </NavLink>
+                    <NavLink to={url + '/guild_settings'} className='flex flex-row items-center p-2 rounded group cursor-pointer'>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="white">
                             <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
                             <path fillRule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clipRule="evenodd" />
                         </svg>
                         <span className='ml-2 text-primary text-opacity-70 trainsition-all duration-500 group-hover:text-opacity-100'>Log Channels</span>
-                    </div>
+                    </NavLink>
                 </div>
                 {/* Events */}
                 <div className='mt-2'>
@@ -202,11 +208,11 @@ export default function Dashboard() {
                         <GuildSettingsContext.Provider value={guildSettings}>
                             <Switch>
                                 <Route exact path={path}>
-                                    <GeneralSettings />
+                                    <GuildSettings />
                                 </Route>
-                                <Route path={`${path}/general_settings`}>
+                                <Route path={`${path}/guild_settings`}>
                                     asdasd
-                            </Route>
+                                </Route>
                             </Switch>
                         </GuildSettingsContext.Provider>
                     </div>

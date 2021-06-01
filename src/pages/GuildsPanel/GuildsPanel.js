@@ -4,6 +4,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
+import { Helmet } from 'react-helmet-async';
 import './GuildsPanel.css';
 
 export default function GuildsPanel() {
@@ -43,6 +44,10 @@ export default function GuildsPanel() {
 
     return (
         <div>
+            <Helmet>
+                <title>Guilds Panel | Tetherer</title>
+                <meta name='robots' content='noindex' />
+            </Helmet>
             <div id="header-wrapper">
                 <Header />
             </div>
