@@ -5,7 +5,8 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { metaData } from '../../utils/MetaData';
 import { Zoom, Slide } from "react-awesome-reveal";
-import ExampleVideo from '../../assets/example.mp4';
+import ExampleVideoMP4 from '../../assets/example.mp4';
+import ExampleVideoWebM from '../../assets/example.webm';
 import { useHistory, Link } from 'react-router-dom';
 import { GetHomeScripts } from '../../locales/Scripts';
 
@@ -130,7 +131,8 @@ export default function Home() {
                             <div className='w-full lg:w-8/12 p-4 lg:mt-12'>
                                 {/* Gif Place */}
                                 <video className='rounded-xl' loop autoPlay muted playsInline>
-                                    <source src={ExampleVideo} type="video/webm" />
+                                    <source src={ExampleVideoWebM} type="video/mp4" />
+                                    <source src={ExampleVideoMP4} type="video/webm" />
                                 </video>
                             </div>
                         </div>
@@ -180,7 +182,8 @@ export default function Home() {
                             <div className='w-full lg:w-8/12 p-4 lg:mt-12'>
                                 {/* Gif Place */}
                                 <video className='rounded-xl' loop autoPlay muted playsInline>
-                                    <source src={ExampleVideo} type="video/webm" />
+                                    <source src={ExampleVideoWebM} type="video/mp4" />
+                                    <source src={ExampleVideoMP4} type="video/webm" />
                                 </video>
                             </div>
                             <div className='w-full lg:w-4/12 p-12 m-auto'>
