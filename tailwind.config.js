@@ -14,7 +14,8 @@ module.exports = {
         'primary': '#6366F1',
         'primary-light': '#7F82F2',
         'white': '#FFFFFF',
-        'danger': '#e3342f'
+        'danger': '#e3342f',
+        'green': '#3ba55d'
       },
       textColor: {
         'primary': '#FFFFFF',
@@ -45,6 +46,7 @@ module.exports = {
       borderColor: ['checked'],
       textColor: ['active'],
       animation: ['hover', 'focus'],
+      borderRadius: ['first', 'last'],
     }
   },
   plugins: [],

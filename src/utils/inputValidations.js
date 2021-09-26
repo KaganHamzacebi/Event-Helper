@@ -21,7 +21,10 @@ export const validations = {
 
 export function validate(name, value, setter) {
     const lowerName = name.toLowerCase();
-    if (validations[lowerName] === undefined) return true;
+    if (validations[lowerName] === undefined) {
+        setter(true);
+        return true;
+    }
     const isValid = validations[lowerName].validate(value);
     setter(isValid);
     return isValid;

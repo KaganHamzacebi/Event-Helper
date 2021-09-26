@@ -1,5 +1,6 @@
 import './Dashboard.css'
 import axios from 'axios';
+import { Link, Element } from 'react-scroll';
 import { UserContext } from '../../App';
 import React, { useContext } from "react";
 import { Helmet } from 'react-helmet-async';
@@ -7,6 +8,7 @@ import { useState, useEffect, createContext } from 'react';
 import { Route, useParams, NavLink } from 'react-router-dom';
 import { Switch, useHistory, useRouteMatch } from 'react-router';
 import SelectIconInput from '../../components/SelectIconInput/SelectIconInput';
+
 /* Pages */
 import GuildSettings from './DashboardPages/GuildSettings';
 
@@ -65,7 +67,7 @@ export default function Dashboard() {
                 <meta name='robots' content='noindex' />
             </Helmet>
             {/* Sidebar */}
-            <div className={`${isOpen ? '-translate-x-full' : ''} transform transition-transform duration-500 flex fixed flex-shrink-0 flex-col flex-nowrap sm:static w-full sm:w-72 h-full bg-home pt-6 p-5 shadow-md`}>
+            <div className={`${isOpen ? '-translate-x-full' : ''} z-50 transform transition-transform duration-500 flex fixed flex-shrink-0 flex-col flex-nowrap sm:static w-full sm:w-72 h-full bg-home pt-6 p-5 shadow-md`}>
                 <div className='flex flex-row items-center'>
                     <NavLink to='/' className='flex flex-grow cursor-pointer' onClick={() => history.push('/')}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" viewBox="0 0 20 20" fill="white">
@@ -96,31 +98,6 @@ export default function Dashboard() {
                             />}
                         </div>
                 }
-                {/* Guild Settings */}
-                <div>
-                    <div className='flex mt-6 flex-row items-center p-2'>
-                        <span className='text-primary text-lg font-semibold uppercase'>Guild Settings</span>
-                    </div>
-                    <NavLink to={url + '/guild_settings'} className='flex flex-row items-center p-2 rounded group cursor-pointer'>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="white">
-                            <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
-                        </svg>
-                        <span className='ml-2 text-primary'>General</span>
-                    </NavLink>
-                    <NavLink to={url + '/guild_settings'} className='flex flex-row items-center p-2 rounded group cursor-pointer'>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="white">
-                            <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                        <span className='ml-2 text-primary text-opacity-70 trainsition-all duration-500 group-hover:text-opacity-100'>Permissions</span>
-                    </NavLink>
-                    <NavLink to={url + '/guild_settings'} className='flex flex-row items-center p-2 rounded group cursor-pointer'>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="white">
-                            <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
-                            <path fillRule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clipRule="evenodd" />
-                        </svg>
-                        <span className='ml-2 text-primary text-opacity-70 trainsition-all duration-500 group-hover:text-opacity-100'>Log Channels</span>
-                    </NavLink>
-                </div>
                 {/* Events */}
                 <div className='mt-2'>
                     <div className='flex flex-row items-center p-2'>
@@ -139,6 +116,31 @@ export default function Dashboard() {
                         </svg>
                         <span className='ml-2 text-primary text-opacity-70 trainsition-all duration-500 group-hover:text-opacity-100'>Statistics</span>
                     </div>
+                </div>
+                {/* Guild Settings */}
+                <div>
+                    <div className='flex flex-row items-center p-2'>
+                        <span className='text-primary text-lg font-semibold uppercase'>Guild Settings</span>
+                    </div>
+                    <Link to="general" spy={true} smooth={true} containerId="dashboardScrollContainer" className='flex flex-row items-center p-2 rounded group cursor-pointer'>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="white">
+                            <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
+                        </svg>
+                        <span className='ml-2 text-primary'>General</span>
+                    </Link>
+                    <Link to="permissions" spy={true} smooth={true} containerId="dashboardScrollContainer" className='flex flex-row items-center p-2 rounded group cursor-pointer'>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="white">
+                            <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span className='ml-2 text-primary text-opacity-70 trainsition-all duration-500 group-hover:text-opacity-100'>Permissions</span>
+                    </Link>
+                    <Link to="logChannel" spy={true} smooth={true} containerId="dashboardScrollContainer" className='flex flex-row items-center p-2 rounded group cursor-pointer'>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="white">
+                            <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
+                            <path fillRule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clipRule="evenodd" />
+                        </svg>
+                        <span className='ml-2 text-primary text-opacity-70 trainsition-all duration-500 group-hover:text-opacity-100'>Log Channels</span>
+                    </Link>
                 </div>
                 {/* Premium */}
                 <div className='mt-2'>
@@ -202,21 +204,14 @@ export default function Dashboard() {
                     </svg>
                 </div>
                 {/* Content */}
-                <div className='p-12 flex flex-col bg-content overflow-y-auto dashboard-content-wrapper'>
+                <Element id='dashboardScrollContainer' className='element p-4 md:p-12 flex flex-col bg-content overflow-y-auto dashboard-content-wrapper'>
                     {/* Inner Content */}
-                    <div className='border-4 flex-grow border-dashed border-white rounded'>
+                    <div className='flex-grow rounded'>
                         <GuildSettingsContext.Provider value={guildSettings}>
-                            <Switch>
-                                <Route exact path={path}>
-                                    <GuildSettings />
-                                </Route>
-                                <Route path={`${path}/guild_settings`}>
-                                    asdasd
-                                </Route>
-                            </Switch>
+                            <GuildSettings />
                         </GuildSettingsContext.Provider>
                     </div>
-                </div>
+                </Element>
             </div>
         </div>
     )
