@@ -23,7 +23,8 @@ export default function Header() {
 
     function handleLogin() {
         const uri = encodeURIComponent(process.env.REACT_APP_WEB_URL + '/login_redirect');
-        window.open(`https://discord.com/api/oauth2/authorize?client_id=833070237247209499&redirect_uri=${uri}&response_type=code&scope=identify%20email%20guilds`, '_blank', 'width=520,height=820');
+        const clientID = process.env.REACT_APP_CLIENT_ID
+        window.open(`https://discord.com/api/oauth2/authorize?client_id=${clientID}&redirect_uri=${uri}&response_type=code&scope=identify%20email%20guilds`, '_blank', 'width=520,height=820');
     }
 
     function signOut() {
