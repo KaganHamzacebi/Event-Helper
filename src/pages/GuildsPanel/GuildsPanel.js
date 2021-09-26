@@ -38,7 +38,8 @@ export default function GuildsPanel() {
             history.push(`/dashboard/${guild.id}`)
         }
         else {
-            window.open(`https://discord.com/api/oauth2/authorize?client_id=833070237247209499&permissions=8&scope=bot&guild_id=${guild.id}`, '_blank', 'width=520,height=820');
+            const clientID = process.env.REACT_APP_CLIENT_ID
+            window.open(`https://discord.com/api/oauth2/authorize?client_id=${clientID}&permissions=8&scope=bot&guild_id=${guild.id}`, '_blank', 'width=520,height=820');
         }
     }
 
