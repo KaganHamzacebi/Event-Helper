@@ -16,8 +16,6 @@ export default function SelectInput({
     const [focusSelect, setFocusSelect] = useState(false);
     const [value, setValue] = useState(content[defaultIndex]);
 
-    console.log(content);
-
     const divRef = useRef(null);
 
     return (

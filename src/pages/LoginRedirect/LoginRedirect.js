@@ -1,10 +1,10 @@
-import axios from 'axios';
 import moment from 'moment';
 import { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
+import UserService from '../../service/UserService';
 
 export default function LoginRedirect() {
-
+    const userService = new UserService();
     // eslint-disable-next-line
     const [cookies, setCookie] = useCookies(['userToken']);
 
@@ -14,14 +14,9 @@ export default function LoginRedirect() {
         const code = search.get('code');
 
         async function fetchData() {
-            const res = await axios.post('/super_ultra_secret_uncreachable_access_token', {}, {
-                baseURL: process.env.REACT_APP_SERVER_URL,
-                headers: {
-                    authorization: code,
-                },
-            })
-
+            const res = await userService.auth(code);
             const token = res.data;
+
             if (token) {
                 setCookie('userToken', token, {
                     maxAge: parseInt(moment().format('x')),

@@ -1,17 +1,15 @@
-import { useMemo } from 'react';
-import { useTable, usePagination, useSortBy, useFilters, useGlobalFilter } from 'react-table'
 import TextInput from "../../../components/TextInput"
 import SelectInput from "../../../components/SelectInput/SelectInput"
-import EventTable from './EventsTable/EventsTable';
+import EventsTable from './EventsTable/EventsTable';
 
 export default function GuildSettings() {
 
     return (
-        <div>
+        <div className="w-full">
             {/* Event Table */}
             <span className="text-3xl font-bold text-primary">Events</span>
             <div id='eventList' style={{ height: '70vh' }} className="bg-gray-700 bg-opacity-30 p-4 rounded-xl shadow-md my-8 mb-20">
-                <EventTable />
+                <EventsTable />
             </div>
             <span className="text-3xl font-bold text-primary">Guild Settings</span>
             <div id='general' className='bg-gray-700 bg-opacity-30 p-4 rounded-xl shadow-md mt-4'>

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useState, useContext, useEffect } from 'react';
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -6,20 +5,18 @@ import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
 import { Helmet } from 'react-helmet-async';
 import './GuildsPanel.css';
+import UserService from '../../service/UserService';
 
 export default function GuildsPanel() {
     const history = useHistory();
 
+    const userService = new UserService();
     const { userToken, userGuilds, setUserGuilds } = useContext(UserContext);
     const [ready, setReady] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
-            const managedGuildsResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/@me/guilds`, {}, {
-                headers: {
-                    authorization: userToken,
-                }
-            });
+            const managedGuildsResponse = await userService.getGuilds(userToken);
             setUserGuilds(managedGuildsResponse.data);
             setReady(true);
         }

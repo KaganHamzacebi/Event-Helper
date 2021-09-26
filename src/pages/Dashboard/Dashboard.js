@@ -1,5 +1,4 @@
 import './Dashboard.css'
-import axios from 'axios';
 import { Link, Element } from 'react-scroll';
 import { UserContext } from '../../App';
 import React, { useContext } from "react";
@@ -11,6 +10,7 @@ import SelectIconInput from '../../components/SelectIconInput/SelectIconInput';
 
 /* Pages */
 import GuildSettings from './DashboardPages/GuildSettings';
+import GuildService from '../../service/GuildService';
 
 export const GuildSettingsContext = createContext(null);
 
@@ -26,13 +26,11 @@ export default function Dashboard() {
     const [indexGuild, setIndexGuild] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
 
+    const guildService = new GuildService();
+
     useEffect(() => {
         async function fetchData() {
-            const guildSettingsResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/@me/guild_settings`, {}, {
-                headers: {
-                    authorization: userToken,
-                }
-            });
+            const guildSettingsResponse = await guildService.getGuildSettings(userToken);
             setGuildSettings(guildSettingsResponse.data);
         }
 
@@ -189,7 +187,7 @@ export default function Dashboard() {
                 </div>
 
             </div>
-            <div className='flex flex-col flex-grow'>
+            <div className='flex flex-col flex-grow w-screen'>
                 {/* Topbar */}
                 <div className='bg-home-light h-20 flex flex-grow items-center shadow-md px-12'>
                     <span className='text-primary font-bold text-2xl ml-2 flex-grow'>Dashboard</span>
@@ -206,7 +204,7 @@ export default function Dashboard() {
                 {/* Content */}
                 <Element id='dashboardScrollContainer' className='element p-4 md:p-12 flex flex-col bg-content overflow-y-auto dashboard-content-wrapper'>
                     {/* Inner Content */}
-                    <div className='flex-grow rounded'>
+                    <div className='flex-grow rounded w-full'>
                         <GuildSettingsContext.Provider value={guildSettings}>
                             <GuildSettings />
                         </GuildSettingsContext.Provider>
