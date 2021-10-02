@@ -63,7 +63,8 @@ export default function TagPickerInput({
     useEffect(() => {
         //setIsDropdownOpen(focusSelect || focusSearch);
         if (!(focusSelect || focusSearch || focusSearchDiv)) {
-            setMyTimeout(setTimeout(() => setIsDropdownOpen(false), 100));
+            //Bozulursa ilk buraya bak
+            //setMyTimeout(setTimeout(() => setIsDropdownOpen(false), 100));
         } else {
             setIsDropdownOpen(true)
         }
@@ -81,7 +82,7 @@ export default function TagPickerInput({
 
     return (
         <div className='relative' >
-            { title &&
+            {title &&
                 <div className="mb-4">
                     <h3 className="text-2xl font-bold text-primary">{title}</h3>
                     <span className="text-sm text-primary-light">{description}</span>
