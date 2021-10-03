@@ -17,5 +17,4 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     @apply bg-gray-600;
-  }
-    
+}
