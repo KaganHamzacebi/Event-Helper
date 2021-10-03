@@ -56,7 +56,7 @@ export default function EventsTableRow(event) {
         participants: (
             <div className='flex justify-center gap-x-2'>
                 <span className='text-center'>
-                    {event.advanced_options.participant_limit == 0 ? 35 + "/" + "∞" : 35 + "/" + event.advanced_options.participant_limit}
+                    {event.advanced_options.participant_limit === 0 ? 35 + "/" + "∞" : 35 + "/" + event.advanced_options.participant_limit}
                 </span>
                 <UsersIcon className='h-5 my-auto' />
             </div>

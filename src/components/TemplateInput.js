@@ -12,7 +12,7 @@ export default function TemplateInput({
     templates,
     description
 }) {
-    const [selected, setSelected] = useState(0);
+    const [selected, setSelected] = useState('wow');
 
     return (
         <div>
