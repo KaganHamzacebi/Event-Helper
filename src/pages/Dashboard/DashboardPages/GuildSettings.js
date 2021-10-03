@@ -8,8 +8,9 @@ export default function GuildSettings() {
         <div className="w-full">
             {/* Event Table */}
             <span className="text-3xl font-bold text-primary">Events</span>
-            <div id='eventList' style={{ height: '70vh' }} className="bg-gray-700 bg-opacity-30 p-4 rounded-xl shadow-md my-8 mb-20">
-                <EventsTable />
+            <div id='eventList' style={{height: '70vh'}}
+                 className="bg-gray-700 bg-opacity-30 p-4 rounded-xl shadow-md my-8 mb-20">
+                <EventsTable/>
             </div>
             <span className="text-3xl font-bold text-primary">Guild Settings</span>
             <div id='general' className='bg-gray-700 bg-opacity-30 p-4 rounded-xl shadow-md mt-4'>
@@ -26,7 +27,7 @@ export default function GuildSettings() {
                         title="Timezone"
                         description="Please enter the channel that you want to get event"
                         name='timezone'
-                        content={[{ "label": "TRT", "value": "TRT" }]}
+                        content={[{"label": "TRT", "value": "TRT"}]}
                         width='full'
                         height={14}
                         placeholder='Select'
@@ -41,7 +42,7 @@ export default function GuildSettings() {
                         title="Event Leader"
                         description="Please select the event leader role"
                         name='timezone'
-                        content={[{ "label": "TRT", "value": "TRT" }]}
+                        content={[{"label": "TRT", "value": "TRT"}]}
                         width='full'
                         height={14}
                         placeholder='Select'
@@ -50,7 +51,7 @@ export default function GuildSettings() {
                         title="Manager"
                         description="Please select the manager role"
                         name='timezone'
-                        content={[{ "label": "TRT", "value": "TRT" }]}
+                        content={[{"label": "TRT", "value": "TRT"}]}
                         width='full'
                         height={14}
                         placeholder='Select'
@@ -65,7 +66,7 @@ export default function GuildSettings() {
                         title="Event Leader"
                         description="Please select the event leader role"
                         name='timezone'
-                        content={[{ "label": "TRT", "value": "TRT" }]}
+                        content={[{"label": "TRT", "value": "TRT"}]}
                         width='full'
                         height={14}
                         placeholder='Select'
@@ -74,13 +75,13 @@ export default function GuildSettings() {
                         title="Manager"
                         description="Please select the manager role"
                         name='timezone'
-                        content={[{ "label": "TRT", "value": "TRT" }]}
+                        content={[{"label": "TRT", "value": "TRT"}]}
                         width='full'
                         height={14}
                         placeholder='Select'
                     />
                 </div>
             </div>
-        </div >
+        </div>
     )
 }

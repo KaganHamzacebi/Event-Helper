@@ -12,11 +12,11 @@ export default class GuildService extends Service {
         });
 
         const tmpChannels = res.data.channels.map((channel) => {
-            return { label: channel.name, value: channel.id }
+            return {label: channel.name, value: channel.id}
         })
 
         const tmpRoles = res.data.roles.map((role, index) => {
-            return { label: role.name, color: role.color, value: role.id, selected: false }
+            return {label: role.name, color: role.color, value: role.id, selected: false}
         })
 
         return [tmpChannels, tmpRoles];

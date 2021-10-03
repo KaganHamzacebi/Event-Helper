@@ -1,6 +1,6 @@
 import moment from 'moment';
-import { useEffect } from 'react';
-import { useCookies } from 'react-cookie';
+import {useEffect} from 'react';
+import {useCookies} from 'react-cookie';
 import UserService from '../../service/UserService';
 
 export default function LoginRedirect() {
@@ -25,6 +25,7 @@ export default function LoginRedirect() {
                 window.close();
             }
         }
+
         fetchData();
 
         // eslint-disable-next-line

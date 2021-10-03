@@ -1,20 +1,20 @@
 import Tag from './Tag'
 import './TagPickerInput.css'
 import CheckboxInput from '../CheckboxInput';
-import { XIcon } from '@heroicons/react/solid'
-import { SearchIcon } from '@heroicons/react/solid'
-import { ChevronUpIcon } from '@heroicons/react/solid'
-import { useState, useEffect, useReducer, useRef } from 'react';
+import {XIcon} from '@heroicons/react/solid'
+import {SearchIcon} from '@heroicons/react/solid'
+import {ChevronUpIcon} from '@heroicons/react/solid'
+import {useState, useEffect, useReducer, useRef} from 'react';
 
 export default function TagPickerInput({
-    name,
-    title,
-    description,
-    content,
-    height,
-    width,
-    placeholder,
-}) {
+                                           name,
+                                           title,
+                                           description,
+                                           content,
+                                           height,
+                                           width,
+                                           placeholder,
+                                       }) {
 
     /* const initialState = {
         1: { label: "Blue", selected: false },
@@ -25,10 +25,15 @@ export default function TagPickerInput({
     } */
 
     function reducer(state, action) {
-        let newState = { ...state };
+        let newState = {...state};
         switch (action.type) {
             case "TOGGLE":
-                const newValue = { label: state[action.id].label, color: state[action.id].color, value: state[action.id].value, selected: state[action.id].selected ? false : true }
+                const newValue = {
+                    label: state[action.id].label,
+                    color: state[action.id].color,
+                    value: state[action.id].value,
+                    selected: state[action.id].selected ? false : true
+                }
                 newState[action.id] = newValue;
                 return newState;
             case "CLEAR":
@@ -56,7 +61,7 @@ export default function TagPickerInput({
     const searchDivRef = useRef(null)
 
     useEffect(() => {
-        dispatch({ type: "NEW_CONTENT", content: content })
+        dispatch({type: "NEW_CONTENT", content: content})
         // eslint-disable-next-line
     }, [content])
 
@@ -75,28 +80,30 @@ export default function TagPickerInput({
     const [tagPickerValue, setTagPickerValue] = useState([]);
 
     useEffect(() => {
-        let tmp = Object.values(state).filter(tag => tag.selected).map(tag => { return tag.value });
+        let tmp = Object.values(state).filter(tag => tag.selected).map(tag => {
+            return tag.value
+        });
         setTagPickerValue(tmp);
         // eslint-disable-next-line
     }, [state])
 
     return (
-        <div className='relative' >
+        <div className='relative'>
             {title &&
-                <div className="mb-4">
-                    <h3 className="text-2xl font-bold text-primary">{title}</h3>
-                    <span className="text-sm text-primary-light">{description}</span>
-                </div>
+            <div className="mb-4">
+                <h3 className="text-2xl font-bold text-primary">{title}</h3>
+                <span className="text-sm text-primary-light">{description}</span>
+            </div>
             }
             <div className={`relative w-72 ${width && 'w-' + width}`}>
-                <input name={name} value={tagPickerValue} type='hidden' />
+                <input name={name} value={tagPickerValue} type='hidden'/>
                 <div tabIndex="1"
-                    onClick={() => divRef.current.focus()}
-                    ref={divRef}
-                    onFocus={() => setFocusSelect(true)}
-                    onBlur={() => setFocusSelect(false)}
-                    className='pt-1.5 bg-title shadow border border-gray-900 outline-none rounded flex flex-wrap'
-                    style={{ minHeight: height ? height : 56 }}>
+                     onClick={() => divRef.current.focus()}
+                     ref={divRef}
+                     onFocus={() => setFocusSelect(true)}
+                     onBlur={() => setFocusSelect(false)}
+                     className='pt-1.5 bg-title shadow border border-gray-900 outline-none rounded flex flex-wrap'
+                     style={{minHeight: height ? height : 56}}>
                     {
                         Object.keys(state).filter((id) => {
                             return state[id].selected
@@ -106,23 +113,28 @@ export default function TagPickerInput({
                                     key={id}
                                     name={state[id].label}
                                     color={state[id].color}
-                                    action={() => dispatch({ type: "TOGGLE", id: id })}
+                                    action={() => dispatch({type: "TOGGLE", id: id})}
                                     value={name + "_" + state[id].label}
                                 />
                             })
                     }
                 </div>
                 {/* Placeholder */}
-                {!(Object.keys(state).filter((id) => { return state[id].selected }).length > 0) &&
-                    <span className='left-4 text-primary-light text-bold text-lg text-opacity-70 top-1/4 font-sans absolute pointer-events-none' >{placeholder}</span>
+                {!(Object.keys(state).filter((id) => {
+                    return state[id].selected
+                }).length > 0) &&
+                <span
+                    className='left-4 text-primary-light text-bold text-lg text-opacity-70 top-1/4 font-sans absolute pointer-events-none'>{placeholder}</span>
                 }
                 <ChevronUpIcon
                     className={`w-6 text-primary-light absolute pointer-events-none top-1/2 -translate-y-1/2 right-2 transition-transform transform duration-400 ${focusSelect || focusSearch ? "rotate-180" : "rotate-0"}`}
                 />
                 <XIcon
                     className={`w-4 text-primary-light right-8 absolute top-1/2 transform -translate-y-1/2 transition-all duration-500 opacity-0 hover:text-red-600 
-                    ${Object.keys(state).filter((id) => { return state[id].selected }).length > 0 && 'opacity-100'}`}
-                    onClick={() => dispatch({ type: "CLEAR" })}
+                    ${Object.keys(state).filter((id) => {
+                        return state[id].selected
+                    }).length > 0 && 'opacity-100'}`}
+                    onClick={() => dispatch({type: "CLEAR"})}
                 />
             </div>
             <div
@@ -157,7 +169,9 @@ export default function TagPickerInput({
                                         return state[id].label.toLowerCase().includes(searchValue.toLowerCase())
                                     })
                                     .map((id) => {
-                                        return <CheckboxInput key={id} name={state[id].label} checked={state[id].selected} toggleChecked={() => dispatch({ type: "TOGGLE", id: id })} />
+                                        return <CheckboxInput key={id} name={state[id].label}
+                                                              checked={state[id].selected}
+                                                              toggleChecked={() => dispatch({type: "TOGGLE", id: id})}/>
                                     })
                             }
                         </div>

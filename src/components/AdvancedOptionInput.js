@@ -1,9 +1,9 @@
 import Switch from "./Switch/Switch";
 
 export default function AdvancedOptionInput({
-    title,
-    description
-}) {
+                                                title,
+                                                description
+                                            }) {
 
     const advancedOptions = [
         {
@@ -81,7 +81,8 @@ export default function AdvancedOptionInput({
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {
                     advancedOptions.map((advancedOption, index) => {
-                        return <div key={index} className={`flex flex-row border border-gray-900 rounded bg-title mt-4 p-2 h-28 ${advancedOption.disabled ? 'blur-2xl' : ''}`}>
+                        return <div key={index}
+                                    className={`flex flex-row border border-gray-900 rounded bg-title mt-4 p-2 h-28 ${advancedOption.disabled ? 'blur-2xl' : ''}`}>
                             {
                                 title !== '' ?
                                     <div className='ml-2 self-center flex-grow'>
@@ -93,10 +94,10 @@ export default function AdvancedOptionInput({
                             }
                             <div className='self-center mr-4'>
                                 <Switch name={advancedOption.name}
-                                    label={advancedOption.label}
-                                    type={advancedOption.type}
-                                    placeholder={advancedOption.placeholder}
-                                    content={advancedOption.content}
+                                        label={advancedOption.label}
+                                        type={advancedOption.type}
+                                        placeholder={advancedOption.placeholder}
+                                        content={advancedOption.content}
                                 />
                             </div>
                         </div>

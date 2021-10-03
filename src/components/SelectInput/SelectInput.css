@@ -1,21 +1,21 @@
 /* width */
 ::-webkit-scrollbar {
-  @apply w-2;
+    @apply w-2;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  @apply invisible;
+    @apply invisible;
 }
-  
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-500;
-  @apply rounded;
+    @apply bg-gray-500;
+    @apply rounded;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-600;
+    @apply bg-gray-600;
 }
   

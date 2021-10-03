@@ -1,68 +1,68 @@
 import './Switch.css'
 import SelectInput from '../SelectInput/SelectInput';
 import reactCSS from 'reactcss'
-import { SketchPicker } from 'react-color'
-import { useState } from "react"
+import {SketchPicker} from 'react-color'
+import {useState} from "react"
 
 export default function Switch({
-  name,
-  label,
-  type,
-  content,
-  placeholder
-}) {
+                                   name,
+                                   label,
+                                   type,
+                                   content,
+                                   placeholder
+                               }) {
 
-  //Values
-  const [enabled, setEnabled] = useState(false);
-  const [valueNumber, setValueNumber] = useState(0);
-  const [valueText, setValueText] = useState('');
-  const [color, setColor] = useState('#90D140');
+    //Values
+    const [enabled, setEnabled] = useState(false);
+    const [valueNumber, setValueNumber] = useState(0);
+    const [valueText, setValueText] = useState('');
+    const [color, setColor] = useState('#90D140');
 
-  const [displayColorPicker, setDisplayColorPicker] = useState(false);
+    const [displayColorPicker, setDisplayColorPicker] = useState(false);
 
-  const colorPickerStyles = reactCSS({
-    'default': {
-      color: {
-        width: '100%',
-        height: '100%',
-        borderRadius: '2px',
-        background: color,
-      },
-      swatch: {
-        padding: '4px',
-        height: 30,
-        width: 60,
-        background: '#292b2f',
-        borderRadius: '1px',
-        boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
-        display: 'inline-block',
-        cursor: 'pointer',
-      },
-      popover: {
-        position: 'absolute',
-        zIndex: '2',
-      },
-      cover: {
-        position: 'fixed',
-        top: '0px',
-        right: '0px',
-        bottom: '0px',
-        left: '0px',
-      },
-    },
-  });
+    const colorPickerStyles = reactCSS({
+        'default': {
+            color: {
+                width: '100%',
+                height: '100%',
+                borderRadius: '2px',
+                background: color,
+            },
+            swatch: {
+                padding: '4px',
+                height: 30,
+                width: 60,
+                background: '#292b2f',
+                borderRadius: '1px',
+                boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
+                display: 'inline-block',
+                cursor: 'pointer',
+            },
+            popover: {
+                position: 'absolute',
+                zIndex: '2',
+            },
+            cover: {
+                position: 'fixed',
+                top: '0px',
+                right: '0px',
+                bottom: '0px',
+                left: '0px',
+            },
+        },
+    });
 
-  function handleClick() {
-    setDisplayColorPicker(!displayColorPicker)
-  };
+    function handleClick() {
+        setDisplayColorPicker(!displayColorPicker)
+    };
 
-  function handleClose() {
-    setDisplayColorPicker(false)
-  };
+    function handleClose() {
+        setDisplayColorPicker(false)
+    };
 
-  function handleChange(color) {
-    setColor(color.hex);
-  };
+    function handleChange(color) {
+        setColor(color.hex);
+    };
 
   return (
     <div className="flex items-center justify-end w-full">
@@ -123,6 +123,6 @@ export default function Switch({
                   ''
       }
 
-    </div >
-  );
+        </div>
+    );
 }

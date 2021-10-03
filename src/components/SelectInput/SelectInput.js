@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react';
-import { XIcon } from '@heroicons/react/solid'
-import { SearchIcon } from '@heroicons/react/solid'
-import { ChevronUpIcon } from '@heroicons/react/solid'
+import {useState, useEffect} from 'react';
+import {XIcon} from '@heroicons/react/solid'
+import {SearchIcon} from '@heroicons/react/solid'
+import {ChevronUpIcon} from '@heroicons/react/solid'
 
 import './SelectInput.css'
 
 export default function SelectInput({
-    name,
-    title,
-    description,
-    width,
-    height,
-    placeholder,
-    content
-}) {
+                                        name,
+                                        title,
+                                        description,
+                                        width,
+                                        height,
+                                        placeholder,
+                                        content
+                                    }) {
 
     const [focusSelect, setFocusSelect] = useState(false);
     const [focusSearch, setFocusSearch] = useState(false);
@@ -44,13 +44,13 @@ export default function SelectInput({
     return (
         <div className='relative'>
             {title &&
-                <div className='mb-4'>
-                    <h3 className="text-2xl font-bold text-primary">{title}</h3>
-                    <span className="text-sm text-primary-light">{description}</span>
-                </div>
+            <div className='mb-4'>
+                <h3 className="text-2xl font-bold text-primary">{title}</h3>
+                <span className="text-sm text-primary-light">{description}</span>
+            </div>
             }
-            <input name={name} value={value ? value.value : ''} type='hidden' />
-            <div className={`relative ${width ? 'w-' + width : 'width-32'} `} >
+            <input name={name} value={value ? value.value : ''} type='hidden'/>
+            <div className={`relative ${width ? 'w-' + width : 'width-32'} `}>
                 <input
                     type='text'
                     placeholder={placeholder}
@@ -66,7 +66,9 @@ export default function SelectInput({
                 />
                 <XIcon
                     className={`w-4 text-primary-light right-8 absolute top-1/2 transform -translate-y-1/2 transition-all duration-500 opacity-0 hover:text-red-600 ${value && 'opacity-100'}`}
-                    onClick={() => { setValue(null) }}
+                    onClick={() => {
+                        setValue(null)
+                    }}
                 />
             </div>
             <div className={`absolute bg-content ${width ? 'w-' + width : 'width-32'} border rounded mt-1 border-gray-700 shadow-lg z-10 transition-opacity duration-500 transform 
@@ -90,7 +92,8 @@ export default function SelectInput({
                     {
                         filteredData.map((item, index) => {
                             return <div key={index} className='rounded hover:bg-gray-600'>
-                                <p className='text-white pl-3.5 py-1 select-none' onClick={() => setValue(item)}>{item.label}</p>
+                                <p className='text-white pl-3.5 py-1 select-none'
+                                   onClick={() => setValue(item)}>{item.label}</p>
                             </div>
                         })
                     }

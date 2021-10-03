@@ -1,16 +1,16 @@
 import './DateInput.css'
 import moment from 'moment';
-import { useState, useEffect } from "react";
-import { ExclamationIcon } from '@heroicons/react/solid'
-import { validate, getErrorMessage } from "../../utils/inputValidations";
+import {useState, useEffect} from "react";
+import {ExclamationIcon} from '@heroicons/react/solid'
+import {validate, getErrorMessage} from "../../utils/inputValidations";
 
 export default function DateInput({
-    name,
-    title,
-    valueDate,
-    valueTime,
-    description
-}) {
+                                      name,
+                                      title,
+                                      valueDate,
+                                      valueTime,
+                                      description
+                                  }) {
 
     const [value, setValue] = useState(0);
     const [date, setDate] = useState(valueDate);
@@ -36,7 +36,7 @@ export default function DateInput({
         <div>
             <h3 className="text-2xl font-bold text-primary">{title}</h3>
             <span className="text-sm text-primary-light">{description}</span>
-            <input type='hidden' name={name} value={value} />
+            <input type='hidden' name={name} value={value}/>
             <div className="mt-4">
                 <div className="mb-4 pt-0 flex flex-row flex-nowrap w-full md:w-2/3 lg:w-full">
                     <input
@@ -59,7 +59,7 @@ export default function DateInput({
                 </div>
                 <span className={`text-xs font-bold inline-block py-1 px-2 rounded text-red-600 opacity-0 bg-red-300 last:mr-0 mr-1 
                     ${(isTimeValid && isDateValid) ? "transition-opacity duration-800 ease-out opacity-0" : "transition-opacity duration-1000 ease-in opacity-100"}`}>
-                    <ExclamationIcon className="w-4 inline-block" />
+                    <ExclamationIcon className="w-4 inline-block"/>
                     {" " + getErrorMessage("event_date")}
                 </span>
             </div>

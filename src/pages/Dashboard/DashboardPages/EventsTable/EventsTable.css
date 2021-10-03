@@ -1,12 +1,12 @@
 table {
     border-collapse: separate;
     border-spacing: 0 15px;
-  }
+}
 
 td:first-child {
-  border-radius: 10px 0 0 10px;
+    border-radius: 10px 0 0 10px;
 }
 
 td:last-child {
-  border-radius: 0 10px 10px 0;
+    border-radius: 0 10px 10px 0;
 }

@@ -4,34 +4,38 @@
 @tailwind utilities;
 
 body, #root, #root > div {
-  height: 100vh;
-  width: 100vw;
-  overflow-x: hidden;
-  @apply bg-home;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    @apply bg-home;
 }
+
 #root > div {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .menu-item {
-  padding: 0 40px;
-  margin: 5px 10px;
-  user-select: none;
-  cursor: pointer;
-  border: none;
+    padding: 0 40px;
+    margin: 5px 10px;
+    user-select: none;
+    cursor: pointer;
+    border: none;
 }
+
 .menu-item-wrapper.active {
-  border: none;
+    border: none;
 }
+
 .menu-item-wrapper {
     border: none !important;
-  }
+}
+
 .menu-item.active {
-  border: 1px green solid;
+    border: 1px green solid;
 }
 
 .scroll-menu-arrow {
-  padding: 20px;
-  cursor: pointer;
+    padding: 20px;
+    cursor: pointer;
 }

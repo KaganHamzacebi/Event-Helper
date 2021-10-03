@@ -1,8 +1,8 @@
 body {
     background: #34495e;
-  }
-  
-  .bubble {
+}
+
+.bubble {
     animation: expand .75s ease-in-out infinite;
     border-radius: 20px;
     display: inline-block;
@@ -10,33 +10,33 @@ body {
     margin: 0 6px;
     width: 20px;
     height: 20px;
-  }
-  
-  .bubble:nth-child(1) {
+}
+
+.bubble:nth-child(1) {
     background: #27ae60;
-  }
-  
-  .bubble:nth-child(2) {
+}
+
+.bubble:nth-child(2) {
     animation-delay: 180ms;
     background: #f1c40f;
-  }
-  
-  .bubble:nth-child(3) {
+}
+
+.bubble:nth-child(3) {
     animation-delay: 360ms;
     background: #e67e22;
-  }
-  
-  .bubble:nth-child(4) {
+}
+
+.bubble:nth-child(4) {
     animation-delay: 540ms;
     background: #2980b9;
-  }
-  
-  @keyframes expand {
+}
+
+@keyframes expand {
     0% {
-      transform: scale(1);
+        transform: scale(1);
     }
     25% {
-      transform: scale(1.55);
+        transform: scale(1.55);
     }
   }
   

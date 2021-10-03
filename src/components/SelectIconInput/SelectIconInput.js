@@ -1,17 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
-import { XIcon } from '@heroicons/react/solid'
-import { ChevronUpIcon } from '@heroicons/react/solid'
+import {useState, useEffect, useRef} from 'react';
+import {XIcon} from '@heroicons/react/solid'
+import {ChevronUpIcon} from '@heroicons/react/solid'
 
 export default function SelectInput({
-    name,
-    title,
-    description,
-    width,
-    height,
-    defaultIndex,
-    content,
-    onSelect
-}) {
+                                        name,
+                                        title,
+                                        description,
+                                        width,
+                                        height,
+                                        defaultIndex,
+                                        content,
+                                        onSelect
+                                    }) {
 
     const [focusSelect, setFocusSelect] = useState(false);
     const [value, setValue] = useState(content[defaultIndex]);
@@ -21,13 +21,13 @@ export default function SelectInput({
     return (
         <div className='relative'>
             {title &&
-                <div className='mb-4'>
-                    <h3 className="text-2xl font-bold text-primary">{title}</h3>
-                    <span className="text-sm text-primary-light">{description}</span>
-                </div>
+            <div className='mb-4'>
+                <h3 className="text-2xl font-bold text-primary">{title}</h3>
+                <span className="text-sm text-primary-light">{description}</span>
+            </div>
             }
-            <input name={name} value={value ? value.value : ''} type='hidden' />
-            <div className={`relative ${width ? 'w-' + width : 'width-32'} `} >
+            <input name={name} value={value ? value.value : ''} type='hidden'/>
+            <div className={`relative ${width ? 'w-' + width : 'width-32'} `}>
                 <div
                     tabIndex="2"
                     className={`w-full flex border ${height && 'h-' + height} border-gray-900 rounded pl-3.5 pr-8 outline-none ${value ? 'text-primary ' : 'text-gray-500'} bg-title text-lg placeholder-white placeholder-opacity-30  transition duration-800 focus:ring-2 focus:ring-blue-600`}
@@ -62,7 +62,11 @@ export default function SelectInput({
                     {
                         content.map((item, index) => {
                             return (
-                                <div key={index} className='flex items-center rounded hover:bg-gray-600' onClick={() => { setValue(item); onSelect(item.value); }}>
+                                <div key={index} className='flex items-center rounded hover:bg-gray-600'
+                                     onClick={() => {
+                                         setValue(item);
+                                         onSelect(item.value);
+                                     }}>
                                     <img
                                         className="h-12 rounded-full p-2"
                                         src={item.icon}

@@ -1,20 +1,28 @@
 export const validations = {
     "title": {
         errorMessage: "Title can't be empty!",
-        validate: (value) => { return (value.length > 0) }
+        validate: (value) => {
+            return (value.length > 0)
+        }
     },
 
     "channel": {
         errorMessage: "",
-        validate: (value) => { return true }
+        validate: (value) => {
+            return true
+        }
     },
     "event_date": {
         errorMessage: "Date can't be empty!",
-        validate: (value) => { return value !== "" }
+        validate: (value) => {
+            return value !== ""
+        }
     },
     "event_time": {
         errorMessage: "Time can't be empty!",
-        validate: (value) => { return value !== "" }
+        validate: (value) => {
+            return value !== ""
+        }
     }
 
 }

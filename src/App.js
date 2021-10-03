@@ -1,7 +1,7 @@
 import './App.css';
-import { useCookies } from 'react-cookie';
-import { Switch, Route } from 'react-router-dom';
-import { createContext, useState, useEffect } from 'react';
+import {useCookies} from 'react-cookie';
+import {Switch, Route} from 'react-router-dom';
+import {createContext, useState, useEffect} from 'react';
 //Pages
 import Home from './pages/Home/Home';
 import Page404 from './pages/404/Page404';
@@ -23,80 +23,79 @@ import UserService from './service/UserService';
 export const UserContext = createContext(null);
 
 function App() {
-	const userService = new UserService();
-	const [user, setUser] = useState(null);
-	const [loaded, setLoaded] = useState(false);
-	const [userGuilds, setUserGuilds] = useState(null);
-	// eslint-disable-next-line
-	const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
-	// eslint-disable-next-line
-	const [userToken, setUserToken] = useState(cookies['userToken']);
-	const [language, setLanguage] = useState(localStorage.getItem('lang') ? localStorage.getItem('lang') : getNavigatorLang());
+    const userService = new UserService();
+    const [user, setUser] = useState(null);
+    const [loaded, setLoaded] = useState(false);
+    const [userGuilds, setUserGuilds] = useState(null);
+    // eslint-disable-next-line
+    const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
+    // eslint-disable-next-line
+    const [userToken, setUserToken] = useState(cookies['userToken']);
+    const [language, setLanguage] = useState(localStorage.getItem('lang') ? localStorage.getItem('lang') : getNavigatorLang());
 
-	function getNavigatorLang() {
-		const supportedLanguages = ['en', 'tr'];
-		if (supportedLanguages.includes(navigator.language))
-			return navigator.language;
-		return 'en';
-	}
+    function getNavigatorLang() {
+        const supportedLanguages = ['en', 'tr'];
+        if (supportedLanguages.includes(navigator.language))
+            return navigator.language;
+        return 'en';
+    }
 
-	useEffect(() => {
-		if (userGuilds) {
-			setUserGuilds(userGuilds);
-		}
+    useEffect(() => {
+        if (userGuilds) {
+            setUserGuilds(userGuilds);
+        }
 
-		async function fetchData() {
-			if (cookies.userToken) {
-				try {
-					const userResponse = await userService.getUser(cookies.userToken);
-					const user = userResponse.data;
-					setUser(user);
-					setLoaded(true);
-				} catch (e) {
-					removeCookie('userToken');
-					setLoaded(true);
-				}
-			}
-			else {
-				setLoaded(true);
-			}
-		}
+        async function fetchData() {
+            if (cookies.userToken) {
+                try {
+                    const userResponse = await userService.getUser(cookies.userToken);
+                    const user = userResponse.data;
+                    setUser(user);
+                    setLoaded(true);
+                } catch (e) {
+                    removeCookie('userToken');
+                    setLoaded(true);
+                }
+            } else {
+                setLoaded(true);
+            }
+        }
 
-		fetchData();
-		// eslint-disable-next-line
-	}, [userToken])
+        fetchData();
+        // eslint-disable-next-line
+    }, [userToken])
 
-	useEffect(() => {
-		localStorage.setItem('lang', language);
-	}, [language])
+    useEffect(() => {
+        localStorage.setItem('lang', language);
+    }, [language])
 
-	return (
-		<UserContext.Provider value={{ user, setUser, userGuilds, setUserGuilds, language, setLanguage, userToken }}>
-			{loaded ?
-				<div>
-					<div id="content-wrapper" className='flex flex-col flex-grow'>
-						<Switch>
-							<Route exact path="/" component={Home} />
-							<Route exact path="/integrations" component={Integrations} />
-							<Route exact path="/features" component={Features} />
-							<Route exact path="/documentation" component={Documentation} />
-							<Route exact path="/commands" component={Commands} />
-							<Route exact path="/dashboard" component={GuildsPanel} />
-							<Route path="/dashboard/:id" component={Dashboard} />
-							<Route path="/create_event/:token" component={EventCreateForm} />
-							<Route path="/login_redirect" component={LoginRedirect} />
-							<Route exact path="/invalid_token" component={InvalidToken} />
-							<Route exact path="/event_create_success" component={EventCreateSuccess} />
-							<Route exact path="/test" component={Test} />
-							<Route component={Page404} status={404} />
-						</Switch>
-					</div>
-				</div>
-				:
-				<Route component={Loading} />
-			}
-		</UserContext.Provider>
-	);
+    return (
+        <UserContext.Provider value={{user, setUser, userGuilds, setUserGuilds, language, setLanguage, userToken}}>
+            {loaded ?
+                <div>
+                    <div id="content-wrapper" className='flex flex-col flex-grow'>
+                        <Switch>
+                            <Route exact path="/" component={Home}/>
+                            <Route exact path="/integrations" component={Integrations}/>
+                            <Route exact path="/features" component={Features}/>
+                            <Route exact path="/documentation" component={Documentation}/>
+                            <Route exact path="/commands" component={Commands}/>
+                            <Route exact path="/dashboard" component={GuildsPanel}/>
+                            <Route path="/dashboard/:id" component={Dashboard}/>
+                            <Route path="/create_event/:token" component={EventCreateForm}/>
+                            <Route path="/login_redirect" component={LoginRedirect}/>
+                            <Route exact path="/invalid_token" component={InvalidToken}/>
+                            <Route exact path="/event_create_success" component={EventCreateSuccess}/>
+                            <Route exact path="/test" component={Test}/>
+                            <Route component={Page404} status={404}/>
+                        </Switch>
+                    </div>
+                </div>
+                :
+                <Route component={Loading}/>
+            }
+        </UserContext.Provider>
+    );
 }
 
 export default App;

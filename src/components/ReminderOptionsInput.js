@@ -3,18 +3,18 @@ import TagPickerInput from './TagPickerInput/TagPickerInput'
 import TextAreaInput from './TextAreaInput'
 
 export default function ReminderOptionsInput({
-    channelContent,
-    roleContent,
-}) {
+                                                 channelContent,
+                                                 roleContent,
+                                             }) {
 
     const reminderOptions = [
-        { label: '5 minutes', value: 5 },
-        { label: '15 minutes', value: 15 },
-        { label: '30 minutes', value: 30 },
-        { label: '45 minutes', value: 45 },
-        { label: '1 hour', value: 60 },
-        { label: '1.30 hour', value: 90 },
-        { label: '2 hours', value: 120 },
+        {label: '5 minutes', value: 5},
+        {label: '15 minutes', value: 15},
+        {label: '30 minutes', value: 30},
+        {label: '45 minutes', value: 45},
+        {label: '1 hour', value: 60},
+        {label: '1.30 hour', value: 90},
+        {label: '2 hours', value: 120},
     ];
 
     return (

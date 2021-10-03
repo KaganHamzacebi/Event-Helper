@@ -1,15 +1,15 @@
-import { UserContext } from '../App';
-import { useCookies } from 'react-cookie';
-import { useHistory, NavLink, Link } from 'react-router-dom';
-import React, { Fragment, useContext } from "react";
-import { GetHeaderScripts } from '../locales/Scripts';
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import {UserContext} from '../App';
+import {useCookies} from 'react-cookie';
+import {useHistory, NavLink, Link} from 'react-router-dom';
+import React, {Fragment, useContext} from "react";
+import {GetHeaderScripts} from '../locales/Scripts';
+import {MenuIcon, XIcon} from "@heroicons/react/outline";
+import {Disclosure, Menu, Transition} from "@headlessui/react";
 
 export default function Header() {
     const history = useHistory();
 
-    const { user, setUser } = useContext(UserContext);
+    const {user, setUser} = useContext(UserContext);
     // eslint-disable-next-line
     const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
 
@@ -29,19 +29,19 @@ export default function Header() {
 
     function signOut() {
         setUser(null);
-        removeCookie('userToken', { path: '/' });
+        removeCookie('userToken', {path: '/'});
         const origin = window.location.origin;
         if (origin.includes('event')) {
             //do nothing
-        }
-        else if (origin !== '/') {
+        } else if (origin !== '/') {
             history.push('/');
         }
     }
 
     return (
-        <Disclosure as="nav" className="bg-transparent bg-home bg-opacity-50 border-b border-gray-800 border-opacity-50">
-            {({ open }) => (
+        <Disclosure as="nav"
+                    className="bg-transparent bg-home bg-opacity-50 border-b border-gray-800 border-opacity-50">
+            {({open}) => (
                 <>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex items-center justify-between h-16">
@@ -92,7 +92,7 @@ export default function Header() {
                                 <div className="ml-4 flex items-center md:ml-6">
                                     <button
                                         className={`text-primary w-24 text-xs font-semibold rounded focus:outline-none p-2 mr-4 ${user ? 'hidden' : ''}`}
-                                        style={{ backgroundColor: '#7289DA' }}
+                                        style={{backgroundColor: '#7289DA'}}
                                         type='submit'
                                         onClick={handleLogin}
                                     >
@@ -100,11 +100,12 @@ export default function Header() {
                                     </button>
                                     {/* Profile dropdown */}
                                     <Menu as="div" className="ml-3 relative">
-                                        {({ open }) => (
+                                        {({open}) => (
                                             <>
                                                 <div className='flex flex-row'>
                                                     <p className={`text-primary px-3 py-2 rounded-md font-medium ${user ? '' : 'hidden'}`}>{user && user.username}</p>
-                                                    <Menu.Button className={`max-w-xs flex items-center text-sm outline-none focus:outline-none ${user ? '' : 'hidden'}`}>
+                                                    <Menu.Button
+                                                        className={`max-w-xs flex items-center text-sm outline-none focus:outline-none ${user ? '' : 'hidden'}`}>
                                                         <span className="sr-only">Open user menu</span>
                                                         {
                                                             user && user.id &&
@@ -173,12 +174,13 @@ export default function Header() {
                             </div>
                             <div className="-mr-2 flex md:hidden">
                                 {/* Mobile menu button */}
-                                <Disclosure.Button className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                                <Disclosure.Button
+                                    className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
-                                        <XIcon className="block h-6 w-6" aria-hidden="true" />
+                                        <XIcon className="block h-6 w-6" aria-hidden="true"/>
                                     ) : (
-                                        <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                                        <MenuIcon className="block h-6 w-6" aria-hidden="true"/>
                                     )}
                                 </Disclosure.Button>
                             </div>
@@ -246,7 +248,7 @@ export default function Header() {
                                     <div className="my-auto">
                                         <button
                                             className="text-white px-3 py-2 rounded-md text-base font-medium focus:outline-none"
-                                            style={{ backgroundColor: '#7289DA' }}
+                                            style={{backgroundColor: '#7289DA'}}
                                             onClick={handleLogin}
                                         >
                                             Sign In
@@ -258,6 +260,6 @@ export default function Header() {
                 </>
             )
             }
-        </Disclosure >
+        </Disclosure>
     );
 }
