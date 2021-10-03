@@ -67,7 +67,7 @@ export default function GuildsPanel() {
                                                         />
                                                         :
                                                         <img className='h-6 rounded-full inline-block mr-2'
-                                                            src='https://discord.com/assets/3437c10597c1526c3dbd98c737c2bcae.svg'
+                                                            src='https://e1.pngegg.com/pngimages/916/717/png-clipart-clay-os-6-a-macos-icon-discord-round-blue-icon.png'
                                                             alt="guild_icon_none"
                                                         />
                                                 }

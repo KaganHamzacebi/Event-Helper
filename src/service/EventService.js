@@ -6,8 +6,8 @@ export default class EventService extends Service {
         super('/event');
     }
 
-    async createEvent(payload) {
-        const res = await axios.post('/create_event', payload, {
+    async createEvent(payload, token) {
+        const res = await axios.post('/create_event', {payload: payload, token: token}, {
             baseURL: this.endpointBase
         });
 

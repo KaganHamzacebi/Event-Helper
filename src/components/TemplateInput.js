@@ -28,7 +28,7 @@ export default function TemplateInput({
                 {
                     templates.map((tmp, index) => {
                         return <SwiperSlide key={index}>
-                                    <Template id={index} templateName={tmp.templateName} imgUrl={tmp.imgUrl} selected={selected === index ? true : false} select={setSelected} />
+                                    <Template id={tmp.id} templateName={tmp.templateName} imgUrl={tmp.imgUrl} selected={selected === tmp.id ? true : false} select={setSelected} />
                                 </SwiperSlide>
                     })
                 }

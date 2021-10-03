@@ -1,5 +1,7 @@
 import moment from 'moment';
-import { UsersIcon } from '@heroicons/react/solid';
+import {RefreshIcon, UsersIcon} from '@heroicons/react/solid';
+import {PencilAltIcon, XCircleIcon} from "@heroicons/react/outline";
+import ReactTooltip from 'react-tooltip';
 
 export default function EventsTableRow(event) {
 
@@ -49,7 +51,7 @@ export default function EventsTableRow(event) {
         time: (
             <div>
                 <span className='font-bold'>{moment.unix(event.event_date).format("HH:mm")}</span>
-                <br />
+                <br/>
                 <span className='font-bold'>{moment.unix(event.event_date).format("DD MMM YYYY")}</span>
             </div>
         ),
@@ -58,12 +60,26 @@ export default function EventsTableRow(event) {
                 <span className='text-center'>
                     {event.advanced_options.participant_limit === 0 ? 35 + "/" + "∞" : 35 + "/" + event.advanced_options.participant_limit}
                 </span>
-                <UsersIcon className='h-5 my-auto' />
+                <UsersIcon className="h-5 my-auto"/>
             </div>
         ),
         actions: (
-            <div>
-                1234
+            <div className="flex justify-center gap-x-2">
+                <ReactTooltip/>
+                <PencilAltIcon
+                    data-tip="Edit Event"
+                    className="h-6 text-green-600 my-auto focus:outline-none"
+                />
+                <RefreshIcon
+                    data-tip="Repeat Event"
+                    className="h-6 text-green-600 my-auto transition-transform transform duration-500 hover:-rotate-180
+                    focus:outline-none"
+                />
+                <XCircleIcon
+                    data-tip="Cancel Event"
+                    data-type="error"
+                    className="h-6 text-red-500 my-auto focus:outline-none"
+                />
             </div>
         ),
     }

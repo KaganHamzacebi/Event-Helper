@@ -24,22 +24,27 @@ import EventService from "../../service/EventService";
 
 const templates = [
 	{
-		id: 0,
+		id: "wow",
 		templateName: "World of Warcraft",
 		imgUrl: "https://cdn.worldvectorlogo.com/logos/world-of-warcraft.svg",
 	},
 	{
-		id: 1,
+		id: "new_world",
+		templateName: "New World",
+		imgUrl: "https://i.imgur.com/pewnCwB.png",
+	},
+	{
+		id: "yes_no",
 		templateName: "Yes & No",
 		imgUrl: "https://image.freepik.com/free-vector/yes-no-signs_1325-370.jpg",
 	},
 	{
-		id: 2,
+		id: "destiny",
 		templateName: "Destiny 2",
 		imgUrl: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/46b63d3c-ae67-464c-9a37-670829b2a157/db41v46-5a57ca9f-48ba-47ac-aee9-684ce7043e3e.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQ2YjYzZDNjLWFlNjctNDY0Yy05YTM3LTY3MDgyOWIyYTE1N1wvZGI0MXY0Ni01YTU3Y2E5Zi00OGJhLTQ3YWMtYWVlOS02ODRjZTcwNDNlM2UucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.vdZaLR6CAMuc1rswCRde8cg9MThDpfgyc3BVAM9evQk",
 	},
 	{
-		id: 3,
+		id: "rainbow_six",
 		templateName: "Rainbox Six Siege",
 		imgUrl: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9eb92786-5e60-46ac-ae2c-d33af137f691/d8yvme8-1fa1c81b-5a73-45b0-8051-49d0bec9a73f.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvOWViOTI3ODYtNWU2MC00NmFjLWFlMmMtZDMzYWYxMzdmNjkxXC9kOHl2bWU4LTFmYTFjODFiLTVhNzMtNDViMC04MDUxLTQ5ZDBiZWM5YTczZi5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.2G7aRj8V8ZeRR5ZngnSmbX_ca-biHpBgiGlDWe0mkWc",
 	},
@@ -91,7 +96,7 @@ export default function EventCreateForm() {
 		delete payload[""];
 
 		try {
-			await eventService.createEvent(payload);
+			await eventService.createEvent(payload, token);
 			history.push("/event_create_success");
 		} catch (e) {
 			// TODO: server_error ekle
@@ -247,7 +252,7 @@ export default function EventCreateForm() {
 									<button
 										name="submit"
 										className="bg-white text-black shadow-xl active:bg-lightBlue-600
-                  w-full md:w-64 lg:w-80 h-14 
+                  w-full md:w-64 lg:w-80 h-14
                 transition duration-1000 ease-out hover:bg-green-400 hover:text-primary
                 font-bold uppercase text-lg px-6 py-3 mt-8 mb-10 rounded-lg outline-none focus:outline-none
                  "
