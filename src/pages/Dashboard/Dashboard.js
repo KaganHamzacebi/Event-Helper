@@ -1,11 +1,10 @@
 import './Dashboard.css'
-import {Link, Element} from 'react-scroll';
+import {Element, Link} from 'react-scroll';
 import {UserContext} from '../../App';
-import React, {useContext} from "react";
+import React, {createContext, useContext, useEffect, useState} from "react";
 import {Helmet} from 'react-helmet-async';
-import {useState, useEffect, createContext} from 'react';
-import {Route, useParams, NavLink} from 'react-router-dom';
-import {Switch, useHistory, useRouteMatch} from 'react-router';
+import {NavLink, useParams} from 'react-router-dom';
+import {useHistory, useRouteMatch} from 'react-router';
 import SelectIconInput from '../../components/SelectIconInput/SelectIconInput';
 
 /* Pages */
@@ -30,7 +29,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         async function fetchData() {
-            const guildSettingsResponse = await guildService.getGuildSettings(userToken);
+            const guildSettingsResponse = await guildService.getGuildSettings(userToken, id);
             setGuildSettings(guildSettingsResponse.data);
         }
 

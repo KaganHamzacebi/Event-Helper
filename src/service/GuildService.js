@@ -22,8 +22,8 @@ export default class GuildService extends Service {
         return [tmpChannels, tmpRoles];
     }
 
-    async getGuildSettings(userToken) {
-        const res = await axios.post('/settings', {}, {
+    async getGuildSettings(userToken, guild_id) {
+        const res = await axios.post(`/settings/${guild_id}`, {}, {
             baseURL: this.endpointBase,
             headers: {
                 authorization: userToken,
