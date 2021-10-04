@@ -140,7 +140,7 @@ export default function EventsTable() {
             </div>
             <div className='flex flex-row'>
                 <div className='flex-grow'></div>
-                <div className="flex flex-row pagination gap-x-2 m-1">
+                <div className="flex flex-row pagination gap-x-2 m-1 mt-3">
 					<span className='font-bold text-gray-400 my-auto'>
 						{pageIndex + 1} of {pageOptions.length}
 					</span>
@@ -155,19 +155,11 @@ export default function EventsTable() {
                         }}
                         className={'bg-title text-primary py-0.5  px-1 relative rounded text-lg border border-gray-900 outline-none focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-600'}
                     />
-                    <div className='p-1 border-2 border-black bg-blue-300 rounded'>
-                        <ChevronDoubleLeftIcon className="w-4" onClick={() => gotoPage(0)} disabled={!canPreviousPage}/>
-                    </div>
-                    <div className='p-1 border-2 border-black bg-blue-300 rounded'>
-                        <ChevronLeftIcon className="w-4" onClick={() => previousPage()} disabled={!canPreviousPage}/>
-                    </div>
-                    <div className='p-1 border-2 border-black bg-blue-300 rounded'>
-                        <ChevronRightIcon className="w-4" onClick={() => nextPage()} disabled={!canNextPage}/>
-                    </div>
-                    <div className='p-1 border-2 border-black bg-blue-300 rounded'>
-                        <ChevronDoubleRightIcon className="w-4" onClick={() => gotoPage(pageCount - 1)}
-                                                disabled={!canNextPage}/>
-                    </div>
+                    <ChevronDoubleLeftIcon className="w-7 h-7 text-white p-1 rounded-full transition hover:bg-black hover:bg-opacity-20 bg-opacity-20" onClick={() => gotoPage(0)} disabled={!canPreviousPage}/>
+                    <ChevronLeftIcon className="w-7 h-7 text-white p-1 rounded-full transition hover:bg-black hover:bg-opacity-20 bg-opacity-20" onClick={() => previousPage()} disabled={!canPreviousPage}/>
+                    <ChevronRightIcon className="w-7 h-7 text-white p-1 rounded-full transition hover:bg-black hover:bg-opacity-20 bg-opacity-20" onClick={() => nextPage()} disabled={!canNextPage}/>
+                    <ChevronDoubleRightIcon className="w-7 h-7 text-white p-1 rounded-full transition hover:bg-black hover:bg-opacity-20 bg-opacity-20" onClick={() => gotoPage(pageCount - 1)}
+                                            disabled={!canNextPage}/>
                 </div>
             </div>
         </div>
