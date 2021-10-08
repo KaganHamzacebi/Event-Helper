@@ -1,4 +1,4 @@
-import {useState, useContext, useEffect} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import {useHistory} from 'react-router-dom';
@@ -6,6 +6,7 @@ import {UserContext} from '../../App';
 import {Helmet} from 'react-helmet-async';
 import './GuildsPanel.css';
 import UserService from '../../service/UserService';
+import {getFirstLetters} from "../../utils/stringUtils";
 
 export default function GuildsPanel() {
     const history = useHistory();
@@ -47,148 +48,117 @@ export default function GuildsPanel() {
             <div id="header-wrapper">
                 <Header/>
             </div>
-            <div className='container mx-auto px-6 2xl:px-40'>
-                <div className='md:px-60 md:py-12 py-4'>
+            <div className='container mx-auto px-6'>
+                <div className='md:px-44 md:py-12 py-4'>
                     <h1 className='text-white font-extrabold text-2xl text-center uppercase pb-4'>Please select a
                         server</h1>
                     {
                         ready ?
-                            <div>
+                            <div
+                                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-4">
                                 {
                                     userGuilds.map(guild => {
-                                        return <div key={guild.id} onClick={() => handleClick(guild)}
-                                                    className='flex border border-gray-700 hover:border-gray-400 transition-color duration-700 group mt-2 rounded-lg mx-2 cursor-pointer'>
-                                            <div className='flex-grow p-2 rounded my-auto whitespace-nowrap truncate'>
-                                                {
-                                                    guild.icon ?
-                                                        <img className='h-8 rounded-full inline-block mr-2'
-                                                             src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp`}
-                                                             alt="guild_icon"
-                                                        />
-                                                        :
-                                                        <img className='h-6 rounded-full inline-block mr-2'
-                                                             src='https://e1.pngegg.com/pngimages/916/717/png-clipart-clay-os-6-a-macos-icon-discord-round-blue-icon.png'
-                                                             alt="guild_icon_none"
-                                                        />
-                                                }
-                                                <span className='text-lg font-bold text-primary'>{guild.name}</span>
+                                        return (
+                                            <div className="flex flex-col" key={guild.id}>
+                                                <div
+                                                    className="flex justify-center py-5 bg-gray-800 rounded-lg w-full">
+                                                    {
+                                                        guild.icon ?
+                                                            <img
+                                                                className='my-auto h-20 border-2 border-white rounded-full'
+                                                                src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp`}
+                                                                alt="guild_icon"
+                                                            />
+                                                            :
+                                                            <div
+                                                                className="flex my-auto h-20 w-20 border-2 border-gray-600 rounded-full">
+                                                                <span
+                                                                    className="m-auto text-3xl font-bold text-gray-300">{getFirstLetters(guild.name, 3)}</span>
+                                                            </div>
+                                                    }
+                                                </div>
+                                                <div className="flex mt-2">
+                                                    <div className="flex flex-col">
+                                                        <span className="text-white font-bold">{guild.name}</span>
+                                                        <span
+                                                            className="text-gray-400 font-bold text-xs">{guild.owner ? "Owner" : "Manager"}</span>
+                                                    </div>
+                                                    <div className="flex-grow"></div>
+                                                    <div className="bg-dc_blue rounded p-2 max-h-10 w-16 text-center">
+                                                        <span
+                                                            className="text-white font-bold">{guild.bot ? 'Go' : 'Setup'}</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div
-                                                className={`bg-gray-500 bg-opacity-20 ${guild.bot ? 'group-hover:bg-blue-600' : 'group-hover:bg-green-600'} transition duration-700 rounded-r p-4`}>
-                                                <span
-                                                    className={`h-full rounded font-bold text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`}
-                                                    type='submit'>{guild.bot ? 'Go To Dashboard' : 'Add to Server'}</span>
-                                            </div>
-                                        </div>
+                                        )
                                     })
                                 }
                             </div>
                             :
                             //Placeholders - Shimmer
-                            <div>
-                                <div
-                                    className='flex border border-gray-700 animate-pulse transition-color duration-700 group mt-2 rounded-lg mx-2'>
-                                    <div
-                                        className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
-                                    <div className='inline-block flex-grow my-auto'>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-4">
+                                <div className="flex flex-col">
+                                    <div className="flex justify-center py-5 bg-gray-800 rounded-lg w-full h-32">
                                         <div
-                                            className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
-                                        <div
-                                            className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
+                                            className="flex my-auto h-20 w-20 border-2 bg-gray-600 border-gray-600 rounded-full animate-pulse transition-color duration-700 group">
+                                        </div>
                                     </div>
-                                    <div className='flex-grow'></div>
-                                    <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
-                                        <span
-                                            className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`}
-                                            type='submit'>Go To Dashboard</span>
+                                    <div className="flex mt-2">
+                                        <div className="flex flex-col">
+                                            <div className='bg-gray-600 opactiy-10 h-3 w-24 my-auto animate-pulse rounded-full mb-2'></div>
+                                            <div className='bg-gray-600 opactiy-10 h-2 w-12 my-auto animate-pulse rounded-full mb-2'></div>
+                                        </div>
+                                        <div className="flex-grow"></div>
+                                        <div className='bg-gray-600 opactiy-10 ml-4 h-full w-16 my-auto animate-pulse rounded mb-2'></div>
                                     </div>
                                 </div>
-                                <div
-                                    className='flex border border-gray-700 animate-pulse transition-color duration-700 group mt-2 rounded-lg mx-2'>
-                                    <div
-                                        className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
-                                    <div className='inline-block flex-grow my-auto'>
+                                <div className="flex flex-col">
+                                    <div className="flex justify-center py-5 bg-gray-800 rounded-lg w-full h-32">
                                         <div
-                                            className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
-                                        <div
-                                            className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
+                                            className="flex my-auto h-20 w-20 border-2 bg-gray-600 border-gray-600 rounded-full animate-pulse transition-color duration-700 group">
+                                        </div>
                                     </div>
-                                    <div className='flex-grow'></div>
-                                    <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
-                                        <span
-                                            className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`}
-                                            type='submit'>Go To Dashboard</span>
+                                    <div className="flex mt-2">
+                                        <div className="flex flex-col">
+                                            <div className='bg-gray-600 opactiy-10 h-3 w-24 my-auto animate-pulse rounded-full mb-2'></div>
+                                            <div className='bg-gray-600 opactiy-10 h-2 w-12 my-auto animate-pulse rounded-full mb-2'></div>
+                                        </div>
+                                        <div className="flex-grow"></div>
+                                        <div className='bg-gray-600 opactiy-10 ml-4 h-full w-16 my-auto animate-pulse rounded mb-2'></div>
                                     </div>
                                 </div>
-                                <div
-                                    className='flex border border-gray-700 animate-pulse transition-color duration-700 group mt-2 rounded-lg mx-2'>
-                                    <div
-                                        className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
-                                    <div className='inline-block flex-grow my-auto'>
+                                <div className="flex flex-col">
+                                    <div className="flex justify-center py-5 bg-gray-800 rounded-lg w-full h-32">
                                         <div
-                                            className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
-                                        <div
-                                            className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
+                                            className="flex my-auto h-20 w-20 border-2 bg-gray-600 border-gray-600 rounded-full animate-pulse transition-color duration-700 group">
+                                        </div>
                                     </div>
-                                    <div className='flex-grow'></div>
-                                    <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
-                                        <span
-                                            className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`}
-                                            type='submit'>Go To Dashboard</span>
+                                    <div className="flex mt-2">
+                                        <div className="flex flex-col">
+                                            <div className='bg-gray-600 opactiy-10 h-3 w-24 my-auto animate-pulse rounded-full mb-2'></div>
+                                            <div className='bg-gray-600 opactiy-10 h-2 w-12 my-auto animate-pulse rounded-full mb-2'></div>
+                                        </div>
+                                        <div className="flex-grow"></div>
+                                        <div className='bg-gray-600 opactiy-10 ml-4 h-full w-16 my-auto animate-pulse rounded mb-2'></div>
                                     </div>
                                 </div>
-                                <div
-                                    className='flex border border-gray-700 animate-pulse transition-color duration-700 group mt-2 rounded-lg mx-2'>
-                                    <div
-                                        className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
-                                    <div className='inline-block flex-grow my-auto'>
+                                <div className="flex flex-col">
+                                    <div className="flex justify-center py-5 bg-gray-800 rounded-lg w-full h-32">
                                         <div
-                                            className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
-                                        <div
-                                            className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
+                                            className="flex my-auto h-20 w-20 border-2 bg-gray-600 border-gray-600 rounded-full animate-pulse transition-color duration-700 group">
+                                        </div>
                                     </div>
-                                    <div className='flex-grow'></div>
-                                    <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
-                                        <span
-                                            className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`}
-                                            type='submit'>Go To Dashboard</span>
-                                    </div>
-                                </div>
-                                <div
-                                    className='flex border border-gray-700 animate-pulse transition-color duration-700 group mt-2 rounded-lg mx-2'>
-                                    <div
-                                        className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
-                                    <div className='inline-block flex-grow my-auto'>
-                                        <div
-                                            className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
-                                        <div
-                                            className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
-                                    </div>
-                                    <div className='flex-grow'></div>
-                                    <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
-                                        <span
-                                            className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`}
-                                            type='submit'>Go To Dashboard</span>
-                                    </div>
-                                </div>
-                                <div
-                                    className='flex border border-gray-700 animate-pulse transition-color duration-700 group mt-2 rounded-lg mx-2'>
-                                    <div
-                                        className='bg-gray-200 opacity-10 animate-pulse w-8 h-8 rounded-full ml-2 my-auto'></div>
-                                    <div className='inline-block flex-grow my-auto'>
-                                        <div
-                                            className='bg-gray-200 opactiy-10 h-1 ml-4 w-6/12 my-auto animate-pulse rounded-full mb-2'></div>
-                                        <div
-                                            className='bg-gray-200 opactiy-10 h-1 ml-4 w-8/12 my-auto animate-pulse rounded-full'></div>
-                                    </div>
-                                    <div className='flex-grow'></div>
-                                    <div className={`bg-gray-200 bg-opacity-10 animate-pulse rounded-r p-4`}>
-                                        <span
-                                            className={`h-full w- rounded font-bold opacity-0 text-primary hover:bg-opacity-50 focus:outline-none whitespace-nowrap`}
-                                            type='submit'>Go To Dashboard</span>
+                                    <div className="flex mt-2">
+                                        <div className="flex flex-col">
+                                            <div className='bg-gray-600 opactiy-10 h-3 w-24 my-auto animate-pulse rounded-full mb-2'></div>
+                                            <div className='bg-gray-600 opactiy-10 h-2 w-12 my-auto animate-pulse rounded-full mb-2'></div>
+                                        </div>
+                                        <div className="flex-grow"></div>
+                                        <div className='bg-gray-600 opactiy-10 ml-4 h-full w-16 my-auto animate-pulse rounded mb-2'></div>
                                     </div>
                                 </div>
                             </div>
+
                     }
 
                 </div>
