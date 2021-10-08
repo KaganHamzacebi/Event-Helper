@@ -32,7 +32,6 @@ export default function EventsTable() {
         }
 
         fetchEvents();
-        console.log(events);
     }, [events])
 
     useEffect(() => {

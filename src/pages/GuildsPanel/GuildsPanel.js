@@ -65,7 +65,7 @@ export default function GuildsPanel() {
                                                     {
                                                         guild.icon ?
                                                             <img
-                                                                className='my-auto h-20 border-2 border-white rounded-full'
+                                                                className='my-auto h-20 border-2 border-gray-600 rounded-full'
                                                                 src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp`}
                                                                 alt="guild_icon"
                                                             />
@@ -84,7 +84,10 @@ export default function GuildsPanel() {
                                                             className="text-gray-400 font-bold text-xs">{guild.owner ? "Owner" : "Manager"}</span>
                                                     </div>
                                                     <div className="flex-grow"></div>
-                                                    <div className="bg-dc_blue rounded p-2 max-h-10 w-16 text-center">
+                                                    <div
+                                                        className="bg-dc_blue rounded p-2 max-h-10 w-16 text-center cursor-pointer"
+                                                        onClick={() => handleClick(guild)}
+                                                    >
                                                         <span
                                                             className="text-white font-bold">{guild.bot ? 'Go' : 'Setup'}</span>
                                                     </div>
@@ -96,7 +99,8 @@ export default function GuildsPanel() {
                             </div>
                             :
                             //Placeholders - Shimmer
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-4">
+                            <div
+                                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-4">
                                 <div className="flex flex-col">
                                     <div className="flex justify-center py-5 bg-gray-800 rounded-lg w-full h-32">
                                         <div
@@ -105,11 +109,14 @@ export default function GuildsPanel() {
                                     </div>
                                     <div className="flex mt-2">
                                         <div className="flex flex-col">
-                                            <div className='bg-gray-600 opactiy-10 h-3 w-24 my-auto animate-pulse rounded-full mb-2'></div>
-                                            <div className='bg-gray-600 opactiy-10 h-2 w-12 my-auto animate-pulse rounded-full mb-2'></div>
+                                            <div
+                                                className='bg-gray-600 opactiy-10 h-3 w-24 my-auto animate-pulse rounded-full mb-2'></div>
+                                            <div
+                                                className='bg-gray-600 opactiy-10 h-2 w-12 my-auto animate-pulse rounded-full mb-2'></div>
                                         </div>
                                         <div className="flex-grow"></div>
-                                        <div className='bg-gray-600 opactiy-10 ml-4 h-full w-16 my-auto animate-pulse rounded mb-2'></div>
+                                        <div
+                                            className='bg-gray-600 opactiy-10 ml-4 h-full w-16 my-auto animate-pulse rounded mb-2'></div>
                                     </div>
                                 </div>
                                 <div className="flex flex-col">
@@ -120,11 +127,14 @@ export default function GuildsPanel() {
                                     </div>
                                     <div className="flex mt-2">
                                         <div className="flex flex-col">
-                                            <div className='bg-gray-600 opactiy-10 h-3 w-24 my-auto animate-pulse rounded-full mb-2'></div>
-                                            <div className='bg-gray-600 opactiy-10 h-2 w-12 my-auto animate-pulse rounded-full mb-2'></div>
+                                            <div
+                                                className='bg-gray-600 opactiy-10 h-3 w-24 my-auto animate-pulse rounded-full mb-2'></div>
+                                            <div
+                                                className='bg-gray-600 opactiy-10 h-2 w-12 my-auto animate-pulse rounded-full mb-2'></div>
                                         </div>
                                         <div className="flex-grow"></div>
-                                        <div className='bg-gray-600 opactiy-10 ml-4 h-full w-16 my-auto animate-pulse rounded mb-2'></div>
+                                        <div
+                                            className='bg-gray-600 opactiy-10 ml-4 h-full w-16 my-auto animate-pulse rounded mb-2'></div>
                                     </div>
                                 </div>
                                 <div className="flex flex-col">
@@ -135,11 +145,14 @@ export default function GuildsPanel() {
                                     </div>
                                     <div className="flex mt-2">
                                         <div className="flex flex-col">
-                                            <div className='bg-gray-600 opactiy-10 h-3 w-24 my-auto animate-pulse rounded-full mb-2'></div>
-                                            <div className='bg-gray-600 opactiy-10 h-2 w-12 my-auto animate-pulse rounded-full mb-2'></div>
+                                            <div
+                                                className='bg-gray-600 opactiy-10 h-3 w-24 my-auto animate-pulse rounded-full mb-2'></div>
+                                            <div
+                                                className='bg-gray-600 opactiy-10 h-2 w-12 my-auto animate-pulse rounded-full mb-2'></div>
                                         </div>
                                         <div className="flex-grow"></div>
-                                        <div className='bg-gray-600 opactiy-10 ml-4 h-full w-16 my-auto animate-pulse rounded mb-2'></div>
+                                        <div
+                                            className='bg-gray-600 opactiy-10 ml-4 h-full w-16 my-auto animate-pulse rounded mb-2'></div>
                                     </div>
                                 </div>
                                 <div className="flex flex-col">
@@ -150,11 +163,14 @@ export default function GuildsPanel() {
                                     </div>
                                     <div className="flex mt-2">
                                         <div className="flex flex-col">
-                                            <div className='bg-gray-600 opactiy-10 h-3 w-24 my-auto animate-pulse rounded-full mb-2'></div>
-                                            <div className='bg-gray-600 opactiy-10 h-2 w-12 my-auto animate-pulse rounded-full mb-2'></div>
+                                            <div
+                                                className='bg-gray-600 opactiy-10 h-3 w-24 my-auto animate-pulse rounded-full mb-2'></div>
+                                            <div
+                                                className='bg-gray-600 opactiy-10 h-2 w-12 my-auto animate-pulse rounded-full mb-2'></div>
                                         </div>
                                         <div className="flex-grow"></div>
-                                        <div className='bg-gray-600 opactiy-10 ml-4 h-full w-16 my-auto animate-pulse rounded mb-2'></div>
+                                        <div
+                                            className='bg-gray-600 opactiy-10 ml-4 h-full w-16 my-auto animate-pulse rounded mb-2'></div>
                                     </div>
                                 </div>
                             </div>

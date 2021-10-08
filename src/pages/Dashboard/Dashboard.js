@@ -52,7 +52,6 @@ export default function Dashboard() {
                 }
                 return {
                     label: item.name,
-                    icon: `https://discord.com/assets/3437c10597c1526c3dbd98c737c2bcae.svg`,
                     value: item.id
                 };
 

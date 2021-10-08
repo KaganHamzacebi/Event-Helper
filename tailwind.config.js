@@ -15,7 +15,13 @@ module.exports = {
                 'primary-light': '#7F82F2',
                 'white': '#FFFFFF',
                 'danger': '#e3342f',
-                'dc_blue': '#5865F2'
+                'dc_blue': '#5865F2',
+                'dc_green': '#57F287',
+                'dc_yellow': '#FEE75C',
+                'dc_fuchsia': '#EB459E',
+                'dc_red': '#ED4245',
+                'dc_white': '#FFFFFF',
+                'dc_black': '#000000'
             },
             textColor: {
                 'primary': '#FFFFFF',

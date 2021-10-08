@@ -1,5 +1,4 @@
 export function getFirstLetters(string, limit) {
-    console.log(string);
     const words = string.split(" ");
     const letters = [];
 
