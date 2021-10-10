@@ -6,11 +6,11 @@ import {
     ChevronDoubleRightIcon,
     ChevronDoubleLeftIcon
 } from '@heroicons/react/outline';
-import {UserContext} from '../../../../App';
+import {UserContext} from '../../../../../../App';
 import {useParams} from 'react-router';
 
 import './EventsTable.css';
-import GuildService from '../../../../service/GuildService';
+import GuildService from '../../../../../../service/GuildService';
 import EventsTableRow from './EventsTableRow';
 
 export default function EventsTable() {

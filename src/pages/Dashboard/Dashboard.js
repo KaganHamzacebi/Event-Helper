@@ -7,7 +7,7 @@ import {useParams} from 'react-router-dom';
 import {useRouteMatch} from 'react-router';
 
 /* Pages */
-import GuildSettings from './DashboardPages/GuildSettings';
+import DashboardMenu from './DashboardComponents/DashboardMenu/DashboardMenu';
 import GuildService from '../../service/GuildService';
 import DashboardSidebar from "./DashboardComponents/DashboardSidebar";
 import DashboardTopbar from "./DashboardComponents/DashboardTopbar";
@@ -16,8 +16,6 @@ export const GuildSettingsContext = createContext(null);
 export const DashboardContext = createContext(null);
 
 export default function Dashboard() {
-
-
     let {path, url} = useRouteMatch();
     const {id} = useParams();
     const {user, userToken} = useContext(UserContext);
@@ -82,7 +80,7 @@ export default function Dashboard() {
                     {/* Inner Content */}
                     <div className='flex-grow rounded w-full'>
                         <GuildSettingsContext.Provider value={guildSettings}>
-                            <GuildSettings/>
+                            <DashboardMenu/>
                         </GuildSettingsContext.Provider>
                     </div>
                 </Element>

@@ -1,10 +1,11 @@
 import {UserContext} from '../App';
 import {useCookies} from 'react-cookie';
-import {useHistory, NavLink, Link} from 'react-router-dom';
+import {Link, NavLink, useHistory} from 'react-router-dom';
 import React, {Fragment, useContext} from "react";
 import {GetHeaderScripts} from '../locales/Scripts';
 import {MenuIcon, XIcon} from "@heroicons/react/outline";
 import {Disclosure, Menu, Transition} from "@headlessui/react";
+import {StarIcon} from "@heroicons/react/solid";
 
 export default function Header() {
     const history = useHistory();
@@ -89,10 +90,26 @@ export default function Header() {
                                 </div>
                             </div>
                             <div className="hidden md:block">
-                                <div className="ml-4 flex items-center md:ml-6">
+                                <div className="ml-4 flex items-center md:ml-6 gap-x-2">
                                     <button
-                                        className={`text-primary w-24 text-xs font-semibold rounded focus:outline-none p-2 mr-4 ${user ? 'hidden' : ''}`}
-                                        style={{backgroundColor: '#7289DA'}}
+                                        className='text-primary bg-dc_green focus:outline-none px-3 py-2 rounded-md text-sm font-medium'
+                                        type='submit'
+                                        onClick={() => window.open("https://discord.gg/4XeMHBctbw", "_blank", 'noopener,noreferrer')}
+                                    >
+                                        Support Server
+                                    </button>
+                                    <NavLink
+                                        className="text-primary bg-dc_fuchsia focus:outline-none px-3 py-2 rounded-md text-sm font-medium"
+                                        to='/premium'
+                                        activeClassName='bg-gray-700'
+                                    >
+                                        <div className="flex">
+                                            <StarIcon className="w-4"/>
+                                            <span>Premium</span>
+                                        </div>
+                                    </NavLink>
+                                    <button
+                                        className={`text-primary bg-dc_blue focus:outline-none px-3 py-2 rounded-md text-sm font-medium ${user ? 'hidden' : ''}`}
                                         type='submit'
                                         onClick={handleLogin}
                                     >

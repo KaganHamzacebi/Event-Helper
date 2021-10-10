@@ -2,8 +2,10 @@ import moment from 'moment';
 import {RefreshIcon, UsersIcon} from '@heroicons/react/solid';
 import {PencilAltIcon, XCircleIcon} from "@heroicons/react/outline";
 import ReactTooltip from 'react-tooltip';
+import EventService from "../../../../../../service/EventService";
 
 export default function EventsTableRow(event) {
+    const eventService = new EventService();
 
     return {
         title: (
@@ -69,16 +71,21 @@ export default function EventsTableRow(event) {
                 <PencilAltIcon
                     data-tip="Edit Event"
                     className="h-6 text-green-600 my-auto focus:outline-none"
+                    onClick={() => {
+                    }}
                 />
                 <RefreshIcon
                     data-tip="Repeat Event"
                     className="h-6 text-green-600 my-auto transition-transform transform duration-500 hover:-rotate-180
                     focus:outline-none"
+                    onClick={() => {
+                    }}
                 />
                 <XCircleIcon
                     data-tip="Cancel Event"
                     data-type="error"
                     className="h-6 text-red-500 my-auto focus:outline-none"
+                    onClick={() => eventService.cancelEvent(event.id)}
                 />
             </div>
         ),

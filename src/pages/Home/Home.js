@@ -4,15 +4,13 @@ import {Helmet} from 'react-helmet-async';
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import {metaData} from '../../utils/MetaData';
-import {Zoom, Slide} from "react-awesome-reveal";
+import {Slide, Zoom} from "react-awesome-reveal";
 import ExampleVideoMP4 from '../../assets/example.mp4';
 import ExampleVideoWebM from '../../assets/example.webm';
-import {useHistory, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {GetHomeScripts} from '../../locales/Scripts';
 
 export default function Home() {
-    const history = useHistory();
-
     function handleLogin() {
         const clientID = process.env.REACT_APP_CLIENT_ID
         window.open(`https://discord.com/api/oauth2/authorize?client_id=${clientID}&permissions=8&scope=bot`, '_blank', 'width=520,height=820');

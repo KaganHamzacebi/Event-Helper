@@ -6,6 +6,7 @@ import {createContext, useState, useEffect} from 'react';
 import Home from './pages/Home/Home';
 import Page404 from './pages/404/Page404';
 import Loading from './pages/Loading/Loading';
+import Premium from "./pages/Premium/Premium";
 import Features from './pages/Features/Features';
 import Commands from './pages/Commands/Commands';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -80,6 +81,7 @@ function App() {
                             <Route exact path="/features" component={Features}/>
                             <Route exact path="/documentation" component={Documentation}/>
                             <Route exact path="/commands" component={Commands}/>
+                            <Route exact path="/premium" component={Premium}/>
                             <Route exact path="/dashboard" component={GuildsPanel}/>
                             <Route path="/dashboard/:id" component={Dashboard}/>
                             <Route path="/create_event/:token" component={EventCreateForm}/>

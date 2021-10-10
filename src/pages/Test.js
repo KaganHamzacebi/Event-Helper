@@ -1,4 +1,3 @@
-import TagPickerInput from "../components/TagPickerInput/TagPickerInput";
 import SelectIconInput from '../components/SelectIconInput/SelectIconInput';
 
 export default function Test() {

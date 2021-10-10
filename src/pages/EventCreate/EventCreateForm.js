@@ -1,9 +1,9 @@
-import {useState, useEffect} from "react";
-import {verifyToken, decodeToken} from "../../utils/crypto";
+import {useEffect, useState} from "react";
+import {decodeToken, verifyToken} from "../../utils/crypto";
 
 import {ExclamationIcon} from '@heroicons/react/solid'
 
-import {useParams, useHistory} from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -104,11 +104,13 @@ export default function EventCreateForm() {
         }
     }
 
-    useEffect(async () => {
-        const res = await guildService.getChannelsAndRoles(token);
+    useEffect(() => {
+        (async () => {
+            const res = await guildService.getChannelsAndRoles(token);
 
-        setChannels(res[0]);
-        setRoles(res[1]);
+            setChannels(res[0]);
+            setRoles(res[1]);
+        })();
 
         // eslint-disable-next-line
     }, [])

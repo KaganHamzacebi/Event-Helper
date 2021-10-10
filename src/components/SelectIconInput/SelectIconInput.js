@@ -18,8 +18,6 @@ export default function SelectIconInput({
 
     const divRef = useRef(null);
 
-    console.log(content);
-
     return (
         <div className='relative'>
             {title &&
