@@ -7,7 +7,7 @@ import {UserContext} from "../../../App";
 
 export default function DashboardSidebar() {
     const history = useHistory();
-    const {user} = useContext(UserContext);
+    const {user, userGuilds} = useContext(UserContext);
     const {isOpen, setIsOpen, indexGuild, mappedGuilds} = useContext(DashboardContext);
 
     return (
@@ -40,7 +40,8 @@ export default function DashboardSidebar() {
                         <div className='mt-6'>
                             {<SelectIconInput
                                 name='guild_select'
-                                content={mappedGuilds}
+                                //content={mappedGuilds}
+                                content={userGuilds}
                                 onSelect={(id) => history.push(`/dashboard/${id}`)}
                                 defaultIndex={indexGuild}
                                 width='full'

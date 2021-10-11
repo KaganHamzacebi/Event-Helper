@@ -4,7 +4,7 @@ import {PencilAltIcon, XCircleIcon} from "@heroicons/react/outline";
 import ReactTooltip from 'react-tooltip';
 import EventService from "../../../../../../service/EventService";
 
-export default function EventsTableRow(event) {
+export default function EventsTableRow(event, deleteEvent) {
     const eventService = new EventService();
 
     return {
@@ -85,7 +85,10 @@ export default function EventsTableRow(event) {
                     data-tip="Cancel Event"
                     data-type="error"
                     className="h-6 text-red-500 my-auto focus:outline-none"
-                    onClick={() => eventService.cancelEvent(event.id)}
+                    onClick={async () =>  {
+                        await eventService.cancelEvent(event.id);
+                        deleteEvent(event);
+                    }}
                 />
             </div>
         ),

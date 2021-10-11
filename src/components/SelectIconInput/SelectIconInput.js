@@ -70,29 +70,29 @@ export default function SelectIconInput({
                 ${focusSelect ? 'opacity-100' : 'opacity-0'} ${focusSelect ? '' : 'hidden'}`}>
                 <div className='max-h-24 overflow-auto'>
                     {
-                        content.map((item, index) => {
+                        content.map((guild, index) => {
                             return (
                                 <div key={index} className='flex items-center rounded hover:bg-gray-600'
                                      onClick={() => {
-                                         setValue(item);
-                                         onSelect(item.value);
+                                         setValue(guild);
+                                         onSelect(guild.id);
                                      }}>
                                     {
-                                        item.icon ?
+                                        guild.icon ?
                                             <img
                                                 className="h-12 rounded-full p-2"
-                                                src={item.icon}
+                                                src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp`}
                                                 alt="icon"
                                             />
                                             :
                                             <div
                                                 className="flex my-auto ml-4 p-1 bg-gray-900 border-2 border-gray-600 rounded-full">
                                                                 <span
-                                                                    className="m-auto text-xs font-bold text-gray-300">{getFirstLetters(item.label, 3)}</span>
+                                                                    className="m-auto text-xs font-bold text-gray-300">{getFirstLetters(guild.name, 3)}</span>
                                             </div>
                                     }
 
-                                    <p className='text-white pl-2 py-1 select-none'>{item.label}</p>
+                                    <p className='text-white pl-2 py-1 select-none'>{guild.name}</p>
                                 </div>
                             )
                         })

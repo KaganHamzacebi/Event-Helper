@@ -43,6 +43,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (guildSettings) {
+
             setMappedGuilds(guildSettings.map((item, index) => {
                 if (item.id == id) {
                     setIndexGuild(index);

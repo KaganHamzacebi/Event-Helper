@@ -23,6 +23,12 @@ export const validations = {
         validate: (value) => {
             return value !== ""
         }
+    },
+    "prefix": {
+        errorMessage: "Prefix can't be empty!",
+        validate: (value) => {
+            return value !== ""
+        }
     }
 
 }

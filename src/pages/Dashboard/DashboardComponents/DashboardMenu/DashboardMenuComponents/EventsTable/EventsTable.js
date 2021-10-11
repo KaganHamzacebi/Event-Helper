@@ -38,11 +38,19 @@ export default function EventsTable() {
         setEvents(null);
     }, [id])
 
-    const data = useMemo(() =>
-            events != null ? events.map((event) => {
-                    return EventsTableRow(event);
+    const deleteEvent = (event) => {
+        const index = events.findIndex((e) => e.id === event.id);
+        const copyArray = events.slice();
+        copyArray.splice(index, 1);
+        setEvents(copyArray);
+    }
+
+    const data = useMemo(() => {
+            return events != null ? events.map((event) => {
+                    return EventsTableRow(event, deleteEvent);
                 })
                 : []
+        }
         , [events])
 
     const columns = useMemo(
