@@ -1,10 +1,8 @@
 import Tag from './Tag'
 import './TagPickerInput.css'
 import CheckboxInput from '../CheckboxInput';
-import {XIcon} from '@heroicons/react/solid'
-import {SearchIcon} from '@heroicons/react/solid'
-import {ChevronUpIcon} from '@heroicons/react/solid'
-import {useState, useEffect, useReducer, useRef} from 'react';
+import {ChevronUpIcon, SearchIcon, XIcon} from '@heroicons/react/solid'
+import {useEffect, useReducer, useRef, useState} from 'react';
 
 export default function TagPickerInput({
                                            name,
@@ -13,6 +11,7 @@ export default function TagPickerInput({
                                            content,
                                            height,
                                            width,
+                                           defaultValue,
                                            placeholder,
                                        }) {
 
@@ -77,7 +76,7 @@ export default function TagPickerInput({
         // eslint-disable-next-line
     }, [focusSelect, focusSearch, focusSearchDiv])
 
-    const [tagPickerValue, setTagPickerValue] = useState([]);
+    const [tagPickerValue, setTagPickerValue] = useState(defaultValue ? defaultValue : []);
 
     useEffect(() => {
         let tmp = Object.values(state).filter(tag => tag.selected).map(tag => {
@@ -130,7 +129,7 @@ export default function TagPickerInput({
                     className={`w-6 text-primary-light absolute pointer-events-none top-1/2 -translate-y-1/2 right-2 transition-transform transform duration-400 ${focusSelect || focusSearch ? "rotate-180" : "rotate-0"}`}
                 />
                 <XIcon
-                    className={`w-4 text-primary-light right-8 absolute top-1/2 transform -translate-y-1/2 transition-all duration-500 opacity-0 hover:text-red-600 
+                    className={`w-4 text-primary-light right-8 absolute top-1/2 transform -translate-y-1/2 transition-all duration-500 opacity-0 hover:text-red-600
                     ${Object.keys(state).filter((id) => {
                         return state[id].selected
                     }).length > 0 && 'opacity-100'}`}

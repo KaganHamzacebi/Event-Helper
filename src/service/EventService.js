@@ -7,32 +7,44 @@ export default class EventService extends Service {
     }
 
     async createEvent(payload, token) {
-        const res = await axios.post('/create_event', {payload: payload, token: token}, {
-            baseURL: this.endpointBase
+        const res = await axios.post('/create_event', payload, {
+            baseURL: this.endpointBase,
+            headers: {
+                authorization: token,
+            },
         });
 
         return res;
     }
 
     async editEvent(payload, token) {
-        const res = await axios.post('/edit_event', {payload: payload, token: token}, {
-            baseURL: this.endpointBase
+        const res = await axios.post('/edit_event', payload, {
+            baseURL: this.endpointBase,
+            headers: {
+                authorization: token,
+            },
         });
 
         return res;
     }
 
-    async repeatEvent(payload, token) {
-        const res = await axios.post('/repeat_event', {payload: payload, token: token}, {
-            baseURL: this.endpointBase
+    async repeatEvent(event_id, token) {
+        const res = await axios.get(`/repeat_event${event_id}`, {
+            baseURL: this.endpointBase,
+            headers: {
+                authorization: token,
+            },
         });
 
         return res;
     }
 
-    async cancelEvent(guild_id, token) {
-        const res = await axios.get(`/cancel_event/${guild_id}`, {
-            baseURL: this.endpointBase
+    async cancelEvent(event_id, token) {
+        const res = await axios.get(`/cancel_event/${event_id}`, {
+            baseURL: this.endpointBase,
+            headers: {
+                authorization: token,
+            }
         });
 
         return res;

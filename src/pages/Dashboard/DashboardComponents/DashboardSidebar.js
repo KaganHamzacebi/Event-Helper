@@ -1,7 +1,7 @@
 import {NavLink, useHistory} from "react-router-dom";
 import SelectIconInput from "../../../components/SelectIconInput/SelectIconInput";
 import {Link} from "react-scroll";
-import React, {useContext, useEffect} from "react";
+import React, {useContext} from "react";
 import {DashboardContext} from "../Dashboard";
 import {UserContext} from "../../../App";
 
@@ -55,7 +55,8 @@ export default function DashboardSidebar() {
                     <div className='flex flex-row items-center p-2'>
                         <span className='text-primary text-lg font-semibold uppercase'>Events</span>
                     </div>
-                    <div className='flex flex-row items-center p-2 rounded group cursor-pointer'>
+                    <Link to="eventList" spy={true} smooth={true} containerId="dashboardScrollContainer"
+                        className='flex flex-row items-center p-2 rounded group cursor-pointer'>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="white">
                             <path fillRule="evenodd"
                                   d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
@@ -63,15 +64,16 @@ export default function DashboardSidebar() {
                         </svg>
                         <span
                             className='ml-2 text-primary text-opacity-70 trainsition-all duration-500 group-hover:text-opacity-100'>Event List</span>
-                    </div>
-                    <div className='flex flex-row items-center p-2 rounded group cursor-pointer'>
+                    </Link>
+                    <Link to="statistics" spy={true} smooth={true} containerId="dashboardScrollContainer"
+                        className='flex flex-row items-center p-2 rounded group cursor-pointer'>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="white">
                             <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"/>
                             <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"/>
                         </svg>
                         <span
                             className='ml-2 text-primary text-opacity-70 trainsition-all duration-500 group-hover:text-opacity-100'>Statistics</span>
-                    </div>
+                    </Link>
                 </div>
                 {/* Guild Settings */}
                 <div>

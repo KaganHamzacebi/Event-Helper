@@ -1,7 +1,5 @@
-import {useState, useEffect} from 'react';
-import {XIcon} from '@heroicons/react/solid'
-import {SearchIcon} from '@heroicons/react/solid'
-import {ChevronUpIcon} from '@heroicons/react/solid'
+import {useEffect, useState} from 'react';
+import {ChevronUpIcon, SearchIcon, XIcon} from '@heroicons/react/solid'
 
 import './SelectInput.css'
 
@@ -11,17 +9,20 @@ export default function SelectInput({
                                         description,
                                         width,
                                         height,
+                                        defaultValue,
                                         placeholder,
                                         content
                                     }) {
 
     const [focusSelect, setFocusSelect] = useState(false);
     const [focusSearch, setFocusSearch] = useState(false);
-    const [value, setValue] = useState(null);
+    const [value, setValue] = useState(defaultValue);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
     const [filteredData, setFilteredData] = useState(content);
     const [myTimeout, setMyTimeout] = useState(null);
+
+    console.log(defaultValue);
 
     useEffect(() => {
         //setIsDropdownOpen(focusSelect || focusSearch);
@@ -71,7 +72,7 @@ export default function SelectInput({
                     }}
                 />
             </div>
-            <div className={`absolute bg-content ${width ? 'w-' + width : 'width-32'} border rounded mt-1 border-gray-700 shadow-lg z-10 transition-opacity duration-500 transform 
+            <div className={`absolute bg-content ${width ? 'w-' + width : 'width-32'} border rounded mt-1 border-gray-700 shadow-lg z-10 transition-opacity duration-500 transform
                 ${(focusSelect || focusSearch) ? 'opacity-100' : 'opacity-0'} ${isDropdownOpen ? '' : 'hidden'}`}>
                 <div className='p-2 relative'>
                     <input

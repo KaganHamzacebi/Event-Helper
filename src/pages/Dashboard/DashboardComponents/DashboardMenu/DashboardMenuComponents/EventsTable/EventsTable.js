@@ -1,10 +1,11 @@
-import {useMemo, useEffect, useContext, useState} from 'react';
-import {useTable, usePagination, useSortBy, useFilters, useGlobalFilter} from 'react-table'
+import {useContext, useEffect, useMemo, useState} from 'react';
+import {useFilters, useGlobalFilter, usePagination, useSortBy, useTable} from 'react-table'
 import {
-    ChevronRightIcon,
-    ChevronLeftIcon,
+    ChevronDoubleLeftIcon,
     ChevronDoubleRightIcon,
-    ChevronDoubleLeftIcon
+    ChevronLeftIcon,
+    ChevronRightIcon,
+    CollectionIcon
 } from '@heroicons/react/outline';
 import {UserContext} from '../../../../../../App';
 import {useParams} from 'react-router';
@@ -109,47 +110,58 @@ export default function EventsTable() {
     return (
         <div className='w-full h-full flex flex-col'>
             <div className='overflow-x-scroll overflow-y-hidden flex-grow'>
-                <table className='w-full' {...getTableProps()}>
-                    <thead>
-                    {headerGroups.map(headerGroup => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map(column => (
-                                <th
-                                    {...column.getHeaderProps()}
-                                    className="border-b-2 border-opacity-20 border-gray-300 text-white p-2 text-lg"
-                                >
-                                    {column.render('Header')}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                    </thead>
-                    <tbody {...getTableBodyProps()}>
-                    {page.map(row => {
-                        prepareRow(row)
-                        return (
-                            <tr {...row.getRowProps()}>
-                                {row.cells.map(cell => {
-                                    return (
-                                        <td
-                                            {...cell.getCellProps()}
-                                            className="bg-gray-900 bg-opacity-60 text-white text-center py-4"
-                                        >
-                                            {cell.render('Cell')}
-                                        </td>
-                                    )
-                                })}
+                {data.length > 0 ?
+                    <table className='w-full' {...getTableProps()}>
+                        <thead>
+                        {headerGroups.map(headerGroup => (
+                            <tr {...headerGroup.getHeaderGroupProps()}>
+                                {headerGroup.headers.map(column => (
+                                    <th
+                                        {...column.getHeaderProps()}
+                                        className="border-b-2 border-opacity-20 border-gray-300 text-white p-2 text-lg"
+                                    >
+                                        {column.render('Header')}
+                                    </th>
+                                ))}
                             </tr>
-                        )
-                    })}
-                    </tbody>
-                </table>
+                        ))}
+                        </thead>
+                        <tbody {...getTableBodyProps()}>
+                        {page.map(row => {
+                            prepareRow(row)
+                            return (
+                                <tr {...row.getRowProps()}>
+                                    {row.cells.map(cell => {
+                                        return (
+                                            <td
+                                                {...cell.getCellProps()}
+                                                className="bg-gray-900 bg-opacity-60 text-white text-center py-4"
+                                            >
+                                                {cell.render('Cell')}
+                                            </td>
+                                        )
+                                    })}
+                                </tr>
+                            )
+                        })}
+                        </tbody>
+                    </table>
+                    :
+                    <div className="flex h-full flex-col">
+                        <div className="flex-grow"/>
+                        <div className="m-auto">
+                            <CollectionIcon className="w-16 text-white m-auto mb-4 text-opacity-50"/>
+                            <span className="text-white font-bold text-3xl text-opacity-50">No Events</span>
+                        </div>
+                        <div className="flex-grow"/>
+                    </div>
+                }
             </div>
             <div className='flex flex-row'>
                 <div className='flex-grow'></div>
                 <div className="flex flex-row pagination gap-x-2 m-1 mt-3">
 					<span className='font-bold text-gray-400 my-auto'>
-						{pageIndex + 1} of {pageOptions.length}
+						{pageIndex + 1} of {pageOptions.length === 0 ? 1 : pageOptions.length}
 					</span>
                     <input
                         name="page_no"
@@ -162,11 +174,19 @@ export default function EventsTable() {
                         }}
                         className={'bg-title text-primary py-0.5  px-1 relative rounded text-lg border border-gray-900 outline-none focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-600'}
                     />
-                    <ChevronDoubleLeftIcon className="w-7 h-7 text-white p-1 rounded-full transition hover:bg-black hover:bg-opacity-20 bg-opacity-20" onClick={() => gotoPage(0)} disabled={!canPreviousPage}/>
-                    <ChevronLeftIcon className="w-7 h-7 text-white p-1 rounded-full transition hover:bg-black hover:bg-opacity-20 bg-opacity-20" onClick={() => previousPage()} disabled={!canPreviousPage}/>
-                    <ChevronRightIcon className="w-7 h-7 text-white p-1 rounded-full transition hover:bg-black hover:bg-opacity-20 bg-opacity-20" onClick={() => nextPage()} disabled={!canNextPage}/>
-                    <ChevronDoubleRightIcon className="w-7 h-7 text-white p-1 rounded-full transition hover:bg-black hover:bg-opacity-20 bg-opacity-20" onClick={() => gotoPage(pageCount - 1)}
-                                            disabled={!canNextPage}/>
+                    <ChevronDoubleLeftIcon
+                        className="w-7 h-7 text-white p-1 rounded-full transition hover:bg-black hover:bg-opacity-20 bg-opacity-20"
+                        onClick={() => gotoPage(0)} disabled={!canPreviousPage}/>
+                    <ChevronLeftIcon
+                        className="w-7 h-7 text-white p-1 rounded-full transition hover:bg-black hover:bg-opacity-20 bg-opacity-20"
+                        onClick={() => previousPage()} disabled={!canPreviousPage}/>
+                    <ChevronRightIcon
+                        className="w-7 h-7 text-white p-1 rounded-full transition hover:bg-black hover:bg-opacity-20 bg-opacity-20"
+                        onClick={() => nextPage()} disabled={!canNextPage}/>
+                    <ChevronDoubleRightIcon
+                        className="w-7 h-7 text-white p-1 rounded-full transition hover:bg-black hover:bg-opacity-20 bg-opacity-20"
+                        onClick={() => gotoPage(pageCount - 1)}
+                        disabled={!canNextPage}/>
                 </div>
             </div>
         </div>

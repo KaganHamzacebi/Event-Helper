@@ -22,8 +22,43 @@ export default class GuildService extends Service {
         return [tmpChannels, tmpRoles];
     }
 
+    async getRoles(guild_id, userToken) {
+        const res = await axios.get(`/roles/${guild_id}`, {
+            baseURL: this.endpointBase,
+            headers: {
+                authorization: userToken,
+            }
+        });
+
+        return res;
+    }
+
+    async getChannels(guild_id, userToken) {
+        const res = await axios.get(`/channels/${guild_id}`, {
+            baseURL: this.endpointBase,
+            headers: {
+                authorization: userToken,
+            }
+        });
+
+        return res;
+    }
+
+
     async getGuildSettings(userToken, guild_id) {
-        const res = await axios.post(`/settings/${guild_id}`, {}, {
+        const res = await axios.get(`/get_settings/${guild_id}`, {
+            baseURL: this.endpointBase,
+            headers: {
+                authorization: userToken,
+            }
+        });
+
+        return res;
+    }
+
+    async setGuildSettings(userToken, guild_id, payload) {
+        console.log(guild_id);
+        const res = await axios.post(`/set_settings/${guild_id}`, payload, {
             baseURL: this.endpointBase,
             headers: {
                 authorization: userToken,
@@ -34,7 +69,7 @@ export default class GuildService extends Service {
     }
 
     async getGuildsWithBot(userToken) {
-        const res = await axios.post(`/guildsWithBot/${userToken}`, {}, {
+        const res = await axios.get(`/guildsWithBot/${userToken}`, {
             baseURL: this.endpointBase,
             headers: {
                 authorization: userToken,

@@ -4,7 +4,6 @@ import {UserContext} from '../../App';
 import React, {createContext, useContext, useEffect, useState} from "react";
 import {Helmet} from 'react-helmet-async';
 import {useParams} from 'react-router-dom';
-import {useRouteMatch} from 'react-router';
 
 /* Pages */
 import DashboardMenu from './DashboardComponents/DashboardMenu/DashboardMenu';
@@ -16,10 +15,9 @@ export const GuildSettingsContext = createContext(null);
 export const DashboardContext = createContext(null);
 
 export default function Dashboard() {
-    let {path, url} = useRouteMatch();
     const {id} = useParams();
-    const {user, userToken} = useContext(UserContext);
-    const [guildSettings, setGuildSettings] = useState([]);
+    const {userToken, userGuilds} = useContext(UserContext);
+    const [guildSettings, setGuildSettings] = useState(null);
 
     const [mappedGuilds, setMappedGuilds] = useState([]);
     const [indexGuild, setIndexGuild] = useState(null);
@@ -42,6 +40,16 @@ export default function Dashboard() {
     }, [userToken])
 
     useEffect(() => {
+        if(guildSettings && userGuilds) {
+            userGuilds.map((item, index) => {
+                if (item.id == id) {
+                    setIndexGuild(index);
+                }
+            })
+        }
+    }, [guildSettings])
+/**
+    useEffect(() => {
         if (guildSettings) {
 
             setMappedGuilds(guildSettings.map((item, index) => {
@@ -59,6 +67,7 @@ export default function Dashboard() {
             }))
         }
     }, [guildSettings])
+     */
 
     return (
         <div className='flex w-full h-full'>
@@ -80,7 +89,7 @@ export default function Dashboard() {
                          className='element p-4 md:p-12 flex flex-col bg-content overflow-y-auto dashboard-content-wrapper'>
                     {/* Inner Content */}
                     <div className='flex-grow rounded w-full'>
-                        <GuildSettingsContext.Provider value={guildSettings}>
+                        <GuildSettingsContext.Provider value={{guildSettings}}>
                             <DashboardMenu/>
                         </GuildSettingsContext.Provider>
                     </div>
