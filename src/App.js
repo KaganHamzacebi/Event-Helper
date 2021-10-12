@@ -3,22 +3,22 @@ import {useCookies} from 'react-cookie';
 import {Switch, Route} from 'react-router-dom';
 import {createContext, useState, useEffect} from 'react';
 //Pages
-import Home from './pages/Home/Home';
-import Page404 from './pages/404/Page404';
-import Loading from './pages/Loading/Loading';
-import Premium from "./pages/Premium/Premium";
-import Features from './pages/Features/Features';
-import Commands from './pages/Commands/Commands';
-import Dashboard from './pages/Dashboard/Dashboard';
-import GuildsPanel from './pages/GuildsPanel/GuildsPanel';
-import InvalidToken from './pages/ErrorPage/InvalidToken';
-import Integrations from './pages/Integrations/Integrations';
-import Documentation from './pages/Documentation/Documentation';
-import LoginRedirect from './pages/LoginRedirect/LoginRedirect';
-import EventCreateForm from './pages/EventCreate/EventCreateForm';
-import EventCreateSuccess from './pages/EventCreate/EventCreateSuccess';
+import Home from './views/Home/Home';
+import Page404 from './views/404/Page404';
+import Loading from './views/Loading/Loading';
+import Premium from "./views/Premium/Premium";
+import Features from './views/Features/Features';
+import Commands from './views/Commands/Commands';
+import Dashboard from './views/Dashboard/Dashboard';
+import GuildsPanel from './views/GuildsPanel/GuildsPanel';
+import InvalidToken from './views/ErrorPage/InvalidToken';
+import Integrations from './views/Integrations/Integrations';
+import Documentation from './views/Documentation/Documentation';
+import LoginRedirect from './views/LoginRedirect/LoginRedirect';
+import EventCreateForm from './views/EventCreate/EventCreateForm';
+import EventCreateSuccess from './views/EventCreate/EventCreateSuccess';
 
-import Test from './pages/Test';
+import Test from './views/Test';
 import UserService from './service/UserService';
 
 export const UserContext = createContext(null);
