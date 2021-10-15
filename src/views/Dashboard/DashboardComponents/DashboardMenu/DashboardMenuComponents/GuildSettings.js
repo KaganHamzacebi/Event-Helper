@@ -104,7 +104,6 @@ export default function GuildSettings() {
             element.blur();
             const _isValid = validate(element.name, element.value, setIsFormValid)
             if (!_isValid) return;
-            console.log(e.target[i]);
             payload[element.name] = element.value;
         }
 
