@@ -1,7 +1,7 @@
 import './App.css';
 import {useCookies} from 'react-cookie';
-import {Switch, Route} from 'react-router-dom';
-import {createContext, useState, useEffect} from 'react';
+import {Route, Switch} from 'react-router-dom';
+import {createContext, useEffect, useState} from 'react';
 //Pages
 import Home from './views/Home/Home';
 import Page404 from './views/404/Page404';
@@ -20,6 +20,7 @@ import EventCreateSuccess from './views/EventCreate/EventCreateSuccess';
 
 import Test from './views/Test';
 import UserService from './service/UserService';
+import EventEditForm from "./views/EventEdit/EventEditForm";
 
 export const UserContext = createContext(null);
 
@@ -27,7 +28,6 @@ function App() {
     const userService = new UserService();
     const [user, setUser] = useState(null);
     const [loaded, setLoaded] = useState(false);
-    const [userGuilds, setUserGuilds] = useState(null);
     // eslint-disable-next-line
     const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
     // eslint-disable-next-line
@@ -42,10 +42,6 @@ function App() {
     }
 
     useEffect(() => {
-        if (userGuilds) {
-            setUserGuilds(userGuilds);
-        }
-
         async function fetchData() {
             if (cookies.userToken) {
                 try {
@@ -71,7 +67,7 @@ function App() {
     }, [language])
 
     return (
-        <UserContext.Provider value={{user, setUser, userGuilds, setUserGuilds, language, setLanguage, userToken}}>
+        <UserContext.Provider value={{user, setUser, language, setLanguage, userToken}}>
             {loaded ?
                 <div>
                     <div id="content-wrapper" className='flex flex-col flex-grow'>
@@ -85,6 +81,7 @@ function App() {
                             <Route exact path="/dashboard" component={GuildsPanel}/>
                             <Route path="/dashboard/:id" component={Dashboard}/>
                             <Route path="/create_event/:token" component={EventCreateForm}/>
+                            <Route path="/edit_event/:eventID" component={EventEditForm}/>
                             <Route path="/login_redirect" component={LoginRedirect}/>
                             <Route exact path="/invalid_token" component={InvalidToken}/>
                             <Route exact path="/event_create_success" component={EventCreateSuccess}/>

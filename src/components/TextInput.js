@@ -28,7 +28,7 @@ export default function TextInput({
                                 validate(name, value, setIsValid)
                             }}
                             type={type}
-                            value={value}
+                            value={value ? value : ""}
                             onChange={(e) => {
                                 setValue(e.target.value);
                             }}

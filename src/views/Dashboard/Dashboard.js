@@ -16,11 +16,8 @@ export const DashboardContext = createContext(null);
 
 export default function Dashboard() {
     const {id} = useParams();
-    const {userToken, userGuilds} = useContext(UserContext);
+    const {userToken} = useContext(UserContext);
     const [guildSettings, setGuildSettings] = useState(null);
-
-    const [mappedGuilds, setMappedGuilds] = useState([]);
-    const [indexGuild, setIndexGuild] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
 
     const guildService = new GuildService();
@@ -39,36 +36,6 @@ export default function Dashboard() {
         // eslint-disable-next-line
     }, [userToken])
 
-    useEffect(() => {
-        if(guildSettings && userGuilds) {
-            userGuilds.map((item, index) => {
-                if (item.id == id) {
-                    setIndexGuild(index);
-                }
-            })
-        }
-    }, [guildSettings])
-/**
-    useEffect(() => {
-        if (guildSettings) {
-
-            setMappedGuilds(guildSettings.map((item, index) => {
-                if (item.id == id) {
-                    setIndexGuild(index);
-                }
-                if (item.icon) {
-                    return {label: item.name, icon: item.icon, value: item.id};
-                }
-                return {
-                    label: item.name,
-                    value: item.id
-                };
-
-            }))
-        }
-    }, [guildSettings])
-     */
-
     return (
         <div className='flex w-full h-full'>
             <Helmet>
@@ -76,7 +43,7 @@ export default function Dashboard() {
                 <meta name='robots' content='noindex'/>
             </Helmet>
             {/* Sidebar */}
-            <DashboardContext.Provider value={{isOpen, setIsOpen, indexGuild, mappedGuilds}}>
+            <DashboardContext.Provider value={{isOpen, setIsOpen}}>
                 <DashboardSidebar/>
             </DashboardContext.Provider>
             <div className='flex flex-col flex-grow w-screen'>

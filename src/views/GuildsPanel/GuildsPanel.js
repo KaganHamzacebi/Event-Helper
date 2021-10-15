@@ -12,22 +12,20 @@ export default function GuildsPanel() {
     const history = useHistory();
 
     const userService = new UserService();
-    const {userToken, userGuilds, setUserGuilds} = useContext(UserContext);
+    const {userToken} = useContext(UserContext);
+    const [userGuilds, setUserGuilds] = useState([]);
     const [ready, setReady] = useState(false);
 
     useEffect(() => {
-        async function fetchData() {
-            const managedGuildsResponse = await userService.getGuilds(userToken);
-            setUserGuilds(managedGuildsResponse.data);
-            setReady(true);
-        }
-
         if (userToken) {
-            fetchData();
+            (async () => {
+                const managedGuildsResponse = await userService.getGuilds(userToken);
+                setUserGuilds(managedGuildsResponse.data);
+                setReady(true);
+            })();
         } else {
             window.location.href = process.env.REACT_APP_WEB_URL;
         }
-        // eslint-disable-next-line
     }, [userToken])
 
     function handleClick(guild) {

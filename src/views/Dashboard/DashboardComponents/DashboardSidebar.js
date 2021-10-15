@@ -1,14 +1,44 @@
-import {NavLink, useHistory} from "react-router-dom";
+import {NavLink, useHistory, useParams} from "react-router-dom";
 import SelectIconInput from "../../../components/SelectIconInput/SelectIconInput";
 import {Link} from "react-scroll";
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {DashboardContext} from "../Dashboard";
 import {UserContext} from "../../../App";
+import UserService from "../../../service/UserService";
 
 export default function DashboardSidebar() {
     const history = useHistory();
-    const {user, userGuilds} = useContext(UserContext);
-    const {isOpen, setIsOpen, indexGuild, mappedGuilds} = useContext(DashboardContext);
+    const {id} = useParams();
+    const {user, userToken} = useContext(UserContext);
+    const {isOpen, setIsOpen, indexGuild} = useContext(DashboardContext);
+
+    const [mappedGuilds, setMappedGuilds] = useState(null);
+    const [selectedGuildIndex, setSelectedGuildIndex] = useState(null);
+    const userService = new UserService();
+
+    useEffect(() => {
+        if (userToken) {
+            (async () => {
+                const managedGuildsResponse = await userService.getGuilds(userToken);
+                setMappedGuilds(managedGuildsResponse.data
+                    .filter((guild) => guild.bot)
+                    .map((guild, index) => {
+                        if (guild.id === id) {
+                            setSelectedGuildIndex(index);
+                        }
+                        return {
+                            label: guild.name,
+                            icon: guild.icon,
+                            value: guild.id,
+                            id: guild.id
+                        };
+
+                    }))
+            })();
+        } else {
+            window.location.href = process.env.REACT_APP_WEB_URL;
+        }
+    }, [userToken]);
 
     return (
         <div>
@@ -30,7 +60,7 @@ export default function DashboardSidebar() {
                     </svg>
                 </div>
                 {
-                    indexGuild == null ?
+                    selectedGuildIndex == null ?
                         <div className='mt-6 transition-color duration-700'>
                             <div
                                 className={`w-full flex border h-14 border-gray-900 rounded pl-3.5 pr-8 bg-gray-700 opacity-10 animate-pulse`}>
@@ -38,16 +68,18 @@ export default function DashboardSidebar() {
                         </div>
                         :
                         <div className='mt-6'>
-                            {<SelectIconInput
-                                name='guild_select'
-                                //content={mappedGuilds}
-                                content={userGuilds}
-                                onSelect={(id) => history.push(`/dashboard/${id}`)}
-                                defaultIndex={indexGuild}
-                                width='full'
-                                height={14}
-                                placeholder='Select'
-                            />}
+                            {
+                                mappedGuilds &&
+                                <SelectIconInput
+                                    name='guild_select'
+                                    content={mappedGuilds}
+                                    onSelect={(id) => history.push(`/dashboard/${id}`)}
+                                    defaultIndex={selectedGuildIndex}
+                                    width='full'
+                                    height={14}
+                                    placeholder='Select'
+                                />
+                            }
                         </div>
                 }
                 {/* Events */}
@@ -56,7 +88,7 @@ export default function DashboardSidebar() {
                         <span className='text-primary text-lg font-semibold uppercase'>Events</span>
                     </div>
                     <Link to="eventList" spy={true} smooth={true} containerId="dashboardScrollContainer"
-                        className='flex flex-row items-center p-2 rounded group cursor-pointer'>
+                          className='flex flex-row items-center p-2 rounded group cursor-pointer'>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="white">
                             <path fillRule="evenodd"
                                   d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
@@ -66,7 +98,7 @@ export default function DashboardSidebar() {
                             className='ml-2 text-primary text-opacity-70 trainsition-all duration-500 group-hover:text-opacity-100'>Event List</span>
                     </Link>
                     <Link to="statistics" spy={true} smooth={true} containerId="dashboardScrollContainer"
-                        className='flex flex-row items-center p-2 rounded group cursor-pointer'>
+                          className='flex flex-row items-center p-2 rounded group cursor-pointer'>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="white">
                             <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"/>
                             <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"/>

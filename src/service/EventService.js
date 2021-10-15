@@ -49,4 +49,15 @@ export default class EventService extends Service {
 
         return res;
     }
+
+    async getEvent(event_id, token) {
+        const res = await axios.get(`/get_event/${event_id}`, {
+            baseURL: this.endpointBase,
+            headers: {
+                authorization: token,
+            }
+        });
+
+        return res;
+    }
 }

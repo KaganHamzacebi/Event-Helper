@@ -68,17 +68,6 @@ export default class GuildService extends Service {
         return res;
     }
 
-    async getGuildsWithBot(userToken) {
-        const res = await axios.get(`/guildsWithBot/${userToken}`, {
-            baseURL: this.endpointBase,
-            headers: {
-                authorization: userToken,
-            }
-        });
-
-        return res;
-    }
-
     async getEvents(userToken, gid) {
         const res = await axios.get('/get_events/' + gid, {
             baseURL: this.endpointBase,

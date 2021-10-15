@@ -52,12 +52,11 @@ export default function SelectIconInput({
                                     />
                                     :
                                     <div
-                                        className="flex my-auto p-1 bg-gray-900 border-2 border-gray-600 rounded-full">
+                                        className="flex my-auto bg-gray-900 h-9 w-9 border-2 border-gray-600 rounded-full">
                                                                 <span
                                                                     className="m-auto text-xs font-bold text-gray-300">{getFirstLetters(value.label, 3)}</span>
                                     </div>
                             }
-
                             <p className='text-white pl-2 select-none'>{value.label}</p>
                         </div>
                     }
@@ -72,7 +71,7 @@ export default function SelectIconInput({
                     {
                         content.map((guild, index) => {
                             return (
-                                <div key={index} className='flex items-center rounded hover:bg-gray-600'
+                                <div key={index} className='flex items-center rounded hover:bg-gray-600 h-12'
                                      onClick={() => {
                                          setValue(guild);
                                          onSelect(guild.id);
@@ -80,19 +79,19 @@ export default function SelectIconInput({
                                     {
                                         guild.icon ?
                                             <img
-                                                className="h-12 rounded-full p-2"
+                                                className="h-8 w-8 rounded-full ml-2"
                                                 src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp`}
                                                 alt="icon"
                                             />
                                             :
                                             <div
-                                                className="flex my-auto ml-4 p-1 bg-gray-900 border-2 border-gray-600 rounded-full">
+                                                className="flex h-8 w-8 ml-2 my-auto bg-gray-900 rounded-full">
                                                                 <span
-                                                                    className="m-auto text-xs font-bold text-gray-300">{getFirstLetters(guild.name, 3)}</span>
+                                                                    className="m-auto text-xs font-bold text-gray-300">{getFirstLetters(guild.label, 3)}</span>
                                             </div>
                                     }
 
-                                    <p className='text-white pl-2 py-1 select-none'>{guild.name}</p>
+                                    <p className='text-white pl-2 py-1 select-none'>{guild.label}</p>
                                 </div>
                             )
                         })

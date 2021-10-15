@@ -22,8 +22,6 @@ export default function SelectInput({
     const [filteredData, setFilteredData] = useState(content);
     const [myTimeout, setMyTimeout] = useState(null);
 
-    console.log(defaultValue);
-
     useEffect(() => {
         //setIsDropdownOpen(focusSelect || focusSearch);
         if (!(focusSelect || focusSearch)) {
@@ -50,14 +48,14 @@ export default function SelectInput({
                 <span className="text-sm text-primary-light">{description}</span>
             </div>
             }
-            <input name={name} value={value ? value.value : ''} type='hidden'/>
+            <input name={name} value={value ? value.value : ""} onChange={() => true} type='hidden'/>
             <div className={`relative ${width ? 'w-' + width : 'width-32'} `}>
                 <input
                     type='text'
                     placeholder={placeholder}
                     className={`w-full border ${height && 'h-' + height} border-gray-900 rounded pl-3.5 pr-8 outline-none ${value ? 'text-primary ' : 'text-gray-500'} bg-title text-lg placeholder-white placeholder-opacity-30  transition duration-800 focus:ring-2 focus:ring-blue-600`}
                     value={value ? value.label : ""}
-                    onChange={null}
+                    onChange={() => true}
                     onFocus={() => setFocusSelect(true)}
                     onBlur={() => setFocusSelect(false)}
                     readOnly
@@ -80,7 +78,7 @@ export default function SelectInput({
                         type='text'
                         onFocus={() => setFocusSearch(true)}
                         onBlur={() => setFocusSearch(false)}
-                        value={searchValue}
+                        value={searchValue ? searchValue : ""}
                         onChange={(e) => setSearchValue(e.target.value)}
                         className='w-full border border-gray-900 rounded pl-2 pr-8 outline-none shadow bg-title text-primary text-lg placeholder-white placeholder-opacity-30  transition duration-800 focus:ring-2 focus:ring-blue-600'
                         placeholder='Search'

@@ -3,8 +3,10 @@ import {RefreshIcon, UsersIcon} from '@heroicons/react/solid';
 import {PencilAltIcon, XCircleIcon} from "@heroicons/react/outline";
 import ReactTooltip from 'react-tooltip';
 import EventService from "../../../../../../service/EventService";
+import {useHistory} from "react-router-dom";
 
 export default function EventsTableRow(event, deleteEvent) {
+    const history = useHistory();
     const eventService = new EventService();
 
     return {
@@ -72,6 +74,7 @@ export default function EventsTableRow(event, deleteEvent) {
                     data-tip="Edit Event"
                     className="h-6 text-green-600 my-auto focus:outline-none"
                     onClick={() => {
+                        history.push(`/edit_event/${event.id}`);
                     }}
                 />
                 <RefreshIcon

@@ -1,5 +1,4 @@
-import {useEffect, useState} from "react";
-import {decodeToken, verifyToken} from "../../utils/crypto";
+import {useContext, useEffect, useState} from "react";
 
 import {ExclamationIcon} from '@heroicons/react/solid'
 
@@ -21,6 +20,7 @@ import {validate} from "../../utils/inputValidations";
 import moment from "moment";
 import GuildService from "../../service/GuildService";
 import EventService from "../../service/EventService";
+import {UserContext} from "../../App";
 
 const templates = [
     {
@@ -50,22 +50,20 @@ const templates = [
     },
 ];
 
-export default function EventCreateForm() {
+export default function EventEditForm() {
     const history = useHistory();
+    const {user, userToken} = useContext(UserContext);
 
     const eventService = new EventService();
     const guildService = new GuildService();
-    const {token} = useParams();
+    const {eventID} = useParams();
     const [isFormValid, setIsFormValid] = useState(true);
+    const [defaultChannel, setDefaultChannel] = useState(null);
     const [channels, setChannels] = useState([]);
-    const [roles, setRoles] = useState([]);
+    const [mentionRoles, setMentionRoles] = useState([]);
+    const [reminderMentionRoles, setReminderMentionRoles] = useState([]);
+    const [event, setEvent] = useState([]);
 
-    useEffect(() => {
-        if (!verifyToken(token)) {
-            history.push("/invalid_token");
-        }
-        // eslint-disable-next-line
-    }, []);
 
     useEffect(() => {
         if (!isFormValid) {
@@ -86,17 +84,12 @@ export default function EventCreateForm() {
             if (!_isValid) return;
             payload[element.name] = element.value;
         }
-        const tokenData = decodeToken(token)
-
-        payload.guild_id = tokenData.gid;
-        payload.channel_id = tokenData.cid;
-        payload.leader_id = tokenData.id;
 
         delete payload.submit;
         delete payload[""];
 
         try {
-            await eventService.createEvent(payload, token);
+            await eventService.editEvent(payload, userToken);
             history.push("/event_create_success");
         } catch (e) {
             // TODO: server_error ekle
@@ -106,11 +99,45 @@ export default function EventCreateForm() {
 
     useEffect(() => {
         (async () => {
-            const res = await guildService.getChannelsAndRoles(token);
-            console.log({channels: res[0]})
-            console.log({roles: res[1]})
-            setChannels(res[0]);
-            setRoles(res[1]);
+            let _defaultChannel = null;
+            let _mentionRoles = null;
+            let _reminderMentionRoles = null;
+
+            const _event = (await eventService.getEvent(eventID, userToken)).data;
+            const _channels = (await guildService.getChannels(_event.guild_id, userToken)).data;
+
+            const mappedChannels = _channels.map((channel) => {
+                if (channel.id === _event.channel_id) {
+                    _defaultChannel = {label: channel.name, value: channel.id}
+                    console.log("default found!");
+                    console.log(_defaultChannel);
+                }
+                return {label: channel.name, value: channel.id}
+            });
+
+            _mentionRoles = (await guildService.getRoles(_event.guild_id, userToken)).data.map((role, index) => {
+                return {
+                    label: role.name,
+                    color: role.color,
+                    value: role.id,
+                    selected: _event.mentions.includes(role.id)
+                }
+            });
+
+            _reminderMentionRoles = (await guildService.getRoles(_event.guild_id, userToken)).data.map((role, index) => {
+                return {
+                    label: role.name,
+                    color: role.color,
+                    value: role.id,
+                    selected: _event.reminder_options.mentions.includes(role.id)
+                }
+            });
+
+            setDefaultChannel(_defaultChannel)
+            setChannels(mappedChannels);
+            setMentionRoles(_mentionRoles);
+            setReminderMentionRoles(_reminderMentionRoles);
+            setEvent(_event);
         })();
 
         // eslint-disable-next-line
@@ -158,13 +185,17 @@ export default function EventCreateForm() {
                                 </div>
                                 <div className='grid grid-flow-col grid-cols-2 gap-x-48'>
                                     <div className='py-4'>
-                                        <TextInput
-                                            title="Title"
-                                            type="text"
-                                            name='title'
-                                            width='full'
-                                            description="Please enter the event title"
-                                        />
+                                        {
+                                            event &&
+                                            <TextInput
+                                                title="Title"
+                                                type="text"
+                                                name='title'
+                                                width='full'
+                                                defaultValue={event.title}
+                                                description="Please enter the event title"
+                                            />
+                                        }
                                     </div>
                                 </div>
                                 <div className='grid grid-flow-col grid-cols-2 gap-x-48'>
@@ -181,22 +212,27 @@ export default function EventCreateForm() {
                                 </div>
                                 <div className='grid grid-flow-col grid-cols-2 gap-x-48'>
                                     <div className='py-4 pb-14'>
-                                        <SelectInput
-                                            title="Channel"
-                                            description="Please enter the channel that you want to get event"
-                                            name='channel'
-                                            content={channels}
-                                            width='full'
-                                            height={14}
-                                            placeholder='Select'
-                                        />
+                                        {
+                                            defaultChannel &&
+                                            <SelectInput
+                                                title="Channel"
+                                                description="Please enter the channel that you want to get event"
+                                                name='channel'
+                                                content={channels}
+                                                defaultValue={defaultChannel}
+                                                width='full'
+                                                height={14}
+                                                placeholder='Select'
+                                            />
+                                        }
+
                                     </div>
                                     <div className='py-4'>
                                         <TagPickerInput
                                             title="Mentions"
                                             description="Please select the roles that yo want to mention"
                                             name='mentions'
-                                            content={roles}
+                                            content={mentionRoles}
                                             width='full'
                                             height={56}
                                             placeholder='Select'
@@ -246,7 +282,8 @@ export default function EventCreateForm() {
                                 <div className='pt-8'>
                                     <Collapse name="Reminder Options"
                                               description="Announcement  options can be setted with using collapse menu">
-                                        <ReminderOptionsInput channelContent={channels} roleContent={roles}/>
+                                        <ReminderOptionsInput channelContent={channels}
+                                                              roleContent={reminderMentionRoles}/>
                                     </Collapse>
                                 </div>
                                 <div className='py-8'>

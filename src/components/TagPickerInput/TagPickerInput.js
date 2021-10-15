@@ -95,7 +95,7 @@ export default function TagPickerInput({
             </div>
             }
             <div className={`relative w-72 ${width && 'w-' + width}`}>
-                <input name={name} value={tagPickerValue} type='hidden'/>
+                <input name={name} value={tagPickerValue ? tagPickerValue : ""} type='hidden'/>
                 <div tabIndex="1"
                      onClick={() => divRef.current.focus()}
                      ref={divRef}
@@ -141,7 +141,7 @@ export default function TagPickerInput({
                 <div className='p-2 relative'>
                     <input
                         type='text'
-                        value={searchValue}
+                        value={searchValue ? searchValue : ""}
                         onFocus={() => setFocusSearch(true)}
                         onBlur={() => setFocusSearch(false)}
                         onChange={(e) => setSearchValue(e.target.value)}
