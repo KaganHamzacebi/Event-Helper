@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {ExclamationIcon, XIcon} from '@heroicons/react/solid'
 import {getErrorMessage, validate} from "../utils/inputValidations";
 
@@ -13,6 +13,10 @@ export default function TextInput({
 
     const [value, setValue] = useState(defaultValue ? defaultValue : "");
     const [isValid, setIsValid] = useState(true);
+
+    useEffect(() => {
+        setValue(defaultValue);
+    }, [defaultValue])
 
     return (
         <div>

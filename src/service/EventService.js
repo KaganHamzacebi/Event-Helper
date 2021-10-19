@@ -17,8 +17,8 @@ export default class EventService extends Service {
         return res;
     }
 
-    async editEvent(payload, token) {
-        const res = await axios.post('/edit_event', payload, {
+    async editEvent(event_id, payload, token) {
+        const res = await axios.post(`/edit_event/${event_id}`, payload, {
             baseURL: this.endpointBase,
             headers: {
                 authorization: token,

@@ -81,7 +81,7 @@ function App() {
                             <Route exact path="/dashboard" component={GuildsPanel}/>
                             <Route path="/dashboard/:id" component={Dashboard}/>
                             <Route path="/create_event/:token" component={EventCreateForm}/>
-                            <Route path="/edit_event/:eventID" component={EventEditForm}/>
+                            <Route path="/edit_event/:id" component={EventEditForm}/>
                             <Route path="/login_redirect" component={LoginRedirect}/>
                             <Route exact path="/invalid_token" component={InvalidToken}/>
                             <Route exact path="/event_create_success" component={EventCreateSuccess}/>

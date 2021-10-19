@@ -9,6 +9,7 @@ export default function Switch({
                                    label,
                                    type,
                                    content,
+                                   defaultValue,
                                    placeholder
                                }) {
 

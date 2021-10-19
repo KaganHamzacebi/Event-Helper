@@ -85,9 +85,9 @@ export default function AdvancedOptionInput({
                                     className={`flex flex-row border border-gray-900 rounded bg-title mt-4 p-2 h-28 ${advancedOption.disabled ? 'blur-2xl' : ''}`}>
                             {
                                 title !== '' ?
-                                    <div className='ml-2 self-center flex-grow'>
-                                        <h1 className='text-xl font-bold text-primary whitespace-nowrap'>{advancedOption.label} {advancedOption.premium ? '⭐' : ''}</h1>
-                                        <span className="text-sm text-primary-light">{advancedOption.description}</span>
+                                    <div className='ml-2 self-center flex-grow leading-none'>
+                                        <h1 className='text-xl font-bold text-primary whitespace-nowrap mb-2'>{advancedOption.label} {advancedOption.premium ? '⭐' : ''}</h1>
+                                        <span className="text-sm text-primary-light leading-none">{advancedOption.description}</span>
                                     </div>
                                     :
                                     ''

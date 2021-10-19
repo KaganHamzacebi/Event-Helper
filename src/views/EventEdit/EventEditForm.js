@@ -52,16 +52,18 @@ const templates = [
 
 export default function EventEditForm() {
     const history = useHistory();
+    const {id} = useParams();
     const {user, userToken} = useContext(UserContext);
 
     const eventService = new EventService();
     const guildService = new GuildService();
-    const {eventID} = useParams();
     const [isFormValid, setIsFormValid] = useState(true);
     const [defaultChannel, setDefaultChannel] = useState(null);
+    const [defaultReminderChannel, setDefaultReminderChannel] = useState(null);
     const [channels, setChannels] = useState([]);
     const [mentionRoles, setMentionRoles] = useState([]);
     const [reminderMentionRoles, setReminderMentionRoles] = useState([]);
+
     const [event, setEvent] = useState([]);
 
 
@@ -89,7 +91,7 @@ export default function EventEditForm() {
         delete payload[""];
 
         try {
-            await eventService.editEvent(payload, userToken);
+            await eventService.editEvent(id, payload, userToken);
             history.push("/event_create_success");
         } catch (e) {
             // TODO: server_error ekle
@@ -100,22 +102,23 @@ export default function EventEditForm() {
     useEffect(() => {
         (async () => {
             let _defaultChannel = null;
-            let _mentionRoles = null;
-            let _reminderMentionRoles = null;
+            let _defaultReminderChannel = null;
 
-            const _event = (await eventService.getEvent(eventID, userToken)).data;
+            const _event = (await eventService.getEvent(id, userToken)).data;
             const _channels = (await guildService.getChannels(_event.guild_id, userToken)).data;
+            const _roles = (await guildService.getRoles(_event.guild_id, userToken)).data;
 
-            const mappedChannels = _channels.map((channel) => {
+            const _mappedChannels = _channels.map((channel) => {
                 if (channel.id === _event.channel_id) {
                     _defaultChannel = {label: channel.name, value: channel.id}
-                    console.log("default found!");
-                    console.log(_defaultChannel);
+                }
+                if (channel.id === _event.reminder_options.channel_id) {
+                    _defaultReminderChannel = {label: channel.name, value: channel.id}
                 }
                 return {label: channel.name, value: channel.id}
             });
 
-            _mentionRoles = (await guildService.getRoles(_event.guild_id, userToken)).data.map((role, index) => {
+            const _mentionRoles = _roles.map((role) => {
                 return {
                     label: role.name,
                     color: role.color,
@@ -124,7 +127,7 @@ export default function EventEditForm() {
                 }
             });
 
-            _reminderMentionRoles = (await guildService.getRoles(_event.guild_id, userToken)).data.map((role, index) => {
+            const _reminderMentionRoles = _roles.map((role) => {
                 return {
                     label: role.name,
                     color: role.color,
@@ -133,8 +136,9 @@ export default function EventEditForm() {
                 }
             });
 
+            setChannels(_mappedChannels);
             setDefaultChannel(_defaultChannel)
-            setChannels(mappedChannels);
+            setDefaultReminderChannel(_defaultReminderChannel);
             setMentionRoles(_mentionRoles);
             setReminderMentionRoles(_reminderMentionRoles);
             setEvent(_event);
@@ -143,6 +147,9 @@ export default function EventEditForm() {
         // eslint-disable-next-line
     }, [])
 
+    useEffect(() => {
+        console.log(event);
+    }, [event])
 
     return (
         <div>
@@ -167,10 +174,9 @@ export default function EventEditForm() {
                         </div>
                     </div>
                 </div>
-
                 <header className="bg-title shadow">
                     <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        <h1 className="text-3xl font-bold text-primary">Create New Event</h1>
+                        <h1 className="text-3xl font-bold text-primary">Edit Event</h1>
                     </div>
                 </header>
                 <main className='bg-content'>
@@ -185,17 +191,14 @@ export default function EventEditForm() {
                                 </div>
                                 <div className='grid grid-flow-col grid-cols-2 gap-x-48'>
                                     <div className='py-4'>
-                                        {
-                                            event &&
-                                            <TextInput
-                                                title="Title"
-                                                type="text"
-                                                name='title'
-                                                width='full'
-                                                defaultValue={event.title}
-                                                description="Please enter the event title"
-                                            />
-                                        }
+                                        <TextInput
+                                            title="Title"
+                                            type="text"
+                                            name='title'
+                                            width='full'
+                                            defaultValue={event.title}
+                                            description="Please enter the event title"
+                                        />
                                     </div>
                                 </div>
                                 <div className='grid grid-flow-col grid-cols-2 gap-x-48'>
@@ -206,26 +209,23 @@ export default function EventEditForm() {
                                             type="text"
                                             name='description'
                                             width='full'
+                                            defaultValue={event.description}
                                             description="Please enter the description for event (Optional)"
                                         />
                                     </div>
                                 </div>
                                 <div className='grid grid-flow-col grid-cols-2 gap-x-48'>
                                     <div className='py-4 pb-14'>
-                                        {
-                                            defaultChannel &&
-                                            <SelectInput
-                                                title="Channel"
-                                                description="Please enter the channel that you want to get event"
-                                                name='channel'
-                                                content={channels}
-                                                defaultValue={defaultChannel}
-                                                width='full'
-                                                height={14}
-                                                placeholder='Select'
-                                            />
-                                        }
-
+                                        <SelectInput
+                                            title="Channel"
+                                            description="Please enter the channel that you want to get event"
+                                            name='channel'
+                                            content={channels}
+                                            defaultValue={defaultChannel}
+                                            width='full'
+                                            height={14}
+                                            placeholder='Select'
+                                        />
                                     </div>
                                     <div className='py-4'>
                                         <TagPickerInput
@@ -246,6 +246,7 @@ export default function EventEditForm() {
                                             type="text"
                                             name='thumbnail'
                                             width='full'
+                                            defaultValue={event.thumbnail}
                                             description="Please enter thumbnail url for event"
                                         />
                                     </div>
@@ -255,6 +256,7 @@ export default function EventEditForm() {
                                             type="text"
                                             name='image'
                                             width='full'
+                                            defaultValue={event.image}
                                             description="Please enter image url for event"
                                         />
                                     </div>
@@ -264,8 +266,8 @@ export default function EventEditForm() {
                                         <DateInput
                                             title="Event Date"
                                             name='event_date'
-                                            valueDate={moment().format('YYYY-MM-DD')}
-                                            valueTime={moment().format('HH:DD')}
+                                            valueDate={moment.unix(event.event_date).format('YYYY-MM-DD')}
+                                            valueTime={moment.unix(event.event_date).format('HH:DD')}
                                             description="Please enter the date that event gonna occur"
                                         />
                                     </div>
@@ -282,8 +284,15 @@ export default function EventEditForm() {
                                 <div className='pt-8'>
                                     <Collapse name="Reminder Options"
                                               description="Announcement  options can be setted with using collapse menu">
-                                        <ReminderOptionsInput channelContent={channels}
-                                                              roleContent={reminderMentionRoles}/>
+                                        {
+                                            event.reminder_options &&
+                                            <ReminderOptionsInput
+                                                channelContent={channels}
+                                                defaultChannel={defaultReminderChannel}
+                                                roleContent={reminderMentionRoles}
+                                                descriptionContent={event.reminder_options.description}
+                                                timeContent={event.reminder_options.remaining_time}/>
+                                        }
                                     </Collapse>
                                 </div>
                                 <div className='py-8'>
@@ -302,7 +311,7 @@ export default function EventEditForm() {
                  "
                                         type="submit"
                                     >
-                                        Create Event
+                                        Edit Event
                                     </button>
                                 </div>
 

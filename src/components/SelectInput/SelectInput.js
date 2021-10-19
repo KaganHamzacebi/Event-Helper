@@ -23,6 +23,10 @@ export default function SelectInput({
     const [myTimeout, setMyTimeout] = useState(null);
 
     useEffect(() => {
+        setValue(defaultValue);
+    }, [defaultValue])
+
+    useEffect(() => {
         //setIsDropdownOpen(focusSelect || focusSearch);
         if (!(focusSelect || focusSearch)) {
             //Bozulursa ilk buraya bak
