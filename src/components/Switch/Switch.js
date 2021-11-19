@@ -1,4 +1,4 @@
-import './Switch.css'
+import '../../AdvancedOption/AdvancedOptionComponents/AdvancedOptionStyle.css'
 import SelectInput from '../SelectInput/SelectInput';
 import reactCSS from 'reactcss'
 import {SketchPicker} from 'react-color'

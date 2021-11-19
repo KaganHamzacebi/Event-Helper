@@ -13,7 +13,7 @@ import TextAreaInput from "../../components/TextAreaInput";
 import TemplateInput from "../../components/TemplateInput";
 import DateInput from "../../components/DateInput/DateInput";
 import SelectInput from "../../components/SelectInput/SelectInput";
-import AdvancedOptionInput from "../../components/AdvancedOptionInput";
+import AdvancedOptionsMenu from "../../AdvancedOption/AdvancedOptionsMenu";
 import ReminderOptionsInput from "../../components/ReminderOptionsInput";
 import TagPickerInput from "../../components/TagPickerInput/TagPickerInput"
 
@@ -252,7 +252,7 @@ export default function EventCreateForm() {
                                 <div className='py-8'>
                                     <Collapse name="Advanced Options"
                                               description="Advanced options can be setted with using collapse menu">
-                                        <AdvancedOptionInput/>
+                                        <AdvancedOptionsMenu/>
                                     </Collapse>
                                 </div>
                                 <div className="flex flex-row justify-end w-full">

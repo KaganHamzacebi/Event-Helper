@@ -2,7 +2,7 @@
   "name": "tetherer",
   "version": "0.1.0",
   "engines": {
-    "node": "15.2.1"
+    "node": "16.13.0"
   },
   "private": true,
   "dependencies": {

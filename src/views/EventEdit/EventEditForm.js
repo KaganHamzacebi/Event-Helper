@@ -12,7 +12,7 @@ import TextAreaInput from "../../components/TextAreaInput";
 import TemplateInput from "../../components/TemplateInput";
 import DateInput from "../../components/DateInput/DateInput";
 import SelectInput from "../../components/SelectInput/SelectInput";
-import AdvancedOptionInput from "../../components/AdvancedOptionInput";
+import AdvancedOptionsMenu from "../../AdvancedOption/AdvancedOptionsMenu";
 import ReminderOptionsInput from "../../components/ReminderOptionsInput";
 import TagPickerInput from "../../components/TagPickerInput/TagPickerInput"
 
@@ -183,12 +183,6 @@ export default function EventEditForm() {
                     <form onSubmit={handleSubmit}>
                         <div className="container mx-auto py-6 px-6 2xl:px-40">
                             <div className="container divide-y-2 divide-solid divide-primary">
-                                <div className="py-4">
-                                    <TemplateInput
-                                        templates={templates}
-                                        description="You can select a template here"
-                                    />
-                                </div>
                                 <div className='grid grid-flow-col grid-cols-2 gap-x-48'>
                                     <div className='py-4'>
                                         <TextInput
@@ -298,7 +292,10 @@ export default function EventEditForm() {
                                 <div className='py-8'>
                                     <Collapse name="Advanced Options"
                                               description="Advanced options can be setted with using collapse menu">
-                                        <AdvancedOptionInput/>
+                                        {
+                                            event.advanced_options &&
+                                            <AdvancedOptionsMenu defaultValues={event.advanced_options}/>
+                                        }
                                     </Collapse>
                                 </div>
                                 <div className="flex flex-row justify-end w-full">
